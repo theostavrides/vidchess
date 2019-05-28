@@ -36,14 +36,6 @@ class Home extends Component {
               <input class="link-btn" type="submit" value="Get Link" />
             </div>
           </form>
-          <div class="link-container">
-            <div class="link-header">
-              <h3>Send this link to a Friend...Or Enemy</h3>
-            </div>
-            <div class="link-box">
-              <p contenteditable="true">This is how we do it</p>
-            </div>
-          </div>
         </div>
         <div class="right-grid">
           <h1 class="your-stats">Your Stats</h1>

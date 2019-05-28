@@ -40,6 +40,14 @@ class Board extends React.PureComponent {
     return (
       <div className="board">
         <Chess pieces={pieces} onMovePiece={this.handleMovePiece} />
+        {/* <div class="link-container">
+            <div class="link-header">
+              <h3>Send this link to a Friend...Or Enemy</h3>
+            </div>
+            <div class="link-box">
+              <p contenteditable="true">This is how we do it</p>
+            </div>
+          </div> */}
       </div>
     )
   }
