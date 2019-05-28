@@ -38,10 +38,9 @@ function makeHelpers(knex) {
   }
   const getGamesOfUser = (user_id) => {
     return knex("games")
-      .select("*")
       .where("white_id", user_id)
       .orWhere("black_id", user_id)
-      .orderBy("id")
+      .select("*")
       .then((id) => {
         return Promise.resolve(id)
       })
