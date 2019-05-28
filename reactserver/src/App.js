@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Room from './room/Room';
 
 class App extends Component {
   constructor() {
@@ -9,10 +10,7 @@ class App extends Component {
 
   render() {
     return (
-        <div>
-          <h1>hello tom</h1>
-          <p>Is the best in the world</p>
-        </div>
+      <Room />
     );
   }
 }
