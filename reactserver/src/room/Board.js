@@ -1,10 +1,10 @@
 const React                                    = require('react')
 const Chess                                    = require('react-chess')
 const ChessJS                                  = require('chess.js');
-const { blackMove, whiteSetup, blackSetup }    = require('./helpers/chessHelpers.js')
+const { blackMove, whiteSetup, blackSetup }    = require('../helpers/chessHelpers.js')
 const game                                     = new ChessJS();
 
-require('./board.css')
+require('./Board.css')
 
 class Board extends React.PureComponent {
   constructor(props) {

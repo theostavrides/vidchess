@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Room from './Room';
+import Room from './room/Room';
 
 class App extends Component {
   constructor() {
