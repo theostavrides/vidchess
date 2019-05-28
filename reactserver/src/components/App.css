@@ -1,0 +1,22 @@
+h1, h2, h3, h4, h5, h6, p {
+  font-family: 'Frank Ruhl Libre', serif;
+}
+
+html, body {
+  overflow: hidden;
+}
+
+div > h1 {
+  color: #333;
+  padding: 20px;
+  font-size: 40px;
+  text-align: center;
+}
+
+#wrapper {
+  grid-column: 1 / 13;
+  display: grid;
+  grid-template-rows: 10vh 90vh;
+  grid-template-columns: repeat(12, 1fr);
+}
+

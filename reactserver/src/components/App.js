@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Room from './room/Room';
+import Navbar from './Navbar.js';
+import Login from './login/Login.js'
+import Room from './room/Room.js'
 
 class App extends Component {
   constructor() {
@@ -10,7 +12,11 @@ class App extends Component {
 
   render() {
     return (
-      <Room />
+      <div id="wrapper">
+        <Navbar />
+        {/* <Login /> */}
+        <Room />
+      </div>
     );
   }
 }

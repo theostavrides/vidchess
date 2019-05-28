@@ -1,0 +1,104 @@
+#login-grid {
+  grid-column: 1 / 13;
+  grid-row: 2 / 13;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+
+/* Login Left Side Styling */
+
+#login-left-side {
+  padding: 50px;
+  justify-content: center;
+  align-content: center;
+  background-image: url("https://images.unsplash.com/photo-1511583090122-0f8ef653906c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1959&q=80");
+  background-size: cover;
+  background-position: center center;
+  display: grid;
+  color: white;
+
+}
+
+#login-left-side > h2 {
+  font-size: 25px;
+}
+
+#login-left-side > p {
+  padding-top: 10px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 19px;
+}
+
+/* Login Right Side Styling */
+
+#login-right-side {
+  justify-content: center;
+  align-content: center;
+  display: grid;
+  grid-gap: 5px;
+}
+
+#inner-inner-grid{
+  padding: 30px;
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 20% 80%;
+}
+
+#inner-inner-grid > button {
+  font-size: 17px;
+  margin: 2px;
+  font-weight: 400;
+  color: #333;
+  border: 1px solid #333;
+  background-color: transparent;
+}
+
+#inner-inner-grid > button:hover {
+  background-color: #333;
+  color: white;
+}
+
+#inner-inner-grid > form {
+  margin-top: 20px;
+  grid-column: 1 / 3;
+}
+
+#inner-inner-grid > form > input.form-input{
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  outline: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  color: #333;
+  border-bottom: 1px solid #333;
+  padding: 15px;
+  background-color: transparent;
+}
+
+input.form-input::-webkit-input-placeholder {
+  color: #333;
+}
+
+input#submit-btn {
+  margin-top: 15px;
+  font-size: 16px;
+  border: none;
+  width: 30%;
+  padding: 15px;
+  border: 1px solid #333;
+  background-color: transparent;
+  color: #333;
+}
+
+input#submit-btn:hover {
+ background-color: white;
+ color: #333;
+}

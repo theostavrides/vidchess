@@ -1,0 +1,22 @@
+#wrapper > nav {
+  grid-column: 1 / 13;
+  display: grid;
+  background-color: white;
+  box-shadow: 1px 1px 6px 2px rgba(179, 179, 179, 0.4);
+}
+
+.logo {
+  padding-left: 20px;
+  font-size: 25px;
+  color: #333;
+  align-self: center;
+  text-decoration: none;
+}
+
+.logout {
+  font-weight: 600;
+  grid-column-start: 14;
+  align-self: center;
+  color: #333;
+  text-decoration: none;
+}

@@ -1,0 +1,161 @@
+html, body {
+  overflow: hidden;
+}
+
+body {
+  margin: 0px;
+}
+.wrapper {
+  grid-column: 1 / 13;
+  display: grid; 
+  grid-template-columns: repeat(12, 1fr); 
+  grid-template-rows: repeat(12, 8.33vh); 
+} 
+
+
+.chessboard-container { 
+  grid-column: 1 / 7;
+  grid-row-start: 1; 
+  grid-row-end: 13;
+  border-right: 1px solid #333;
+}
+
+div.sidebar {
+  grid-column: 7 / 13;
+  grid-row: 1 / 13;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40vh 8vh 52vh;
+}
+
+.video-container { 
+  grid-column: 1;
+  grid-row-start: 1; 
+  grid-row-end: 2; 
+}
+
+
+
+/* Chatbar Messanger */
+
+.chat-container { 
+  grid-row-start: 3;
+  grid-row-end: 4;
+  display: grid;
+  grid-template-columns: 1fr ;
+  grid-template-rows: 67% 15%;
+}
+
+.message-area {
+  grid-row: 1 / 2;
+  padding: 25px;
+}
+
+div.messages {
+  font-size: 14;
+  margin-bottom: 10px;
+  padding: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+div.messages > p {
+  font-size: 14px;
+}
+
+.talkbubble-1 {
+  float: left;
+  clear: right;
+  text-align: left;
+  background: rgb(243, 243, 243);
+  color: grey;
+}
+
+.talkbubble-2 {
+  float: right;
+  clear: left;
+  text-align: right;
+  background: rgb(4, 150, 247);
+  color: white;
+}
+
+div.chatbar-container {
+  display: grid;
+  align-content: center;
+  padding: 0px 30px 0px 30px;
+  background: rgb(243, 243, 243);
+}
+
+form.chatbar > input {
+  border: none;
+  color: grey;
+  background-color: transparent;
+  font-size: 15px;
+  padding: 5px 5px 5px 10px;
+  width: 100%;
+}
+
+
+/* Chessbar  Styling */
+
+.chessbar-container { 
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: grid;
+  grid-template-columns: 35% 35% 15% 15%;
+  grid-template-rows: 1fr;
+}
+
+.chessbar-container > div.timer {
+  font-size: 30px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 8vh;
+}
+
+.chessbar-container > div.player1 {
+  color: white;
+  background-color: #333;
+  border: 1px solid #333;
+}
+
+.chessbar-container > div.player2 {
+  background-color: white;
+  border: 1px solid #333;
+}
+
+.chessbar-container > div.resign {
+  background-color: rgb(228, 67, 67);
+}
+
+.resign img {
+  display: block;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  height: 50px;
+}
+
+.chessbar-container > div.resign:hover {
+  background-color: rgb(179, 53, 53);
+}
+
+
+.chessbar-container > div.draw {
+  background-color: rgb(79, 79, 230);
+}
+
+.draw img {
+  display: block;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  height: 60px;
+}
+
+.chessbar-container > div.draw:hover {
+  background-color: rgb(63, 63, 187);
+}
