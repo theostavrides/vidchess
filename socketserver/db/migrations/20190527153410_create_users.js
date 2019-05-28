@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) { // eslint-disable-line no-unused-vars
     table.string('email');
     table.string('password');
     table.string('avatar');
+    table.timestamp('timestamp').defaultTo(knex.fn.now());
   });
 };
 
