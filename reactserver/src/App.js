@@ -11,6 +11,7 @@ class App extends Component {
     return (
         <div>
           <h1>hello tom</h1>
+          <p>Is the best in the world</p>
         </div>
     );
   }
