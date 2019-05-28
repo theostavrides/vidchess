@@ -20,6 +20,7 @@ class Board extends React.PureComponent {
     this.state.colour === 'w' ?
       game.move({ from: fromSquare, to: toSquare }) :
       game.move({ from: blackMove(fromSquare), to: blackMove(toSquare)})
+    console.log(game.history())
     const newPieces = this.state.pieces
       .map((curr, index) => {
         if (piece.index === index) {
