@@ -1,24 +1,25 @@
-const React        = require('react')
-const Chess        = require('react-chess')
-const ChessJS      = require('chess.js');
-const chessHelpers = require('./chessHelpers/flipboard.js')
-const game         = new ChessJS();
+const React                                    = require('react')
+const Chess                                    = require('react-chess')
+const ChessJS                                  = require('chess.js');
+const { blackMove, whiteSetup, blackSetup }    = require('./helpers/chessHelpers.js')
+const game                                     = new ChessJS();
 
 require('./board.css')
 
 class Board extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    //initial position should be passed in as props
-    this.state = {pieces: Chess.getDefaultLineup()}; // 'pieces: null' -> empty board
+    this.state = {
+      colour: 'b',
+      pieces: blackSetup
+    };
     this.handleMovePiece = this.handleMovePiece.bind(this);
   }
 
   handleMovePiece(piece, fromSquare, toSquare) {
-
-    console.log(game.move({ from: fromSquare, to: toSquare }))
-
+    this.state.colour === 'w' ?
+      game.move({ from: fromSquare, to: toSquare }) :
+      game.move({ from: blackMove(fromSquare), to: blackMove(toSquare)})
     const newPieces = this.state.pieces
       .map((curr, index) => {
         if (piece.index === index) {
