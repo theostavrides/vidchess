@@ -1,7 +1,8 @@
-const React = require('react')
-const Chess = require('react-chess')
-const ChessJS = require('chess.js');
-const game = new ChessJS();
+const React        = require('react')
+const Chess        = require('react-chess')
+const ChessJS      = require('chess.js');
+const chessHelpers = require('./chessHelpers/flipboard.js')
+const game         = new ChessJS();
 
 require('./board.css')
 
@@ -10,7 +11,7 @@ class Board extends React.PureComponent {
     super(props);
 
     //initial position should be passed in as props
-    this.state = {pieces: []};
+    this.state = {pieces: Chess.getDefaultLineup()}; // 'pieces: null' -> empty board
     this.handleMovePiece = this.handleMovePiece.bind(this);
   }
 
