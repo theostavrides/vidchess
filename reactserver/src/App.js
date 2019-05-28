@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import socketIOClient from "socket.io-client";
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      response: false,
-      endpoint: "http://localhost:3001"
-    };
+    this.state = {};
   }
-  componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.on("news", data => this.setState({ response: data.hello }));
-  }
+
   render() {
-    const { response } = this.state;
     return (
         <div>
-          {response && <p>{response}</p>}
+          <h1>hello</h1>
         </div>
     );
   }

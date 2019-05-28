@@ -1,12 +1,11 @@
-
 exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('moves', (table) => {
-      table.increments();
+      table.increments().primary();
       table.integer('game_id').unsigned();
       table.foreign('game_id').references('id').inTable('games');
       table.string('move').notNullable();
-      table.timestamp('timestamp').defaultTo(knex.fn.now());;
+      table.timestamp('timestamp').defaultTo(knex.fn.now());
     })
   ])
 };
