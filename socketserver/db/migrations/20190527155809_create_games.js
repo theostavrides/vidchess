@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('games', (table) => {
       table.increments().primary();
-      table.boolean('over').defaultTo(false);
+      table.string('result');
       table.integer('white_id').unsigned();
       table.integer('black_id').unsigned();
       table.foreign('white_id').references('id').inTable('users');

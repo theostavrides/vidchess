@@ -41,6 +41,7 @@ function makeHelpers(knex) {
       .select("*")
       .where("white_id", user_id)
       .orWhere("black_id", user_id)
+      .orderBy("id")
       .then((id) => {
         return Promise.resolve(id)
       })
@@ -49,6 +50,7 @@ function makeHelpers(knex) {
     return knex("moves")
       .select("*")
       .where('game_id', game_id)
+      .orderBy('id')
       .then((id) => {
         return Promise.resolve(id);
       })

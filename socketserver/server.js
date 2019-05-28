@@ -15,7 +15,7 @@ io.on('connection', function (socket) {
   });
 });
 
-helpers.getGamesOfUser(1).then(res => console.log(res))
+helpers.getMovesOfGame(3).then(res => console.log(res))
 
 server.listen(PORT, function() {
   console.log(`Socket server running on port ${PORT}`)
