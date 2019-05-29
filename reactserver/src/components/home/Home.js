@@ -1,11 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './Home.css';
 
 class Home extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      time: '',
+      color: '',
+    };
   }
+
+  handleChangeTime = (event) => {
+    this.setState({
+      time: event.target.value
+    })
+  }
+
+  handleChangeColor = (event) => {
+    this.setState({
+      color: event.target.value
+    })
+  }
+
 
   render() {
     return (
@@ -13,25 +29,36 @@ class Home extends Component {
         <div className="left-grid">
           <h1>Create A Game</h1>
           <form className="new-game">
-            <input type="radio" id="1" name="minute" />
-            <label htmlFor="1">1</label>
-            <input type="radio" id="2" name="minute" />
-            <label htmlFor="2">3</label>
-            <input type="radio" id="3" name="minute" />
-            <label htmlFor="3">5</label>
-            <input type="radio" id="4" name="minute" />
-            <label htmlFor="4">10</label>
-            <input type="radio" id="5" name="minute" />
-            <label htmlFor="5">15</label>
-
+            {
+              [1, 3, 5, 10, 15].map((n, i) => {
+                return (
+                  <Fragment>
+                    <input onChange={this.handleChangeTime} key={i} value={n} type="radio" id={i} name="minute" />
+                    <label htmlFor={i}>{n}</label>
+                  </Fragment>
+                )
+              })
+            }
             <div className="piece-color">
+            {
+              ['w', 'r', 'b'].map((c, i) => {
+                return (
+                  <Fragment>
+                    <input onChange={this.handleChangeColor} key={i} value={c} type="radio" id={c} name="piece" />
+                    <label htmlFor={c}>{c}</label>
+                  </Fragment>
+                )
+              })
+            }
+            </div>
+            {/* <div className="piece-color">
               <input type="radio" id="white" name="piece" />
               <label htmlFor="white">W</label>
               <input type="radio" id="random" name="piece" />
               <label htmlFor="random">R</label>
               <input type="radio" id="black" name="piece" />
               <label htmlFor="black">B</label>
-            </div>
+            </div> */}
             <div className="get-link">
               <input className="link-btn" type="submit" value="Get Link" />
             </div>
