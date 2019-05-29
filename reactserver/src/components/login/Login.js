@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react';import { bind } from 'bluebird';
+
 import './Login.css'
 
 
@@ -6,8 +7,16 @@ import './Login.css'
 class Login extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      active: false,
+    };
+    this.toggleClass = this.toggleClass.bind(this);
   }
+
+  toggleClass() {
+    const currentState = this.state.active;
+    this.setState({ active: !currentState });
+  }  
 
   render() {
     return (
@@ -23,8 +32,8 @@ class Login extends Component {
           </div>  
           <div id="inner-inner-grid">
 
-            <button className="btn">Login</button>
-            <button className="btn left-btn">Register</button>
+            <button className={this.state.active ? 'active': null} onClick={this.toggleClass} >Login</button>
+            <button className="">Register</button>
 
             <form>
               <input className="form-input" type="text" placeholder="Username" />

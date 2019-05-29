@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <div id="wrapper">
         <Navbar />
-        {/* <Login /> */}
+        <Login />
         <Home />
         <Room />
       </div>
