@@ -8,14 +8,14 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      active: false,
+      isClicked: false,
     };
-    this.toggleClass = this.toggleClass.bind(this);
+    this.setClass = this.setClass.bind(this);
   }
 
-  toggleClass() {
-    const currentState = this.state.active;
-    this.setState({ active: !currentState });
+  setClass() {
+    const currentState = this.state.isClicked;
+    this.setState({ isClicked: !currentState });
   }  
 
   render() {
@@ -32,7 +32,7 @@ class Login extends Component {
           </div>  
           <div id="inner-inner-grid">
 
-            <button className={this.state.active ? 'active': null} onClick={this.toggleClass} >Login</button>
+            <button className={this.state.active ? 'active' : null} onClick={this.setClass} >Login</button>
             <button className="">Register</button>
 
             <form>
