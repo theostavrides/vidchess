@@ -7,30 +7,60 @@ class Login extends Component {
     super();
     this.state = {
       login: true,
+      username: '',
+      email: '',
+      password: ''
     };
-    this.onLoginClick = this.onLoginClick.bind(this);
-    this.onRegisterClick = this.onRegisterClick.bind(this);
   }
 
-  onLoginClick(e) {
+  onLoginClick = (event) => {
     this.setState({
       login:true
     })
   }  
 
-  onRegisterClick(e) {
+  onRegisterClick = (event) => {
     this.setState({
       login:false
     })
-  }  
+  }
+
+  handleUsername = (event) => {
+    this.setState({
+      username: event.target.value
+    })
+  }
+
+  handleEmail = (event) => {
+    this.setState({
+      email: event.target.value
+    })
+  }
+
+  handlePassword = (event) => {
+    this.setState({
+      password: event.target.value
+    })
+  }
+
+  handleSubmitLogin = (event) => {
+    event.preventDefault();
+  }
+
+
+  handleSubmitRegister = (event) => {
+    event.preventDefault();
+  }
 
   render() {
     const isLogin = this.state.login
     let form;
 
     if (!isLogin) {
-      form = <input className="form-input" type="text" placeholder="Email" />
+      form = <input onKeyPress={this.handleEmail} className="form-input" name="password" type="text" placeholder="Email" />
     }
+
+
 
     return (
       <div id="login-grid">
@@ -49,10 +79,27 @@ class Login extends Component {
             <button className={!this.state.login ? 'active' : null} onClick={this.onRegisterClick}>Register</button>
 
             <form>
-              <input className="form-input" type="text" placeholder="Username" />
+              <input
+                onChange={this.handleUsername}
+                name="username"
+                className="form-input"
+                type="text"
+                placeholder="Username"
+              />
               {form}
-              <input className="form-input" type="password" placeholder="Password" />
-              <input id="submit-btn" type="submit" placeholder="Submit" />
+              <input 
+                onChange={this.handlePassword}
+                name="password"
+                className="form-input"
+                type="password"
+                placeholder="Password"
+              />
+              <input
+                onClick={isLogin ? this.handleSubmitLogin : this.handleSubmitRegister}
+                id="submit-btn"
+                type="submit"
+                placeholder="Submit"
+              />
             </form>
           </div>
         </div>

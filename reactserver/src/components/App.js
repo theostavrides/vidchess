@@ -42,11 +42,12 @@ class App extends Component {
     return (
       <div id="wrapper">
         <Navbar />
-        <Router>
+        <Login />
+        {/* <Router>
           <Route path='/:room' component={Room} />
           {this.state.logged && <Route path='/' component={Home} />}
           {!this.state.logged && <Route path='/' component={Login} />}
-        </Router>
+        </Router> */}
       </div>
     );
   }
