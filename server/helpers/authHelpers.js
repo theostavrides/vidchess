@@ -19,7 +19,7 @@ function authHelpers(database) {
 
   const userRegister = (data) => {
     data.password = bcrypt.hashSync(data.password, 10)
-    return dataHelpers.registerUser(data).catch(e=> {
+    return dataHelpers.registerUser(data).catch(e => {
       if (e.code == 23505) throw new Error('username taken')
     })
   };
