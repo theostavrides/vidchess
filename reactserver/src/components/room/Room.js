@@ -12,35 +12,45 @@ class Room extends Component {
   render() {
     return (
       <div class="wrapper">
-        <div class="chessboard-container">
-          <Board />
-        </div>
-          <div class="sidebar">
-
-            <div class="video-container"></div>
-
-            <div class="chessbar-container">
-              <div class="timer player1">00.00</div>
-              <div class="timer player2">00.00</div>
-              <div class="resign">
-                <img src="../assets/flag.png" alt="" />
+        <div class="room-2col">
+          <div class="chessboard-container">
+            <div class="link-container">
+              <div class="link-header">
+                <h3>Send this link to a Friend...Or Enemy</h3>
               </div>
-              <div class="draw">
-                <img src="../assets/handshake.png" alt="" />
+              <div class="link-box">
+                <p contenteditable="true">This is how we do it</p>
               </div>
             </div>
+            <Board />
+          </div>
+            <div class="sidebar">
 
-            <div class="chat-container">
+              <div class="video-container"></div>
 
-              <div class="message-area">
-                <div class="messages talkbubble-1"><p>What's going on? You want to play some chessticles</p></div>
-                <div class="messages talkbubble-2"><p>Of course!</p></div>
+              <div class="chessbar-container">
+                <div class="timer player1">00.00</div>
+                <div class="timer player2">00.00</div>
+                <div class="resign">
+                  <img src="../assets/flag.png" alt="" />
+                </div>
+                <div class="draw">
+                  <img src="../assets/handshake.png" alt="" />
+                </div>
               </div>
 
-            <div class="chatbar-container">
-              <form class="chatbar">
-                <input type="text" placeholder="Write your message" />
-              </form>
+              <div class="chat-container">
+
+                <div class="message-area">
+                  <div class="messages talkbubble-1"><p>What's going on? You want to play some chessticles</p></div>
+                  <div class="messages talkbubble-2"><p>Of course!</p></div>
+                </div>
+
+              <div class="chatbar-container">
+                <form class="chatbar">
+                  <input type="text" placeholder="Write your message" />
+                </form>
+              </div>
             </div>
           </div>
         </div>

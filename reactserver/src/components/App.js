@@ -16,8 +16,8 @@ class App extends Component {
       <div id="wrapper">
         <Navbar />
         {/* <Login /> */}
-        {/* <Home /> */}
-        <Room />
+        <Home />
+        {/* <Room /> */}
       </div>
     );
   }

@@ -98,43 +98,6 @@ button.link-btn:focus {
 }
 
 
-/* Generated Link Component */
-
-div.link-container {
-  min-width: 400px;
-  border: 1px solid white;
-}
-
-div.link-box {
-  margin: 30px 10px 30px 10px;
-  border: 1px solid white;
-  height: 40px;
-}
-
-div.link-box > p {
-  outline: none;
-  padding-left: 15px;
-  color: white;
-  font-size: 15px;
-  vertical-align: center;
-  line-height: 40px;
-}
-
-div.link-header {
-  color: #333;
-  font-size: 18px;
-  padding: 10px;
-  border: 1px solid white;
-  background: white;
-  height: 6vh;
-}
-
-div.link-header h3 {
-  vertical-align: center;
-  line-height: 3.5vh;
-}
-
-
 /* Right Side Starts Here */
 
 .right-grid {

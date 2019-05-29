@@ -5,24 +5,67 @@ html, body {
 body {
   margin: 0px;
 }
+
 .wrapper {
   grid-column: 1 / 13;
   display: grid; 
-  grid-template-columns: repeat(12, 1fr); 
   grid-template-rows: repeat(12, 8.33vh); 
-} 
+}
 
+.room-2col {
+  grid-column: 1 / 13;
+  grid-row: 1 / 13;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
 .chessboard-container { 
-  grid-column: 1 / 7;
-  grid-row-start: 1; 
-  grid-row-end: 13;
   border-right: 1px solid #333;
 }
 
+div.link-container {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  z-index: 10;
+  min-width: 400px;
+  background-color: rgb(223, 223, 223);
+  box-shadow: 1px 1px 4px 1px rgba(73, 73, 73, 0.4);
+}
+
+div.link-box {
+  margin: 30px 20px 30px 20px;
+  border: 1px solid white;
+  background: white;
+  color: #333;
+  height: 40px;
+}
+
+div.link-box > p {
+  outline: none;
+  padding-left: 15px;
+  color: #333;
+  font-size: 15px;
+  vertical-align: center;
+  line-height: 40px;
+}
+
+div.link-header {
+  color: #333;
+  font-size: 18px;
+  padding: 10px;
+  border: 1px solid white;
+  background: white;
+  height: 6vh;
+}
+
+div.link-header h3 {
+  vertical-align: center;
+  line-height: 3.5vh;
+}
+
+
 div.sidebar {
-  grid-column: 7 / 13;
-  grid-row: 1 / 13;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 40vh 8vh 52vh;
@@ -33,6 +76,8 @@ div.sidebar {
   grid-row-start: 1; 
   grid-row-end: 2; 
 }
+
+
 
 
 
