@@ -12,32 +12,28 @@ const cookieSession = require("cookie-session");
 const cors          = require('cors')
 const bodyParser    = require("body-parser");
 
+
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 var corsOptions = {
   origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200
 }
 
 
 app.get('/auth', cors(corsOptions), function (req, res, next) {
-  console.log(req.body)
+  console.log(req.session)
   res.json({msg: 'This is CORS-enabled for a Single Route'})
 })
 
 app.post("/login", cors(corsOptions), function (req, res) {
-  console.log(req.body)
-  res.json({msg: 'This is CORS-enabled for a Single Route'})
-  // const validation = validateLogin(req.body.email, req.body.password);
-  // if (validation[0] === false) {
-  //   res.status(403).send('Invald Email');
-  // } else if (validation[1] === false) {
-  //   res.status(403).send('Invald Password');
-  // } else {
-  //   req.session.user_id = getIDfromEmail(req.body.email);
-  //   res.redirect('/urls');
-  // }
+  if (req.body.username && req.body.password) {
+    login(req.body.username, req.body.password)
+      .then(res.status(200).send())
+      .catch(e => res.status(401).send(e.message))
+  }
 });
 
 
@@ -53,13 +49,12 @@ function isLoggedIn(session){
 }
 
 function login(username, password) {
-  validate.userLogin({ username, password })
+  return validate.userLogin({ username, password })
     .then(res => {
-      console.log('user logged in successfully')
+      return res;
     })
     .catch(e => {
-      if (e.message === 'invalid password') console.log('bad pass') //handle err
-      if (e.message === 'invalid username') console.log('bad user')
+      throw new Error(e.message);
     })
 }
 

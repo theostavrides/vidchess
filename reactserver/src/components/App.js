@@ -26,18 +26,17 @@ class App extends Component {
       username: 'theo',
       password: 'purple-monkey-dinosaur'
     })
+
     axios.post('http://localhost:3001/login', data, {
         headers: {
-            'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         }
-    })
-
-      // .then(function (response) {
-      //   console.log(response);
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
+    }).then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
   render() {
     return (
