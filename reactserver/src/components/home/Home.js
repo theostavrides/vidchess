@@ -37,6 +37,7 @@ class Home extends Component {
             </div>
           </form>
         </div>
+
         <div class="right-grid">
           <h1 class="your-stats">Your Stats</h1>
           <div class="game-stats">
@@ -47,13 +48,13 @@ class Home extends Component {
               </li>
 
               <li>
-                <img class="game-icon" src="../assets/loss.png" alt="" />
+                <img class="game-icon" src="./checkmark.png" alt="" />
                 <p><strong>You</strong> lost against <strong>Them</strong></p>
               </li>
 
               <li>
-                <img class="game-icon" src="../assets/draw.png" alt="" />
-                <p><strong>You</strong> tied against <strong>Them</strong></p>
+                <img class="game-icon" src="./checkmark.png" alt="" />
+                <p><strong>You</strong> had a draw with <strong>Them</strong></p>
               </li>
             </ul>
           </div>
