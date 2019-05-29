@@ -16,7 +16,7 @@ body {
   grid-column: 1 / 13;
   grid-row: 1 / 13;
   display: grid;
-  grid-template-columns: 56.5vw 43.5vw;
+  grid-template-columns: 90vh 1fr;
 }
 
 .chessboard-container { 

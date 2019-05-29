@@ -2,12 +2,12 @@
   grid-column: 1 / 13;
   display: grid;
   background-color: white;
-  box-shadow: 1px 1px 6px 2px rgba(179, 179, 179, 0.4);
+  box-shadow: 1px 1px 6px 2px rgba(78, 78, 78, 0.4);
 }
 
 .logo {
   padding-left: 20px;
-  font-size: 25px;
+  font-size: 30px;
   color: #333;
   align-self: center;
   text-decoration: none;

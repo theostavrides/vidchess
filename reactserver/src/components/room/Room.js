@@ -11,43 +11,43 @@ class Room extends Component {
 
   render() {
     return (
-      <div class="wrapper">
-        <div class="room-2col">
-          <div class="chessboard-container">
-            <div class="link-container">
-              <div class="link-header">
+      <div className="wrapper">
+        <div className="room-2col">
+          <div className="chessboard-container">
+            {/* <div className="link-container">
+              <div className="link-header">
                 <h3>Send this link to a Friend...Or Enemy</h3>
               </div>
-              <div class="link-box">
+              <div className="link-box">
                 <p contenteditable="true">This is how we do it</p>
               </div>
-            </div>
+            </div> */}
             <Board />
           </div>
-            <div class="sidebar">
+            <div className="sidebar">
 
-              <div class="video-container"></div>
+              <div className="video-container"></div>
 
-              <div class="chessbar-container">
-                <div class="timer player1">00.00</div>
-                <div class="timer player2">00.00</div>
-                <div class="resign">
+              <div className="chessbar-container">
+                <div className="timer player1">00.00</div>
+                <div className="timer player2">00.00</div>
+                <div className="resign">
                   <img src="../assets/flag.png" alt="" />
                 </div>
-                <div class="draw">
+                <div className="draw">
                   <img src="../assets/handshake.png" alt="" />
                 </div>
               </div>
 
-              <div class="chat-container">
+              <div className="chat-container">
 
-                <div class="message-area">
-                  <div class="messages talkbubble-1"><p>What's going on? You want to play some chessticles</p></div>
-                  <div class="messages talkbubble-2"><p>Of course!</p></div>
+                <div className="message-area">
+                  <div className="messages talkbubble-1"><p>What's going on? You want to play some chessticles</p></div>
+                  <div className="messages talkbubble-2"><p>Of course!</p></div>
                 </div>
 
-              <div class="chatbar-container">
-                <form class="chatbar">
+              <div className="chatbar-container">
+                <form className="chatbar">
                   <input type="text" placeholder="Write your message" />
                 </form>
               </div>
