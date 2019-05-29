@@ -1,24 +1,37 @@
 import React, { Component } from 'react';import { bind } from 'bluebird';
-
-import './Login.css'
-
+import './Login.css';
 
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-      isClicked: false,
+      login: true,
     };
-    this.setClass = this.setClass.bind(this);
+    this.onLoginClick = this.onLoginClick.bind(this);
+    this.onRegisterClick = this.onRegisterClick.bind(this);
   }
 
-  setClass() {
-    const currentState = this.state.isClicked;
-    this.setState({ isClicked: !currentState });
+  onLoginClick(e) {
+    this.setState({
+      login:true
+    })
+  }  
+
+  onRegisterClick(e) {
+    this.setState({
+      login:false
+    })
   }  
 
   render() {
+    const isLogin = this.state.login
+    let form;
+
+    if (!isLogin) {
+      form = <input className="form-input" type="text" placeholder="Email" />
+    }
+
     return (
       <div id="login-grid">
         <div id="login-left-side">
@@ -32,12 +45,12 @@ class Login extends Component {
           </div>  
           <div id="inner-inner-grid">
 
-            <button className={this.state.active ? 'active' : null} onClick={this.setClass} >Login</button>
-            <button className="">Register</button>
+            <button className={this.state.login ? 'active' : null} onClick={this.onLoginClick} >Login</button>
+            <button className={!this.state.login ? 'active' : null} onClick={this.onRegisterClick}>Register</button>
 
             <form>
               <input className="form-input" type="text" placeholder="Username" />
-              {/* <input className="form-input" type="text" placeholder="Email" /> */}
+              {form}
               <input className="form-input" type="password" placeholder="Password" />
               <input id="submit-btn" type="submit" placeholder="Submit" />
             </form>
