@@ -1,0 +1,133 @@
+.home-2col-grid {
+  grid-column: 1 / 13;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+/* Left Side Styling */
+
+.left-grid {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  background-image: url("https://images.unsplash.com/photo-1511583090122-0f8ef653906c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1959&q=80");
+  background-size: cover;
+  background-position: center center;
+}
+
+.left-grid h1 {
+  color: white;
+}
+
+.new-game {
+  display: grid;
+  min-width: 400px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 10vh 30vh 7vh;
+}
+
+.new-game label {
+  display: inline-block;
+  color: white;
+  padding: 25px;
+  border: solid 1px white;
+  transition: all 0.3s;
+  font-size: 30px;
+  text-align: center;
+}
+
+.new-game input[type="radio"] {
+  display: none;
+}
+
+.new-game input[type="radio"]:checked + label {
+  background-color: white;
+  color: #333;
+}
+
+button.game-length {
+  border: 1px solid white;
+  color: white;
+  font-weight: 600;
+  font-size: 3vh;
+  background-color: transparent;
+}
+
+button.game-length:focus {
+  background-color: white;
+  color: #333;
+}
+
+.piece-color {
+  grid-column: 1 / 6;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+button.btn-color {
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  font-weight: 600;
+  font-size: 3vh;
+}
+
+button.btn-color:focus {
+  background-color: white;
+  color: #333;
+}
+
+.get-link {
+  grid-column: 1 / 6;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+input.link-btn {
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  font-weight: 600;
+  font-size: 2vh;
+}
+
+button.link-btn:focus {
+  background-color: white;
+  color: #333;
+}
+
+
+/* Right Side Starts Here */
+
+.right-grid {
+  grid-column: 2 / 3;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  border-right: 1px solid #333;
+}
+
+h1.your-stats {
+  color: #333;
+}
+
+div > .game-stats > ul > li {
+  border: 1px solid #333;
+  color: #333;
+  margin-top: 5px;
+  height: 7vh;
+  width: 40vw;
+}
+
+.game-outcome > li > p {
+  padding-left: 20px;
+  display: inline-block;
+  vertical-align: center;
+  line-height: 7vh;
+}
+
+.game-icon {
+  height: 100%;
+  float: left;
+}
