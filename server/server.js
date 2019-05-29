@@ -9,6 +9,37 @@ const dataHelpers   = require('./helpers/dataHelpers.js')(database);
 const validate      = require('./helpers/authHelpers.js')(database);
 const bcrypt        = require('bcrypt');
 const cookieSession = require("cookie-session");
+const cors          = require('cors')
+const bodyParser    = require("body-parser");
+
+app.use(cors());
+app.use(bodyParser.urlencoded({extended: false}));
+
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+
+app.get('/auth', cors(corsOptions), function (req, res, next) {
+  console.log(req.body)
+  res.json({msg: 'This is CORS-enabled for a Single Route'})
+})
+
+app.post("/login", cors(corsOptions), function (req, res) {
+  console.log(req.body)
+  res.json({msg: 'This is CORS-enabled for a Single Route'})
+  // const validation = validateLogin(req.body.email, req.body.password);
+  // if (validation[0] === false) {
+  //   res.status(403).send('Invald Email');
+  // } else if (validation[1] === false) {
+  //   res.status(403).send('Invald Password');
+  // } else {
+  //   req.session.user_id = getIDfromEmail(req.body.email);
+  //   res.redirect('/urls');
+  // }
+});
+
 
 io.on('connection', function (socket) {
   socket.emit('news', { hello: 'hello my world' });
@@ -16,6 +47,10 @@ io.on('connection', function (socket) {
     console.log(data);
   });
 });
+
+function isLoggedIn(session){
+  console.log(session)
+}
 
 function login(username, password) {
   validate.userLogin({ username, password })

@@ -9,51 +9,51 @@ class Home extends Component {
 
   render() {
     return (
-      <div class="home-2col-grid">
-        <div class="left-grid">
+      <div className="home-2col-grid">
+        <div className="left-grid">
           <h1>Create A Game</h1>
-          <form class="new-game">
+          <form className="new-game">
             <input type="radio" id="1" name="minute" />
-            <label for="1">1</label>
+            <label htmlFor="1">1</label>
             <input type="radio" id="2" name="minute" />
-            <label for="2">3</label>
+            <label htmlFor="2">3</label>
             <input type="radio" id="3" name="minute" />
-            <label for="3">5</label>
+            <label htmlFor="3">5</label>
             <input type="radio" id="4" name="minute" />
-            <label for="4">10</label>
+            <label htmlFor="4">10</label>
             <input type="radio" id="5" name="minute" />
-            <label for="5">15</label>
+            <label htmlFor="5">15</label>
 
-            <div class="piece-color">
+            <div className="piece-color">
               <input type="radio" id="white" name="piece" />
-              <label for="white">W</label>
+              <label htmlFor="white">W</label>
               <input type="radio" id="random" name="piece" />
-              <label for="random">R</label>
+              <label htmlFor="random">R</label>
               <input type="radio" id="black" name="piece" />
-              <label for="black">B</label>
+              <label htmlFor="black">B</label>
             </div>
-            <div class="get-link">
-              <input class="link-btn" type="submit" value="Get Link" />
+            <div className="get-link">
+              <input className="link-btn" type="submit" value="Get Link" />
             </div>
           </form>
         </div>
 
-        <div class="right-grid">
-          <h1 class="your-stats">Your Stats</h1>
-          <div class="game-stats">
-            <ul class="game-outcome">
+        <div className="right-grid">
+          <h1 className="your-stats">Your Stats</h1>
+          <div className="game-stats">
+            <ul className="game-outcome">
               <li>
-                <img class="game-icon" src="./checkmark.png" alt="" />
+                <img className="game-icon" src="./checkmark.png" alt="" />
                 <p><strong>You</strong> won against <strong>Them</strong></p>
               </li>
 
               <li>
-                <img class="game-icon" src="./checkmark.png" alt="" />
+                <img className="game-icon" src="./checkmark.png" alt="" />
                 <p><strong>You</strong> lost against <strong>Them</strong></p>
               </li>
 
               <li>
-                <img class="game-icon" src="./checkmark.png" alt="" />
+                <img className="game-icon" src="./checkmark.png" alt="" />
                 <p><strong>You</strong> had a draw with <strong>Them</strong></p>
               </li>
             </ul>
