@@ -24,18 +24,7 @@ class App extends Component {
     //     .catch(function (error) {
     //       console.log(error);
     //     });
-    const data = JSON.stringify({
-      username: 'theo',
-      password: 'purple-monkey-dinosaur'
-    })
 
-    axios.post('http://localhost:3001/login', data, {
-        headers: {
-          'Content-Type': 'application/json',
-          "Access-Control-Allow-Origin": "http://localhost:3000"
-        },
-        withCredentials: true
-    }).then(res => console.log(res)).catch(e => console.log(e));
   }
   render() {
     return (
