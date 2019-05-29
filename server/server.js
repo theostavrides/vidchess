@@ -12,27 +12,36 @@ const cookieSession = require("cookie-session");
 const cors          = require('cors')
 const bodyParser    = require("body-parser");
 
-
-app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-
 var corsOptions = {
   origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200
+  credentials: true
 }
+app.use(cors(corsOptions));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1','key2'],
+  maxAge: 24 * 60 * 60 * 1000
+}));
+
+
 
 
 app.get('/auth', cors(corsOptions), function (req, res, next) {
-  console.log(req.session)
-  res.json({msg: 'This is CORS-enabled for a Single Route'})
+  req.session ? res.status(200).send() : res.status(401).send();
 })
 
 app.post("/login", cors(corsOptions), function (req, res) {
+  function sendError(e) {
+    res.status(401).send(e.message)
+  }
+  function setCookie(){
+    req.session.username = req.body.username;
+    res.status(200).send();
+  }
   if (req.body.username && req.body.password) {
-    login(req.body.username, req.body.password)
-      .then(res.status(200).send())
-      .catch(e => res.status(401).send(e.message))
+    login(req.body.username, req.body.password).then(setCookie, sendError)
   }
 });
 
