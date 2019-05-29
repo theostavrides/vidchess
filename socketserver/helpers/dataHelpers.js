@@ -28,13 +28,10 @@ function makeHelpers(knex) {
         return Promise.resolve(id);
       })
   }
-  const getUser = (user_id) => {
+  const getUser = (username) => {
     return knex("users")
       .select("*")
-      .where('id', id)
-      .then((id) => {
-        return Promise.resolve(id);
-      })
+      .where('username', username)
   }
   const getGamesOfUser = (user_id) => {
     return knex("games")
@@ -54,6 +51,10 @@ function makeHelpers(knex) {
         return Promise.resolve(id);
       })
   }
+  const registerUser = (data) => {
+    return knex("users").insert(data)
+  }
+
 
   return  {
     getAllGames,
@@ -62,7 +63,8 @@ function makeHelpers(knex) {
     getUser,
     getGame,
     getGamesOfUser,
-    getMovesOfGame
+    getMovesOfGame,
+    registerUser
   }
 }
 
