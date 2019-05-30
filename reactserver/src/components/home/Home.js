@@ -38,7 +38,7 @@ class Home extends Component {
                 return (
                   <Fragment>
                     <input onChange={this.handleChangeTime} key={i} value={n} type="radio" id={i} name="minute" />
-                    <label htmlFor={i}>{n}</label>
+                    <label htmlFor={i}>{n} min</label>
                   </Fragment>
                 )
               })

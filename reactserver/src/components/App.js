@@ -4,7 +4,7 @@ import Navbar from './Navbar.js';
 import Login from './login/Login.js'
 import Home from './home/Home.js'
 import Room from './room/Room.js'
-import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Link, withRouter } from "react-router-dom";
 import axios from 'axios'
 
 
@@ -30,15 +30,12 @@ class App extends Component {
   render() {
     return (
       <div id="wrapper">
-        <Navbar />
-        {/* <Login /> */}
-        <Home />
-        <Room />
-        {/* <Router>
+        <Router>
+          <Navbar />
           <Route path='/:room' component={Room} />
           {this.state.logged && <Route path='/' component={Home} />}
           {!this.state.logged && <Route path='/' component={Login} />}
-        </Router> */}
+        </Router>
       </div>
     );
   }

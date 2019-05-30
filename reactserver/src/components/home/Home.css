@@ -11,9 +11,7 @@
   display: grid;
   align-content: center;
   justify-content: center;
-  background-image: url("https://images.unsplash.com/photo-1511583090122-0f8ef653906c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1959&q=80");
-  background-size: cover;
-  background-position: center center;
+  background: #333;
 }
 
 .left-grid h1 {
@@ -28,13 +26,13 @@
 }
 
 .new-game label {
-  display: inline-block;
+  margin: 3px;
   color: white;
-  padding: 25px;
-  border: solid 1px white;
   transition: all 0.3s;
-  font-size: 30px;
+  font-size: 20px;
+  font-weight: 400;
   text-align: center;
+  line-height: 9vh;
 }
 
 .new-game input[type="radio"] {
@@ -90,6 +88,7 @@ input.link-btn {
   color: white;
   font-weight: 600;
   font-size: 2vh;
+  margin: 3px;
 }
 
 button.link-btn:focus {
@@ -105,7 +104,6 @@ button.link-btn:focus {
   display: grid;
   align-content: center;
   justify-content: center;
-  border-right: 1px solid #333;
 }
 
 h1.your-stats {
