@@ -1,17 +1,22 @@
 import React, { Component } from 'react';import { bind } from 'bluebird';
 import './Login.css';
 import axios from 'axios'
+const axiosOptions = {
+  headers: {
+    'Content-Type': 'application/json',
+    "Access-Control-Allow-Origin": "http://localhost:3000"
+  },
+  withCredentials: true
+}
 
 function sendLogin(username, password) {
   const data = JSON.stringify({ username, password })
+  axios.post('http://localhost:3001/login', data, axiosOptions).then(console.log).catch(console.error);
+}
 
-  axios.post('http://localhost:3001/login', data, {
-    headers: {
-      'Content-Type': 'application/json',
-      "Access-Control-Allow-Origin": "http://localhost:3000"
-    },
-    withCredentials: true
-  }).then(res => console.log(res)).catch(e => console.log(e));
+function sendRegister(username, password, email) {
+  const data = JSON.stringify({ username, password, email })
+  axios.post('http://localhost:3001/register', data, axiosOptions).then(console.log).catch(console.error);
 }
 
 class Login extends Component {
