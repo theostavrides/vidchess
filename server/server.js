@@ -11,7 +11,7 @@ const bcrypt        = require('bcrypt');
 const cookieSession = require("cookie-session");
 const cors          = require('cors')
 const bodyParser    = require("body-parser");
-
+console.log(environment)
 var corsOptions = {
   origin: 'http://localhost:3000',
   credentials: true
@@ -89,12 +89,16 @@ app.post("/newLink", cors(corsOptions), function (req, res) {
 
 //SOCKET LOGIC
 io.on('connection', function (socket) {
+  socket.on('joinRoom', function(data) {
+    const room = data.room;
+    const usersInRoom = io.sockets.adapter.rooms[room].length;
 
-  socket.emit('news', { hello: 'hello my world' });
-  socket.on('msg', function (data) {
-    console.log(data);
-    console.log(io.sockets.adapter.rooms)
-  });
+    if (usersInRoom >= 2)
+    socket.join(room);
+    io.to(room).send('hello my dude')
+
+  })
+  // io.sockets.in(room).send('you are in room: ${room}')
 });
 
 server.listen(PORT, function() {

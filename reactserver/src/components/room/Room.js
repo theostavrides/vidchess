@@ -11,14 +11,15 @@ class Room extends Component {
   }
 
   componentDidMount(){
-
     const room = this.props.match.url.split('/')[2];
-
-    socket.on('connection', function(socket){
-      socket.join(room);
-      socket.to(room).emit('msg', {my: 'data'})
-    });
+    socket.emit('joinRoom', { room })
+    socket.on('message', console.log)
   }
+
+  sendMove = () => {
+
+  }
+
   render() {
 
     return (
