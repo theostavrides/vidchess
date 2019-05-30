@@ -7,6 +7,8 @@ import Room from './room/Room.js'
 import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom";
 import axios from 'axios'
 
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,21 +24,7 @@ class App extends Component {
     //     .catch(function (error) {
     //       console.log(error);
     //     });
-    const data = JSON.stringify({
-      username: 'theo',
-      password: 'purple-monkey-dinosaur'
-    })
 
-    axios.post('http://localhost:3001/login', data, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-    }).then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
   render() {
     return (

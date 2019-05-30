@@ -1,6 +1,18 @@
 import React, { Component } from 'react';import { bind } from 'bluebird';
 import './Login.css';
+import axios from 'axios'
 
+function sendLogin(username, password) {
+  const data = JSON.stringify({ username, password })
+
+  axios.post('http://localhost:3001/login', data, {
+    headers: {
+      'Content-Type': 'application/json',
+      "Access-Control-Allow-Origin": "http://localhost:3000"
+    },
+    withCredentials: true
+  }).then(res => console.log(res)).catch(e => console.log(e));
+}
 
 class Login extends Component {
   constructor() {
@@ -17,13 +29,14 @@ class Login extends Component {
     this.setState({
       login:true
     })
-  }  
+  }
 
   onRegisterClick = (event) => {
     this.setState({
       login:false
     })
   }
+
 
   handleUsername = (event) => {
     this.setState({
@@ -52,6 +65,7 @@ class Login extends Component {
     event.preventDefault();
   }
 
+
   render() {
     const isLogin = this.state.login
     let form;
@@ -72,7 +86,7 @@ class Login extends Component {
         <div id="login-right-side">
           <div>
             <h1>Let's Play Some Chess</h1>
-          </div>  
+          </div>
           <div id="inner-inner-grid">
 
             <button className={this.state.login ? 'active' : null} onClick={this.onLoginClick} >Login</button>
