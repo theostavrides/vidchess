@@ -22,6 +22,10 @@ class Home extends Component {
     })
   }
 
+  handleClickSubmit = (event) => {
+    event.preventDefault();
+  }
+
 
   render() {
     return (
@@ -45,22 +49,15 @@ class Home extends Component {
                 return (
                   <Fragment>
                     <input onChange={this.handleChangeColor} key={i} value={c} type="radio" id={c} name="piece" />
-                    <label htmlFor={c}>{c}</label>
+                    <label htmlFor={c}> <img src="{require(`./${c}.png`)}" /> </label>
                   </Fragment>
                 )
               })
             }
             </div>
-            {/* <div className="piece-color">
-              <input type="radio" id="white" name="piece" />
-              <label htmlFor="white">W</label>
-              <input type="radio" id="random" name="piece" />
-              <label htmlFor="random">R</label>
-              <input type="radio" id="black" name="piece" />
-              <label htmlFor="black">B</label>
-            </div> */}
+
             <div className="get-link">
-              <input className="link-btn" type="submit" value="Get Link" />
+              <input onClick={this.handleClickSubmit} className="link-btn" type="submit" value="Get Link" />
             </div>
           </form>
         </div>
@@ -70,17 +67,17 @@ class Home extends Component {
           <div className="game-stats">
             <ul className="game-outcome">
               <li>
-                <img className="game-icon" src={require('./checkmark.png')} alt="" />
+                <img className="game-icon" src={require('./images/checkmark.png')} alt="" />
                 <p><strong>You</strong> won against <strong>Them</strong></p>
               </li>
 
               <li>
-                <img className="game-icon" src={require('./loss.png')} alt="" />
+                <img className="game-icon" src={require('./images/loss.png')} alt="" />
                 <p><strong>You</strong> lost against <strong>Them</strong></p>
               </li>
 
               <li>
-                <img className="game-icon" src={require('./draw.png')} />
+                <img className="game-icon" src={require('./images/draw.png')} />
                 <p><strong>You</strong> had a draw with <strong>Them</strong></p>
               </li>
             </ul>
