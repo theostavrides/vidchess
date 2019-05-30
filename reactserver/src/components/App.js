@@ -32,7 +32,7 @@ class App extends Component {
       <div id="wrapper">
         <Navbar />
         {/* <Login /> */}
-        {/* <Home /> */}
+        <Home />
         <Room />
         {/* <Router>
           <Route path='/:room' component={Room} />

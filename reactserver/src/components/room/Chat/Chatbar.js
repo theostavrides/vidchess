@@ -9,14 +9,17 @@ class Chatbar extends Component {
     };
   }
 
+  // Handles hitting enter event
   handleEnter = (event) => {
     if (event.key === "Enter") {
+      // take this line out after setting up Axios
       event.preventDefault();
       this.props.addNewMessage(this.state.content)
       this.setState({content: ""})
     }
   }
 
+  // Sets state from the chatbar input
   handleInput = (event) => {
     this.setState({
       content: event.target.value

@@ -8,6 +8,10 @@ class Navbar extends Component {
     this.state = {};
   }
 
+  onClickLogout() {
+
+  }
+
   render() {
     return (
       <nav>
