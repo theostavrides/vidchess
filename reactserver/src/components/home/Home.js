@@ -1,5 +1,26 @@
 import React, { Component, Fragment } from 'react';
 import './Home.css';
+import axios from 'axios';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { Redirect } from 'react-router';
+
+
+const axiosOptions = {
+  headers: {
+    'Content-Type': 'application/json',
+    "Access-Control-Allow-Origin": "http://localhost:3000"
+  },
+  withCredentials: true
+}
+
+function newLink(time, color) {
+  const data = JSON.stringify({ time, color })
+  return axios.post('http://localhost:3001/newLink', data, axiosOptions);
+}
+
+
+
 
 class Home extends Component {
   constructor() {
@@ -7,6 +28,8 @@ class Home extends Component {
     this.state = {
       time: '',
       color: '',
+      redirect: false,
+      url: ''
     };
   }
 
@@ -24,10 +47,19 @@ class Home extends Component {
 
   handleClickSubmit = (event) => {
     event.preventDefault();
+    if (this.state.time === '' || this.state.color === '') return
+    newLink(this.state.time, this.state.color)
+      .then( res => this.setState({ redirect: true, url: res.data }));
   }
 
 
   render() {
+    const { redirect, url } = this.state;
+
+    if (redirect) {
+      return <Redirect to={/rooms/ + this.state.url}/>;
+    }
+
     return (
       <div className="home-2col-grid">
         <div className="left-grid">

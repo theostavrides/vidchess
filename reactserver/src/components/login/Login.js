@@ -11,12 +11,12 @@ const axiosOptions = {
 
 function sendLogin(username, password) {
   const data = JSON.stringify({ username, password })
-  axios.post('http://localhost:3001/login', data, axiosOptions).then(console.log).catch(console.error);
+  return axios.post('http://localhost:3001/login', data, axiosOptions);
 }
 
 function sendRegister(username, password, email) {
   const data = JSON.stringify({ username, password, email })
-  axios.post('http://localhost:3001/register', data, axiosOptions).then(console.log).catch(console.error);
+  return axios.post('http://localhost:3001/register', data, axiosOptions);
 }
 
 class Login extends Component {
@@ -24,7 +24,7 @@ class Login extends Component {
     super();
     this.state = {
       login: true,
-      username: '',
+      username: 'aaa',
       email: '',
       password: ''
     };
@@ -63,11 +63,13 @@ class Login extends Component {
 
   handleSubmitLogin = (event) => {
     event.preventDefault();
+    sendLogin(this.state.username, this.state.password).then(this.props.login, console.error)
   }
 
 
   handleSubmitRegister = (event) => {
     event.preventDefault();
+    sendRegister(this.state.username, this.state.password, this.state.email).then(this.props.login, console.error)
   }
 
 
@@ -107,7 +109,7 @@ class Login extends Component {
                 placeholder="Username"
               />
               {form}
-              <input 
+              <input
                 onChange={this.handlePassword}
                 name="password"
                 className="form-input"

@@ -25,7 +25,7 @@ app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000
 }));
 
-//helpers
+//HELPERS
 function isLoggedIn(session){
   console.log(session)
 }
@@ -38,7 +38,16 @@ function register(username, password, email) {
   return validate.userRegister({ username, password, email})
 }
 
-//api routes
+function randomString(length) {
+  const str = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let code = '';
+  for (let i = 0; i < length; i++) {
+    code += str[Math.floor(Math.random() * 62)];
+  }
+  return code;
+}
+
+//API ROUTES
 app.get('/auth', cors(corsOptions), function (req, res, next) {
   req.session ? res.status(200).send() : res.status(401).send();
 })
@@ -56,7 +65,6 @@ app.post("/login", cors(corsOptions), function (req, res) {
   }
 });
 
-
 app.post("/register", cors(corsOptions), function (req, res) {
   function sendError(e) {
     res.status(401).send(e.message)
@@ -70,16 +78,31 @@ app.post("/register", cors(corsOptions), function (req, res) {
   }
 });
 
-
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'hello my world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+app.post("/newLink", cors(corsOptions), function (req, res) {
+  const username = req.session.username;
+  const time = req.body.time;
+  const color = req.body.color;
+  const url = randomString(8);
+  res.status(200).send(url);
 });
 
 
+//SOCKET LOGIC
+io.on('connection', function (socket) {
+
+  socket.emit('news', { hello: 'hello my world' });
+  socket.on('msg', function (data) {
+    console.log(data);
+    console.log(io.sockets.adapter.rooms)
+  });
+});
 
 server.listen(PORT, function() {
   console.log(`Socket server running on port ${PORT}`)
 });
+
+
+
+
+
+

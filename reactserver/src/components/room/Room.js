@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Board from './Board.js'
 import Chat from './Chat/Chat.js'
 import './Room.css';
-
+import io from 'socket.io-client';
+const socket = io(`http://localhost:3001`)
 
 class Room extends Component {
   constructor(props) {
@@ -16,7 +17,17 @@ class Room extends Component {
     this.setState({ messages: this.state.messages.concat(content) })
   }
 
+  componentDidMount(){
+
+    const room = this.props.match.url.split('/')[2];
+
+    socket.on('connection', function(socket){
+      socket.join(room);
+      socket.to(room).emit('msg', {my: 'data'})
+    });
+  }
   render() {
+
     return (
       <div className="wrapper">
         <div className="room-2col">
