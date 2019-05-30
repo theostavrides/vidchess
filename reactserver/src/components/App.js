@@ -27,18 +27,19 @@ class App extends Component {
 
   }
 
-  
+  login = () => {
+    this.setState({logged: true})
+  }
+
   render() {
     return (
       <div id="wrapper">
         <Navbar />
-        {/* <Login /> */}
-        <Home />
-        {/* <Router>
+         <Router>
           <Route path='/:room' component={Room} />
           {this.state.logged && <Route path='/' component={Home} />}
-          {!this.state.logged && <Route path='/' component={Login} />}
-        </Router> */}
+          {!this.state.logged && <Route path='/' render={() => <Login login={this.login}/>} /> }
+        </Router>
       </div>
     );
   }
