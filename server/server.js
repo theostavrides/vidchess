@@ -86,13 +86,23 @@ app.post("/newLink", cors(corsOptions), function (req, res) {
   res.status(200).send(url);
 });
 
+
+//SOCKET LOGIC
 io.on('connection', function (socket) {
+
   socket.emit('news', { hello: 'hello my world' });
-  socket.on('my other event', function (data) {
+  socket.on('msg', function (data) {
     console.log(data);
+    console.log(io.sockets.adapter.rooms)
   });
 });
 
 server.listen(PORT, function() {
   console.log(`Socket server running on port ${PORT}`)
 });
+
+
+
+
+
+
