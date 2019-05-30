@@ -36,9 +36,9 @@ class App extends Component {
       <div id="wrapper">
         <Navbar />
          <Router>
-          <Route path='/:room' component={Room} />
-          {this.state.logged && <Route path='/' component={Home} />}
-          {!this.state.logged && <Route path='/' render={() => <Login login={this.login}/>} /> }
+          <Route path='/rooms/:room' component={Room} />
+          {this.state.logged && <Route exact path='/' component={Home} />}
+          {!this.state.logged && <Route exact path='/' render={() => <Login login={this.login}/>} /> }
         </Router>
       </div>
     );
