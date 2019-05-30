@@ -26,15 +26,19 @@ class App extends Component {
     //     });
 
   }
+
+  
   render() {
     return (
       <div id="wrapper">
         <Navbar />
-        <Router>
+        {/* <Login /> */}
+        <Home />
+        {/* <Router>
           <Route path='/:room' component={Room} />
           {this.state.logged && <Route path='/' component={Home} />}
           {!this.state.logged && <Route path='/' component={Login} />}
-        </Router>
+        </Router> */}
       </div>
     );
   }
