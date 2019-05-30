@@ -47,6 +47,13 @@ function randomString(length) {
   return code;
 }
 
+//SOCKET HELPERS
+
+function NumClientsInRoom(namespace, room) {
+  var clientsInRoom = io.nsps['/'].adapter.rooms[room];
+  return clientsInRoom === undefined ? 0 : Object.keys(clientsInRoom.sockets).length;
+}
+
 //API ROUTES
 app.get('/auth', cors(corsOptions), function (req, res, next) {
   req.session ? res.status(200).send() : res.status(401).send();
@@ -91,14 +98,12 @@ app.post("/newLink", cors(corsOptions), function (req, res) {
 io.on('connection', function (socket) {
   socket.on('joinRoom', function(data) {
     const room = data.room;
-    const usersInRoom = io.sockets.adapter.rooms[room].length;
-
-    if (usersInRoom >= 2)
-    socket.join(room);
-    io.to(room).send('hello my dude')
-
+    if (NumClientsInRoom('/', room) < 2) socket.join(room);
+    io.to(room).send(`Client connected to socket room ${room}`)
   })
-  // io.sockets.in(room).send('you are in room: ${room}')
+  socket.on('move', function(data) {
+    console.log(data);
+  })
 });
 
 server.listen(PORT, function() {

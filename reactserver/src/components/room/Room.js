@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 import Board from './Board.js'
 import './Room.css';
 import io from 'socket.io-client';
-const socket = io(`http://localhost:3001`)
 
 class Room extends Component {
   constructor() {
     super();
     this.state = {};
+    this.socket =  io(`http://localhost:3001`)
   }
 
   componentDidMount(){
     const room = this.props.match.url.split('/')[2];
-    socket.emit('joinRoom', { room })
-    socket.on('message', console.log)
+    this.socket.emit('joinRoom', { room });
+    this.socket.on('message', console.log);
   }
 
-  sendMove = () => {
-
+  sendMove = (move) => {
+    this.socket.emit('move', { move: 'pa5'})
   }
 
   render() {
