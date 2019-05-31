@@ -83,14 +83,28 @@ app.post("/register", cors(corsOptions), function (req, res) {
 });
 
 app.post("/newLink", cors(corsOptions), function (req, res) {
-  const username = req.session.username;
-  const time = req.body.time;
-  const color = req.body.color;
-  const url = randomString(8);
-  res.status(200).send(url);
+  const data = {
+    creator: req.session.username,
+    time_per_move: req.body.time,
+    start_color: req.body.color,
+    url: randomString(10),
+    current_game: null,
+    games_completed: 0,
+    creator_victories: 0,
+  }
+
+  //MAKE NEW ROOM IN DB
+  dataHelpers.newRoom(data).then(()=>{
+    res.status(200).send(data.url);
+  })
 });
 
+app.get("/rooms/:id", cors(corsOptions), function(req, res) {
+  const roomurl = req.params.id;
+  dataHelpers.getRoomData(roomurl).then((data) => res.status(200).send(data[0]), console.error);
+})
 
+let rooms = [];
 //SOCKET LOGIC
 io.on('connection', function (socket) {
   socket.on('joinRoom', function(data) {
@@ -102,8 +116,15 @@ io.on('connection', function (socket) {
     }
     io.to(room).send(`Client connected to socket room ${room}`);
   })
+
+
+
   socket.on('move', function(data) {
-    console.log(data);
+    console.log(data)
+    //broadcast to others
+  })
+  socket.on('chat', function(data) {
+    //chat logic
   })
 });
 

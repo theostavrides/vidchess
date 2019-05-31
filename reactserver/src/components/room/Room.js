@@ -17,7 +17,8 @@ class Room extends Component {
     super(props);
     this.state = {
       messages: [],
-      redirect: false
+      redirect: false,
+      username: ''
     };
   this.socket =  io(`http://localhost:3001`)
   }
@@ -29,20 +30,20 @@ class Room extends Component {
   componentDidMount(){
     //TODO should get complex userID instead of username
     axios.get('http://localhost:3001/auth', axiosOptions)
-      .then((res) => this.joinRoom(res.data), () => this.setState({ redirect: true }))
+      .then((res) => {
+        this.setState({username: res.data})
+        this.joinRoom(res.data)
+      }, () => this.setState({ redirect: true }))
   }
 
   joinRoom = (username) => {
-    console.log(username)
     const room = this.props.match.url.split('/')[2];
     this.socket.emit('joinRoom', { room, username });
     this.socket.on('message', console.log);
-    this.socket.emit('move', { move: 'pa5'});
+
   }
 
-  sendMove = (move) => {
-    this.socket.emit('move', { move })
-  }
+
 
   render() {
 
@@ -58,7 +59,7 @@ class Room extends Component {
                   <p contenteditable="true">This is how we do it</p>
                 </div>
               </div> */}
-            <Board />
+            <Board room={this.props.match.url.split('/')[2]} socket={this.socket}/>
           </div>
           <div className="sidebar">
 
