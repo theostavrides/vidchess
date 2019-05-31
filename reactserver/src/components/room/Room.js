@@ -18,8 +18,7 @@ class Room extends Component {
     this.state = {
       messages: [],
       redirect: false,
-      username: '',
-      start_data: {}
+      username: ''
     };
   this.socket =  io(`http://localhost:3001`)
   }
@@ -42,14 +41,7 @@ class Room extends Component {
     this.socket.emit('joinRoom', { room, username });
     this.socket.on('message', console.log);
     this.socket.emit('move', { move: 'pa5'});
-    //AXIOS GET ROOM DATA
-    axios.get(`http://localhost:3001/rooms/${room}`, axiosOptions)
-      .then(res => this.setState({start_data: res.data}));
   }
-    // const { creator, creator_victories, current_game, games_completed,
-    //         id, start_color, time_per_move, timestamp, url } = res.data
-
-
 
   sendMove = (move) => {
     this.socket.emit('move', { move })
@@ -69,7 +61,7 @@ class Room extends Component {
                   <p contenteditable="true">This is how we do it</p>
                 </div>
               </div> */}
-            <Board />
+            <Board room={this.props.match.url.split('/')[2]}/>
           </div>
           <div className="sidebar">
 

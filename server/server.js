@@ -101,7 +101,6 @@ app.post("/newLink", cors(corsOptions), function (req, res) {
 
 app.get("/rooms/:id", cors(corsOptions), function(req, res) {
   const roomurl = req.params.id;
-  console.log('hello')
   dataHelpers.getRoomData(roomurl).then((data) => res.status(200).send(data[0]), console.error);
 })
 
