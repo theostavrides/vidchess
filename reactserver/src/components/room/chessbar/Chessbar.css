@@ -1,0 +1,87 @@
+.chessbar-container {
+  z-index: 10;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: grid;
+  grid-template-columns: 35% 35% 15% 15%;
+  grid-template-rows: 1fr;
+}
+
+.chessbar-container > div.timer {
+  font-size: 30px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 8vh;
+}
+
+.chessbar-container > div.player1 {
+  color: white;
+  background-color: #333;
+  border: 1px solid #333;
+}
+
+.chessbar-container > div.player2 {
+  background-color: white;
+  border: 1px solid #333;
+}
+
+.chessbar-container > div.resign {
+  background-color: rgb(228, 67, 67);
+}
+
+.resign img {
+  display: block;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  height: 50px;
+}
+
+.chessbar-container > div.resign:hover {
+  background-color: rgb(179, 53, 53);
+}
+
+
+.chessbar-container > div.draw {
+  background-color: rgb(79, 79, 230);
+}
+
+.draw img {
+  display: block;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  height: 60px;
+}
+
+.chessbar-container > div.draw:hover {
+  background-color: rgb(63, 63, 187);
+}
+
+
+/* Option button styling */
+
+div.option {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+div.option .yes-btn {
+  background: #555;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+div.option img {
+  height: 30px;
+}
+
+div.option .no-btn {
+  background: #444;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}

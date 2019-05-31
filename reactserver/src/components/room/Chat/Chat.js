@@ -4,11 +4,9 @@ import Chatbar from './Chatbar.js'
 
 
 function Chat(props) {
-  console.log(props.messages)
 
 
   const list = props.messages.map(e => {
-    console.log(e)
     return <Message 
       key = { e.id }
       content = { e }
