@@ -56,6 +56,10 @@
   color: #333;
   border: 1px solid #333;
   background-color: transparent;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+  transition-delay: 0.2s;
 }
 
 #inner-inner-grid > button:hover {
@@ -67,12 +71,6 @@
   background: #333;
   color: white;
 }
-
-/* #inner-inner-grid > button:focus {
-  background-color: #333;
-  color: white;
-  box-shadow: 1px 1px 3px 1px rgba(78, 78, 78, 0.4);
-} */
 
 
 #inner-inner-grid > form {
@@ -108,6 +106,11 @@ input#submit-btn {
   border: 1px solid #333;
   background-color: transparent;
   color: #333;
+  background-color: transparent;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+  transition-delay: 0.2s;
 }
 
 input#submit-btn:hover {

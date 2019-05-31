@@ -64,13 +64,13 @@ class Home extends Component {
       <div className="home-2col-grid">
         <div className="left-grid">
           <h1>Create A Game</h1>
-          <form className="new-game">
+          <div className="new-game">
             {
               [1, 3, 5, 10, 15].map((n, i) => {
                 return (
                   <Fragment>
                     <input onChange={this.handleChangeTime} key={i} value={n} type="radio" id={i} name="minute" />
-                    <label htmlFor={i}>{n} min</label>
+                    <label class="time" htmlFor={i}>{n}min</label>
                   </Fragment>
                 )
               })
@@ -81,7 +81,7 @@ class Home extends Component {
                 return (
                   <Fragment>
                     <input onChange={this.handleChangeColor} key={i} value={c} type="radio" id={c} name="piece" />
-                    <label htmlFor={c}> <img src="{require(`./${c}.png`)}" /> </label>
+                    <label class="piece-container" htmlFor={c}> <img class="color" src={require(`./images/${c}.png`)} /> </label>
                   </Fragment>
                 )
               })
@@ -91,7 +91,7 @@ class Home extends Component {
             <div className="get-link">
               <input onClick={this.handleClickSubmit} className="link-btn" type="submit" value="Get Link" />
             </div>
-          </form>
+          </div>
         </div>
 
         <div className="right-grid">

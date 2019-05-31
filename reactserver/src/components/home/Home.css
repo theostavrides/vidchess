@@ -11,7 +11,8 @@
   display: grid;
   align-content: center;
   justify-content: center;
-  background: #333;
+  background-image: url('https://images.unsplash.com/photo-1550239261-89b17e004488?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80');
+  background-size: cover;
 }
 
 .left-grid h1 {
@@ -22,7 +23,7 @@
   display: grid;
   min-width: 400px;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 10vh 30vh 7vh;
+  grid-template-rows: 8vh 25vh 7vh;
 }
 
 .new-game label {
@@ -32,48 +33,46 @@
   font-size: 20px;
   font-weight: 400;
   text-align: center;
-  line-height: 9vh;
+  line-height: 6vh;
+}
+
+label.time {
+  padding: 5px;
+  border-bottom: 1px solid white;
+}
+
+label.time:hover {
+  background: white;
+  color: #333;
+}
+
+.new-game input[type="radio"]:checked + label.time {
+  background: white;
+  color: #333;
 }
 
 .new-game input[type="radio"] {
   display: none;
 }
 
-.new-game input[type="radio"]:checked + label {
-  background-color: white;
-  color: #333;
+img.color {
+  height: 90px;
+  margin-top: 40%;
+  transition: all 0.6s;
 }
 
-button.game-length {
-  border: 1px solid white;
-  color: white;
-  font-weight: 600;
-  font-size: 3vh;
-  background-color: transparent;
+img.color:hover {
+  transform: scale(1.4)
 }
 
-button.game-length:focus {
-  background-color: white;
-  color: #333;
+.new-game input[type="radio"]:checked + label > img.color {
+  transform: scale(1.4)
 }
 
 .piece-color {
   grid-column: 1 / 6;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-}
-
-button.btn-color {
-  border: 1px solid white;
-  background-color: transparent;
-  color: white;
-  font-weight: 600;
-  font-size: 3vh;
-}
-
-button.btn-color:focus {
-  background-color: white;
-  color: #333;
 }
 
 .get-link {
@@ -91,8 +90,8 @@ input.link-btn {
   margin: 3px;
 }
 
-button.link-btn:focus {
-  background-color: white;
+input.link-btn:hover {
+  background: white;
   color: #333;
 }
 

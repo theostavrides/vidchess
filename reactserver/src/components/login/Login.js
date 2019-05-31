@@ -79,7 +79,7 @@ class Login extends Component {
     let form;
 
     if (!isLogin) {
-      form = <input onKeyPress={this.handleEmail} className="form-input" name="password" type="text" placeholder="Email" />
+      form = <input onChange={this.handleEmail} className="form-input" name="password" type="text" placeholder="Email" />
     }
 
 
