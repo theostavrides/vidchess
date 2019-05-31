@@ -1,7 +1,7 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection:'postgres://localhost/vidchess',
+    connection:'postgres://labber:labber@localhost/vidchess',
     migrations: {
       directory: './db/migrations'
     },
@@ -13,7 +13,7 @@ module.exports = {
 
   test: {
     client: 'pg',
-    connection:'postgres://localhost/vidchess_test',
+    connection:'postgres://labber:labber@localhost/vidchess_test',
     migrations: {
       directory: './db/migrations'
     },

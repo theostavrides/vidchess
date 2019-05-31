@@ -11,6 +11,9 @@ const bcrypt        = require('bcrypt');
 const cookieSession = require("cookie-session");
 const cors          = require('cors')
 const bodyParser    = require("body-parser");
+const uuid = require('uuid/v1');
+
+
 
 var corsOptions = {
   origin: 'http://localhost:3000',
@@ -118,14 +121,23 @@ io.on('connection', function (socket) {
   })
 
 
-
   socket.on('move', function(data) {
     console.log(data)
     //broadcast to others
   })
-  socket.on('chat', function(data) {
-    //chat logic
+
+
+  socket.on('chat', function(data, callback) {
+    const message = {
+      content: data.content,
+      id: uuid()
+    }
+    if (callback) {
+      callback(message);
+    }
+    socket.broadcast.emit('msg', message)
   })
+
 });
 
 
