@@ -24,9 +24,6 @@ class Room extends Component {
   this.socket =  io(`http://localhost:3001`)
   }
 
-  addNewMessage = (content) => {
-    this.setState({ messages: this.state.messages.concat(content) })
-  }
 
   componentDidMount(){
     //TODO should get complex userID instead of username
@@ -35,13 +32,25 @@ class Room extends Component {
         this.setState({username: res.data})
         this.joinRoom(res.data)
       }, () => this.setState({ redirect: true }))
+
+      this.socket.on('msg', (data) => {
+        console.log(data)
+        this.setState({ messages: this.state.messages.concat(data) })
+      })
+  }
+
+  addNewMessage = (content) => {
+    const hearOwnMessage = (data) => {
+      data.id = null
+      this.setState({ messages: this.state.messages.concat(data) })
+    }
+    this.socket.emit('chat', content, hearOwnMessage);
   }
 
   joinRoom = (username) => {
     const room = this.props.match.url.split('/')[2];
     this.socket.emit('joinRoom', { room, username });
     this.socket.on('message', console.log);
-
   }
 
 

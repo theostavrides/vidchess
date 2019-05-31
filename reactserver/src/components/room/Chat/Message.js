@@ -9,10 +9,10 @@ class Message extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <Fragment>
-        <div className="messages talkbubble-1"><p>{this.props.content}</p></div>
-        <div className="messages talkbubble-2"><p>Of course!</p></div>
+        <div className={this.props.content.id ? 'talkbubble-1 messages' : "talkbubble-2 messages"}><p>{this.props.content.content}</p></div>
       </Fragment>
     )
   }

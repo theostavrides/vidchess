@@ -14,7 +14,7 @@ class Chatbar extends Component {
     if (event.key === "Enter") {
       // take this line out after setting up Axios
       event.preventDefault();
-      this.props.addNewMessage(this.state.content)
+      this.props.addNewMessage(this.state)
       this.setState({content: ""})
     }
   }
@@ -22,7 +22,7 @@ class Chatbar extends Component {
   // Sets state from the chatbar input
   handleInput = (event) => {
     this.setState({
-      content: event.target.value
+      content: event.target.value,
     })
   }
 
@@ -35,6 +35,7 @@ class Chatbar extends Component {
             onChange={this.handleInput}
             type="text"
             placeholder="Write your message"
+            value={this.state.content}
           />
         </form>
       </div>

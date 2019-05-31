@@ -6,7 +6,6 @@ import Chatbar from './Chatbar.js'
 function Chat(props) {
 
 
-
   const list = props.messages.map(e => {
     return <Message 
       key = { e.id }
