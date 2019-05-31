@@ -4,7 +4,7 @@ import Navbar from './Navbar.js';
 import Login from './login/Login.js'
 import Home from './home/Home.js'
 import Room from './room/Room.js'
-import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Link, withRouter } from "react-router-dom";
 import axios from 'axios'
 
 
@@ -16,6 +16,7 @@ class App extends Component {
       logged: false
     };
   }
+
 
   login = () => {
     this.setState({logged: true})
