@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Board from './Board.js'
 import Chat from './Chat/Chat.js'
+import Chessbar from './chessbar/Chessbar.js'
 import './Room.css';
 import io from 'socket.io-client';
 import axios from 'axios'
@@ -62,20 +63,8 @@ class Room extends Component {
             <Board room={this.props.match.url.split('/')[2]} socket={this.socket}/>
           </div>
           <div className="sidebar">
-
             <div className="video-container"></div>
-
-            <div className="chessbar-container">
-              <div className="timer player1">00.00</div>
-              <div className="timer player2">00.00</div>
-              <div className="resign">
-                <img src="../assets/flag.png" alt="" />
-              </div>
-              <div className="draw">
-                <img src="../assets/handshake.png" alt="" />
-              </div>
-            </div>
-
+            <Chessbar />
             <Chat addNewMessage={this.addNewMessage} messages={this.state.messages} />
           </div>
         </div>

@@ -70,7 +70,7 @@ class Home extends Component {
                 return (
                   <Fragment>
                     <input onChange={this.handleChangeTime} key={i} value={n} type="radio" id={i} name="minute" />
-                    <label class="time" htmlFor={i}>{n}min</label>
+                    <label className="time" htmlFor={i}>{n}min</label>
                   </Fragment>
                 )
               })
@@ -81,7 +81,7 @@ class Home extends Component {
                 return (
                   <Fragment>
                     <input onChange={this.handleChangeColor} key={i} value={c} type="radio" id={c} name="piece" />
-                    <label class="piece-container" htmlFor={c}> <img class="color" src={require(`./images/${c}.png`)} /> </label>
+                    <label className="piece-container" htmlFor={c}> <img clasName="color" src={require(`./images/${c}.png`)} /> </label>
                   </Fragment>
                 )
               })
