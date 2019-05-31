@@ -81,7 +81,7 @@ class Home extends Component {
                 return (
                   <Fragment>
                     <input onChange={this.handleChangeColor} key={i} value={c} type="radio" id={c} name="piece" />
-                    <label className="piece-container" htmlFor={c}> <img clasName="color" src={require(`./images/${c}.png`)} /> </label>
+                    <label className="piece-container" htmlFor={c}> <img className="color" src={require(`./images/${c}.png`)} /> </label>
                   </Fragment>
                 )
               })
