@@ -17,7 +17,9 @@ class Room extends Component {
     super(props);
     this.state = {
       messages: [],
-      redirect: false
+      redirect: false,
+      username: '',
+      start_data: {}
     };
   this.socket =  io(`http://localhost:3001`)
   }
@@ -29,16 +31,25 @@ class Room extends Component {
   componentDidMount(){
     //TODO should get complex userID instead of username
     axios.get('http://localhost:3001/auth', axiosOptions)
-      .then((res) => this.joinRoom(res.data), () => this.setState({ redirect: true }))
+      .then((res) => {
+        this.setState({username: res.data})
+        this.joinRoom(res.data)
+      }, () => this.setState({ redirect: true }))
   }
 
   joinRoom = (username) => {
-    console.log(username)
     const room = this.props.match.url.split('/')[2];
     this.socket.emit('joinRoom', { room, username });
     this.socket.on('message', console.log);
     this.socket.emit('move', { move: 'pa5'});
+    //AXIOS GET ROOM DATA
+    axios.get(`http://localhost:3001/rooms/${room}`, axiosOptions)
+      .then(res => this.setState({start_data: res.data}));
   }
+    // const { creator, creator_victories, current_game, games_completed,
+    //         id, start_color, time_per_move, timestamp, url } = res.data
+
+
 
   sendMove = (move) => {
     this.socket.emit('move', { move })
