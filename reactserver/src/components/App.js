@@ -13,18 +13,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      logged: false,
+      logged: false
     };
-  }
-  componentDidMount(){
-    // axios.get('http://localhost:3001/auth')
-    //   .then(function (response) {
-    //       console.log(response.data);
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-
   }
 
   login = () => {

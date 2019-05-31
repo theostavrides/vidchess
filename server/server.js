@@ -11,7 +11,7 @@ const bcrypt        = require('bcrypt');
 const cookieSession = require("cookie-session");
 const cors          = require('cors')
 const bodyParser    = require("body-parser");
-console.log(environment)
+
 var corsOptions = {
   origin: 'http://localhost:3000',
   credentials: true
@@ -26,9 +26,6 @@ app.use(cookieSession({
 }));
 
 //HELPERS
-function isLoggedIn(session){
-  console.log(session)
-}
 
 function login(username, password) {
   return validate.userLogin({ username, password })
@@ -56,7 +53,7 @@ function NumClientsInRoom(namespace, room) {
 
 //API ROUTES
 app.get('/auth', cors(corsOptions), function (req, res, next) {
-  req.session ? res.status(200).send() : res.status(401).send();
+  req.session.username ? res.status(200).send(req.session.username) : res.status(401).send('user not logged in');
 })
 
 app.post("/login", cors(corsOptions), function (req, res) {
@@ -97,14 +94,23 @@ app.post("/newLink", cors(corsOptions), function (req, res) {
 //SOCKET LOGIC
 io.on('connection', function (socket) {
   socket.on('joinRoom', function(data) {
+    const username = data.username;
     const room = data.room;
-    if (NumClientsInRoom('/', room) < 2) socket.join(room);
-    io.to(room).send(`Client connected to socket room ${room}`)
+    if (NumClientsInRoom('/', room) < 2) {
+      socket.join(room);
+      console.log(`${username} joined room ${room}`)
+    }
+    io.to(room).send(`Client connected to socket room ${room}`);
   })
   socket.on('move', function(data) {
     console.log(data);
   })
 });
+
+
+
+
+
 
 server.listen(PORT, function() {
   console.log(`Socket server running on port ${PORT}`)

@@ -2,22 +2,40 @@ import React, { Component } from 'react';
 import Board from './Board.js'
 import './Room.css';
 import io from 'socket.io-client';
+import axios from 'axios'
+const axiosOptions = {
+  headers: {
+    'Content-Type': 'application/json',
+    "Access-Control-Allow-Origin": "http://localhost:3000"
+  },
+  withCredentials: true
+}
 
 class Room extends Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      redirect: false
+    };
     this.socket =  io(`http://localhost:3001`)
   }
 
   componentDidMount(){
+    //TODO should get complex userID instead of username
+    axios.get('http://localhost:3001/auth', axiosOptions)
+      .then((res) => this.joinRoom(res.data), () => this.setState({ redirect: true }))
+  }
+
+  joinRoom = (username) => {
+    console.log(username)
     const room = this.props.match.url.split('/')[2];
-    this.socket.emit('joinRoom', { room });
+    this.socket.emit('joinRoom', { room, username });
     this.socket.on('message', console.log);
+    this.socket.emit('move', { move: 'pa5'});
   }
 
   sendMove = (move) => {
-    this.socket.emit('move', { move: 'pa5'})
+    this.socket.emit('move', { move })
   }
 
   render() {
