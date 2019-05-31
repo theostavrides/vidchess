@@ -55,6 +55,16 @@ function makeHelpers(knex) {
     return knex("users").insert(data)
   }
 
+  const newRoom = (data) => {
+    return knex('rooms').insert(data);
+  }
+
+  const getRoomData = (url) => {
+    return knex("rooms")
+      .select("*")
+      .where("url", url)
+  }
+
 
   return  {
     getAllGames,
@@ -64,7 +74,9 @@ function makeHelpers(knex) {
     getGame,
     getGamesOfUser,
     getMovesOfGame,
-    registerUser
+    registerUser,
+    newRoom,
+    getRoomData
   }
 }
 

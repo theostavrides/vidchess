@@ -83,14 +83,27 @@ app.post("/register", cors(corsOptions), function (req, res) {
 });
 
 app.post("/newLink", cors(corsOptions), function (req, res) {
-  const username = req.session.username;
-  const time = req.body.time;
-  const color = req.body.color;
-  const url = randomString(10);
-  //MAKE NEW ROOM IN DB
+  const data = {
+    creator: req.session.username,
+    time_per_move: req.body.time,
+    start_color: req.body.color,
+    url: randomString(10),
+    current_game: null,
+    games_completed: 0,
+    creator_victories: 0,
+  }
 
-  res.status(200).send(url);
+  //MAKE NEW ROOM IN DB
+  dataHelpers.newRoom(data).then(()=>{
+    res.status(200).send(data.url);
+  })
 });
+
+app.get("/rooms/:id", cors(corsOptions), function(req, res) {
+  const roomurl = req.params.id;
+  console.log('hello')
+  dataHelpers.getRoomData(roomurl).then((data) => res.status(200).send(data[0]), console.error);
+})
 
 let rooms = [];
 //SOCKET LOGIC
