@@ -8,11 +8,16 @@ class Navbar extends Component {
     this.state = {};
   }
 
+  onClickLogout = (event) => {
+    event.preventDefault();
+    window.location.href = '/';
+  }
+
   render() {
-    return (
+    return ( 
       <nav>
         <h4 className="logo">vidchess</h4>
-        <h3 className="logout">Logout</h3>
+        <h3 onClick={this.onClickLogout} className="logout">Logout</h3>
       </nav>
     );
   }
