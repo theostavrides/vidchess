@@ -86,11 +86,13 @@ app.post("/newLink", cors(corsOptions), function (req, res) {
   const username = req.session.username;
   const time = req.body.time;
   const color = req.body.color;
-  const url = randomString(8);
+  const url = randomString(10);
+  //MAKE NEW ROOM IN DB
+
   res.status(200).send(url);
 });
 
-
+let rooms = [];
 //SOCKET LOGIC
 io.on('connection', function (socket) {
   socket.on('joinRoom', function(data) {
@@ -102,8 +104,14 @@ io.on('connection', function (socket) {
     }
     io.to(room).send(`Client connected to socket room ${room}`);
   })
+
+
+
   socket.on('move', function(data) {
-    console.log(data);
+    //move logic
+  })
+  socket.on('chat', function(data) {
+    //chat logic
   })
 });
 
