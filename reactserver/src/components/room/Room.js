@@ -40,12 +40,10 @@ class Room extends Component {
     const room = this.props.match.url.split('/')[2];
     this.socket.emit('joinRoom', { room, username });
     this.socket.on('message', console.log);
-    this.socket.emit('move', { move: 'pa5'});
+
   }
 
-  sendMove = (move) => {
-    this.socket.emit('move', { move })
-  }
+
 
   render() {
 
@@ -61,7 +59,7 @@ class Room extends Component {
                   <p contenteditable="true">This is how we do it</p>
                 </div>
               </div> */}
-            <Board room={this.props.match.url.split('/')[2]}/>
+            <Board room={this.props.match.url.split('/')[2]} socket={this.socket}/>
           </div>
           <div className="sidebar">
 

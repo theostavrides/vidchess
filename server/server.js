@@ -120,7 +120,7 @@ io.on('connection', function (socket) {
 
 
   socket.on('move', function(data) {
-    //move logic
+    console.log(data)
   })
   socket.on('chat', function(data) {
     //chat logic

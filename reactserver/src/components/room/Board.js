@@ -35,10 +35,8 @@ class Board extends React.PureComponent {
   }
 
   setUpBoard = () => {
-    const {
-      id, creator, creator_victories, current_game, games_completed,
-      start_color, time_per_move, timestamp, url
-    } = this.state.roomData;
+    const { id, creator, creator_victories, current_game, games_completed,
+      start_color, time_per_move, timestamp, url } = this.state.roomData;
     const username = this.state.username;
     let currentColor;
 
@@ -63,12 +61,6 @@ class Board extends React.PureComponent {
       this.setState({color:'b'});
       this.setState({pieces: blackSetup})
     }
-    console.log(currentColor)
-    console.log(this.state.roomData)
-    console.log(username)
-
-
-
   }
 
   setUsername = () => {
@@ -77,10 +69,13 @@ class Board extends React.PureComponent {
   }
 
   handleMovePiece(piece, fromSquare, toSquare) {
+    const socket = this.props.socket;
+    socket.emit('move', {fromSquare, toSquare});
+
     this.state.colour === 'w' ?
       game.move({ from: fromSquare, to: toSquare }) :
       game.move({ from: blackMove(fromSquare), to: blackMove(toSquare)})
-    console.log(game.history())
+
     const newPieces = this.state.pieces
       .map((curr, index) => {
         if (piece.index === index) {
