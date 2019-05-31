@@ -121,6 +121,7 @@ io.on('connection', function (socket) {
 
   socket.on('move', function(data) {
     console.log(data)
+    //broadcast to others
   })
   socket.on('chat', function(data) {
     //chat logic
