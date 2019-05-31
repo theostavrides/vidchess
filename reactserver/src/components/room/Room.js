@@ -3,14 +3,23 @@ import Board from './Board.js'
 import Chat from './Chat/Chat.js'
 import './Room.css';
 import io from 'socket.io-client';
-const socket = io(`http://localhost:3001`)
+import axios from 'axios'
+const axiosOptions = {
+  headers: {
+    'Content-Type': 'application/json',
+    "Access-Control-Allow-Origin": "http://localhost:3000"
+  },
+  withCredentials: true
+}
 
 class Room extends Component {
   constructor(props) {
     super(props);
     this.state = {
       messages: [],
+      redirect: false
     };
+  this.socket =  io(`http://localhost:3001`)
   }
 
   addNewMessage = (content) => {
@@ -18,14 +27,23 @@ class Room extends Component {
   }
 
   componentDidMount(){
-
-    const room = this.props.match.url.split('/')[2];
-
-    socket.on('connection', function(socket){
-      socket.join(room);
-      socket.to(room).emit('msg', {my: 'data'})
-    });
+    //TODO should get complex userID instead of username
+    axios.get('http://localhost:3001/auth', axiosOptions)
+      .then((res) => this.joinRoom(res.data), () => this.setState({ redirect: true }))
   }
+
+  joinRoom = (username) => {
+    console.log(username)
+    const room = this.props.match.url.split('/')[2];
+    this.socket.emit('joinRoom', { room, username });
+    this.socket.on('message', console.log);
+    this.socket.emit('move', { move: 'pa5'});
+  }
+
+  sendMove = (move) => {
+    this.socket.emit('move', { move })
+  }
+
   render() {
 
     return (

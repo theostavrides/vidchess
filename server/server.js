@@ -26,9 +26,6 @@ app.use(cookieSession({
 }));
 
 //HELPERS
-function isLoggedIn(session){
-  console.log(session)
-}
 
 function login(username, password) {
   return validate.userLogin({ username, password })
@@ -47,9 +44,16 @@ function randomString(length) {
   return code;
 }
 
+//SOCKET HELPERS
+
+function NumClientsInRoom(namespace, room) {
+  var clientsInRoom = io.nsps['/'].adapter.rooms[room];
+  return clientsInRoom === undefined ? 0 : Object.keys(clientsInRoom.sockets).length;
+}
+
 //API ROUTES
 app.get('/auth', cors(corsOptions), function (req, res, next) {
-  req.session ? res.status(200).send() : res.status(401).send();
+  req.session.username ? res.status(200).send(req.session.username) : res.status(401).send('user not logged in');
 })
 
 app.post("/login", cors(corsOptions), function (req, res) {
@@ -89,13 +93,24 @@ app.post("/newLink", cors(corsOptions), function (req, res) {
 
 //SOCKET LOGIC
 io.on('connection', function (socket) {
-
-  socket.emit('news', { hello: 'hello my world' });
-  socket.on('msg', function (data) {
+  socket.on('joinRoom', function(data) {
+    const username = data.username;
+    const room = data.room;
+    if (NumClientsInRoom('/', room) < 2) {
+      socket.join(room);
+      console.log(`${username} joined room ${room}`)
+    }
+    io.to(room).send(`Client connected to socket room ${room}`);
+  })
+  socket.on('move', function(data) {
     console.log(data);
-    console.log(io.sockets.adapter.rooms)
-  });
+  })
 });
+
+
+
+
+
 
 server.listen(PORT, function() {
   console.log(`Socket server running on port ${PORT}`)

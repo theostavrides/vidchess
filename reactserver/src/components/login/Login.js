@@ -24,7 +24,7 @@ class Login extends Component {
     super();
     this.state = {
       login: true,
-      username: 'aaa',
+      username: '',
       email: '',
       password: ''
     };
@@ -63,7 +63,7 @@ class Login extends Component {
 
   handleSubmitLogin = (event) => {
     event.preventDefault();
-    sendLogin(this.state.username, this.state.password).then(this.props.login, console.error)
+    sendLogin(this.state.username, this.state.password).then(this.props.login(this.state.username), console.error)
   }
 
 
