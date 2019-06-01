@@ -25,7 +25,7 @@ class Chatbar extends Component {
       content: event.target.value,
     })
   }
-
+  // Comment
  render() {
     return (
       <div className="chatbar-container">
