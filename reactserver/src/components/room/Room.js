@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Board from './Board.js'
 import Chat from './Chat/Chat.js'
+import Video from './Video.js'
 import Chessbar from './chessbar/Chessbar.js'
 import './Room.css';
 import io from 'socket.io-client';
@@ -49,6 +50,7 @@ class Room extends Component {
   render() {
 
     return (
+
       <div className="wrapper">
         <div className="room-2col">
           <div className="chessboard-container">
@@ -63,7 +65,9 @@ class Room extends Component {
             <Board room={this.props.match.url.split('/')[2]} socket={this.socket}/>
           </div>
           <div className="sidebar">
-            <div className="video-container"></div>
+            <div className="video-container">
+              <Video username={this.state.username} socket={this.socket}/>
+            </div>
             <Chessbar />
             <Chat addNewMessage={this.addNewMessage} messages={this.state.messages} />
           </div>

@@ -135,16 +135,26 @@ io.on('connection', function (socket) {
 
     }
     io.to(room).send(`Client connected to socket room ${room}`);
-
+    io.to(room).emit('friend', username);
   })
 
   socket.on("move", function (data) {
     socket.to(room).emit('move', data);
   })
 
+
+  socket.on('startvideo', function(data) {
+    socket.to(room).emit('peerusername', data)
+  })
+
+  socket.on('readyforrtc', function(data) {
+    socket.to(room).emit('readyforrtc', data)
+  })
+
   socket.on('chat', function(data) {
 
   })
+
 });
 
 server.listen(PORT, function() {
