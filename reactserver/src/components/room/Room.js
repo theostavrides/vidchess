@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Board from './Board.js'
 import Chat from './Chat/Chat.js'
 import Chessbar from './chessbar/Chessbar.js'
+import Video from './Video.js'
 import './Room.css';
 import io from 'socket.io-client';
 import axios from 'axios'
@@ -73,6 +74,7 @@ class Room extends Component {
           </div>
           <div className="sidebar">
             <div className="video-container">
+              <Video />
             </div>
             <Chessbar />
             <Chat addNewMessage={this.addNewMessage} messages={this.state.messages} />
