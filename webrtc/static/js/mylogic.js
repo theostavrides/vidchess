@@ -49,7 +49,7 @@ function performCall(easyrtcid) {
   );
 }
 
-var socket = io.connect('https://192.168.1.82:8080/');
+var socket = io.connect('https://192.168.88.164:8080/');
   socket.on('news', function (data) {
     console.log(data);
     socket.emit('my other event', { my: 'data' });
