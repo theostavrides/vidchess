@@ -15,27 +15,27 @@
 }
 
 .chessbar-container > div.player1 {
-  color: white;
-  background-color: #333;
-  border: 1px solid #333;
+  color: #999;
+  background-color: #444;
 }
 
 .chessbar-container > div.player2 {
-  background-color: white;
-  border: 1px solid #333;
+  background-color: #999;
 }
 
 .chessbar-container > div.resign {
   background-color: rgb(228, 67, 67);
+  height: 100%;
 }
 
 .resign img {
   display: block;
-  padding-top: 10px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10%;
+  margin-bottom: 10%;
   color: white;
-  height: 50px;
+  height: 5vh;
 }
 
 .chessbar-container > div.resign:hover {
@@ -44,16 +44,18 @@
 
 
 .chessbar-container > div.draw {
+  height: 100%;
   background-color: rgb(79, 79, 230);
 }
 
 .draw img {
   display: block;
-  padding-top: 10px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 15%;
+  margin-bottom: 15%;
   color: white;
-  height: 60px;
+  height: 4vh;
 }
 
 .chessbar-container > div.draw:hover {
@@ -66,6 +68,7 @@
 div.option {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  height: 100%;
 }
 
 div.option .yes-btn {
