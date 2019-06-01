@@ -85,11 +85,12 @@ class Board extends React.PureComponent {
 
   handleMovePiece(piece, fromSquare, toSquare) {
     const socket = this.props.socket;
-    socket.emit('move', {fromSquare, toSquare});
+
 
     this.state.color === 'w' ?
-      game.move({ from: fromSquare, to: toSquare }) :
-      game.move({ from: blackMove(fromSquare), to: blackMove(toSquare)})
+      socket.emit('move', {fromSquare, toSquare}) :
+      socket.emit('move', {fromSquare: blackMove(fromSquare), toSquare: blackMove(toSquare)});
+
 
     const newPieces = this.state.pieces
       .map((curr, index) => {
