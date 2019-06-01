@@ -35,8 +35,29 @@ class Board extends React.PureComponent {
       .then(this.setUsername)
       .then(this.setGameData)
       .then(this.setUpBoard)
-    this.props.socket.on("move", function(data) {
+    this.props.socket.on("move", (data) => {
 
+      let { fromSquare, toSquare } = data;
+      console.log('move from socket', fromSquare, toSquare)
+      if (this.state.color === 'b') {
+        console.log(this.state.game.move( {from: blackMove(fromSquare), to: blackMove(toSquare)} ))
+      }
+      if (this.state.color === 'w') {
+
+
+        console.log(this.state.game.move( {from: fromSquare, to: toSquare} ))
+      }
+      let { color, piece } = data.lastMove;
+      if (color === 'w') piece = piece.toUpperCase();
+      if (color === 'b') piece = piece.toLowerCase();
+      let newPiece = `${piece}@${toSquare}`
+
+      let boardIfCapture = this.state.pieces.filter(e => e.split('@')[1] !== toSquare).filter(e => e.split('@')[1] !== fromSquare)
+
+
+
+      boardIfCapture.push(newPiece)
+      this.setState({pieces: boardIfCapture})
       // const newPieces = this.state.pieces
       //   .map((curr, index) => {
       //     if (piece.index === index) {
@@ -105,8 +126,8 @@ class Board extends React.PureComponent {
       let history = this.state.game.history({ verbose: true });
       let lastMove = history.pop();
       this.state.color === 'w' ?
-        socket.emit('move', {fromSquare, toSquare}) :
-        socket.emit('move', {fromSquare: blackMove(fromSquare), toSquare: blackMove(toSquare)});
+        socket.emit('move', {fromSquare: blackMove(fromSquare), toSquare: blackMove(toSquare), lastMove}) :
+        socket.emit('move', {fromSquare: blackMove(fromSquare), toSquare: blackMove(toSquare), lastMove});
 
 
       const newPieces = this.state.pieces
