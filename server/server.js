@@ -113,11 +113,9 @@ app.get("/games/:id", cors(corsOptions), function(req, res) {
   dataHelpers.getGame(gameid).then( data => {
     const gameData = data[0]
     if (data[0].white_id === null) {
-      dataHelpers.addPlayerToGame('w', username, gameid, data[0])
-        .then(res.status(200).send(gameData))
+      dataHelpers.addPlayerToGame('w', username, gameid, data[0]).then(res.status(200).send(gameData))
     } else if (data[0].black_id === null) {
-      dataHelpers.addPlayerToGame('b', username, gameid, data[0])
-        .then(res.status(200).send(gameData))
+      dataHelpers.addPlayerToGame('b', username, gameid, data[0]).then(res.status(200).send(gameData))
     } else {
       res.status(200).send(gameData)
     }
@@ -141,9 +139,7 @@ io.on('connection', function (socket) {
   })
 
   socket.on("move", function (data) {
-
     socket.to(room).emit('move', data);
-
   })
 
   socket.on('chat', function(data) {
