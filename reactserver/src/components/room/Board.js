@@ -20,7 +20,8 @@ class Board extends React.PureComponent {
     super(props);
     this.state = {
       roomData: {},
-      colour: 'b',
+      gameData: {},
+      color: 'b',
       pieces: whiteSetup,
       username: ''
     };
@@ -31,7 +32,21 @@ class Board extends React.PureComponent {
     axios.get(`http://localhost:3001/rooms/${this.props.room}`, axiosOptions)
       .then(res => this.setState({roomData: res.data}))
       .then(this.setUsername)
+      .then(this.setGameData)
       .then(this.setUpBoard)
+    this.props.socket.on("move", function(data) {
+      console.log(data)
+    })
+  }
+
+
+
+  setGameData = () => {
+    let gameid = this.state.roomData.current_game;
+    if (gameid) {
+      axios.get(`http://localhost:3001/games/${gameid}`, axiosOptions)
+        .then((res) => this.setState({gameData: res.data}))
+    }
   }
 
   setUpBoard = () => {
@@ -72,7 +87,7 @@ class Board extends React.PureComponent {
     const socket = this.props.socket;
     socket.emit('move', {fromSquare, toSquare});
 
-    this.state.colour === 'w' ?
+    this.state.color === 'w' ?
       game.move({ from: fromSquare, to: toSquare }) :
       game.move({ from: blackMove(fromSquare), to: blackMove(toSquare)})
 

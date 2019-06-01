@@ -104,15 +104,32 @@ app.post("/newLink", cors(corsOptions), function (req, res) {
 
 app.get("/rooms/:id", cors(corsOptions), function(req, res) {
   const roomurl = req.params.id;
-  dataHelpers.getRoomData(roomurl).then((data) => res.status(200).send(data[0]), console.error);
+  dataHelpers.getRoomData(roomurl).then( data => res.status(200).send(data[0]), console.error);
 })
 
+app.get("/games/:id", cors(corsOptions), function(req, res) {
+  let username = req.session.username;
+  const gameid = req.params.id;
+  dataHelpers.getGame(gameid).then( data => {
+    const gameData = data[0]
+    if (data[0].white_id === null) {
+      dataHelpers.addPlayerToGame('w', username, gameid, data[0])
+        .then(res.status(200).send(gameData))
+    } else if (data[0].black_id === null) {
+      dataHelpers.addPlayerToGame('b', username, gameid, data[0])
+        .then(res.status(200).send(gameData))
+    } else {
+      res.status(200).send(gameData)
+    }
+  })
+})
 
 //SOCKET LOGIC
 io.on('connection', function (socket) {
+  let room;
   socket.on('joinRoom', function(data) {
     const username = data.username;
-    const room = data.room;
+    room = data.room;
 
     if (NumClientsInRoom('/', room) < 2) {
       socket.join(room);
@@ -120,23 +137,19 @@ io.on('connection', function (socket) {
 
     }
     io.to(room).send(`Client connected to socket room ${room}`);
+
   })
 
+  socket.on("move", function (data) {
 
+    socket.to(room).emit('move', data);
 
-  socket.on('move', function(data) {
-    console.log(data)
-    //broadcast to others
   })
+
   socket.on('chat', function(data) {
 
   })
 });
-
-
-
-
-
 
 server.listen(PORT, function() {
   console.log(`Socket server running on port ${PORT}`)
