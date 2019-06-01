@@ -127,42 +127,41 @@ app.get("/games/:id", cors(corsOptions), function(req, res) {
 
 //SOCKET LOGIC
 io.on('connection', function (socket) {
-  let room;
-  socket.on('joinRoom', function(data) {
-    const username = data.username;
-    room = data.room;
+    let room;
+    socket.on('joinRoom', function(data) {
+      const username = data.username;
+      room = data.room;
 
-    if (NumClientsInRoom('/', room) < 2) {
-      socket.join(room);
-      console.log(`${username} joined room ${room}`);
+      if (NumClientsInRoom('/', room) < 2) {
+        socket.join(room);
+        console.log(`${username} joined room ${room}`);
 
-    }
-    io.to(room).send(`Client connected to socket room ${room}`);
-
-
-    socket.on('move', function(data) {
-    console.log(data)
-    //broadcast to others
-  })
+      }
+      io.to(room).send(`Client connected to socket room ${room}`);
 
 
-  socket.on('chat', function(data, callback) {
-    const message = {
-      content: data.content,
-      id: uuid()
-    }
-    if (callback) {
-      callback(message);
-    }
-    socket.broadcast.emit('msg', message)
-  })
+      socket.on('move', function(data) {
+      console.log(data)
+      //broadcast to others
+    })
 
+
+    socket.on('chat', function(data, callback) {
+      const message = {
+        content: data.content,
+        id: uuid()
+      }
+      if (callback) {
+        callback(message);
+      }
+      socket.broadcast.emit('msg', message)
+    })
+  });
 });
 
 server.listen(PORT, function() {
   console.log(`Socket server running on port ${PORT}`)
 });
-
 
 
 
