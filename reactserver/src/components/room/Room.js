@@ -72,7 +72,8 @@ class Room extends Component {
             <Board room={this.props.match.url.split('/')[2]} socket={this.socket}/>
           </div>
           <div className="sidebar">
-            <div className="video-container"></div>
+            <div className="video-container">
+            </div>
             <Chessbar />
             <Chat addNewMessage={this.addNewMessage} messages={this.state.messages} />
           </div>
