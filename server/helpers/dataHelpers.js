@@ -84,7 +84,6 @@ function makeHelpers(knex) {
   }
 
   const addPlayerToGame = (color, username, gameid, gamedata) => {
-    console.log(color, username, gameid, gamedata)
     return getUserId(username)
       .then((res) => {
         const id = res[0].id;
@@ -92,7 +91,6 @@ function makeHelpers(knex) {
           return knex('games')
             .where({ id: gameid })
             .update({ black_id: id})
-            .then(console.log,console.error)
         }
         if (color === 'w' && gamedata.black_id !== id) {
           return knex('games')

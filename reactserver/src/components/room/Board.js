@@ -23,7 +23,8 @@ class Board extends React.PureComponent {
       gameData: {},
       color: 'b',
       pieces: whiteSetup,
-      username: ''
+      username: '',
+      game: new ChessJS()
     };
     this.handleMovePiece = this.handleMovePiece.bind(this);
   }
@@ -34,8 +35,39 @@ class Board extends React.PureComponent {
       .then(this.setUsername)
       .then(this.setGameData)
       .then(this.setUpBoard)
-    this.props.socket.on("move", function(data) {
-      console.log(data)
+    this.props.socket.on("move", (data) => {
+
+      let { fromSquare, toSquare } = data;
+      console.log('move from socket', fromSquare, toSquare)
+      if (this.state.color === 'b') {
+        console.log(this.state.game.move( {from: blackMove(fromSquare), to: blackMove(toSquare)} ))
+      }
+      if (this.state.color === 'w') {
+
+
+        console.log(this.state.game.move( {from: fromSquare, to: toSquare} ))
+      }
+      let { color, piece } = data.lastMove;
+      if (color === 'w') piece = piece.toUpperCase();
+      if (color === 'b') piece = piece.toLowerCase();
+      let newPiece = `${piece}@${toSquare}`
+
+      let boardIfCapture = this.state.pieces.filter(e => e.split('@')[1] !== toSquare).filter(e => e.split('@')[1] !== fromSquare)
+
+
+
+      boardIfCapture.push(newPiece)
+      this.setState({pieces: boardIfCapture})
+      // const newPieces = this.state.pieces
+      //   .map((curr, index) => {
+      //     if (piece.index === index) {
+      //       return `${piece.name}@${toSquare}`
+      //     } else if (curr.indexOf(toSquare) === 2) {
+      //       return false // To be removed from the board
+      //     }
+      //     return curr
+      //   })
+      //   .filter(Boolean)
     })
   }
 
@@ -85,25 +117,36 @@ class Board extends React.PureComponent {
 
   handleMovePiece(piece, fromSquare, toSquare) {
     const socket = this.props.socket;
+    const oldPieces = this.state.pieces;
+    let validMove = this.state.color === 'w' ?
+      this.state.game.move({from: fromSquare, to: toSquare}) :
+      this.state.game.move({from: blackMove(fromSquare), to: blackMove(toSquare)})
+
+    if (validMove) {
+      let history = this.state.game.history({ verbose: true });
+      let lastMove = history.pop();
+      this.state.color === 'w' ?
+        socket.emit('move', {fromSquare: blackMove(fromSquare), toSquare: blackMove(toSquare), lastMove}) :
+        socket.emit('move', {fromSquare: blackMove(fromSquare), toSquare: blackMove(toSquare), lastMove});
 
 
-    this.state.color === 'w' ?
-      socket.emit('move', {fromSquare, toSquare}) :
-      socket.emit('move', {fromSquare: blackMove(fromSquare), toSquare: blackMove(toSquare)});
+      const newPieces = this.state.pieces
+        .map((curr, index) => {
+          if (piece.index === index) {
+            return `${piece.name}@${toSquare}`
+          } else if (curr.indexOf(toSquare) === 2) {
+            return false // To be removed from the board
+          }
+          return curr
+        })
+        .filter(Boolean)
 
-
-    const newPieces = this.state.pieces
-      .map((curr, index) => {
-        if (piece.index === index) {
-          return `${piece.name}@${toSquare}`
-        } else if (curr.indexOf(toSquare) === 2) {
-          return false // To be removed from the board
-        }
-        return curr
-      })
-      .filter(Boolean)
-
-    this.setState({pieces: newPieces})
+      this.setState({pieces: newPieces})
+    } else {
+      //reset board if move invalid
+      this.setState({pieces: []})
+      this.setState({pieces: oldPieces})
+    }
   }
 
 
