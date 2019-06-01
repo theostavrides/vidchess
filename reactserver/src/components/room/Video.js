@@ -22,19 +22,34 @@ class Video extends Component {
 
   componentDidMount() {
     let socket = this.props.socket;
+
     socket.on('peerusername', data => {
+      console.log(data)
       this.setState({username: this.props.username, opponent: data})
       const peer = new Peer({key: 'lwjd5qra8257b9', id: this.state.username});
       this.setState({peer})
       socket.emit('readyforrtc', this.state.username)
+
+      peer.on('open', function(id) {
+        console.log('My peer ID is: ' + id);
+      });
+
     })
     socket.on('readyforrtc', (opponent) => {
-      console.log('this is my opponent', opponent)
-      this.setState({username: this.props.username, opponent: data})
+      console.log(opponent)
+      this.setState({username: this.props.username, opponent})
       const peer = new Peer({key: 'lwjd5qra8257b9', id: this.state.username});
-      this.setState({peer})
-    })
+      this.setState({peer});
+      this.connect();
 
+    })
+  }
+
+  connect = () => {
+    this.state.peer.connect(this.state.opponent)
+    this.state.peer.on('open', function(id) {
+      console.log('My peer ID is: ' + id);
+    });
   }
 
   startVideo = (e) => {
