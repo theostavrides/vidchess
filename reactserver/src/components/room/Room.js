@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Board from './Board.js'
 import Chat from './Chat/Chat.js'
 import Chessbar from './chessbar/Chessbar.js'
+import Video from './Video.js'
 import './Room.css';
 import io from 'socket.io-client';
 import axios from 'axios'
@@ -24,9 +25,6 @@ class Room extends Component {
   this.socket =  io(`http://localhost:3001`)
   }
 
-  addNewMessage = (content) => {
-    this.setState({ messages: this.state.messages.concat(content) })
-  }
 
   componentDidMount(){
     //TODO should get complex userID instead of username
@@ -35,13 +33,25 @@ class Room extends Component {
         this.setState({username: res.data})
         this.joinRoom(res.data)
       }, () => this.setState({ redirect: true }))
+
+      this.socket.on('msg', (data) => {
+        console.log(data)
+        this.setState({ messages: this.state.messages.concat(data) })
+      })
+  }
+
+  addNewMessage = (content) => {
+    const hearOwnMessage = (data) => {
+      data.id = null
+      this.setState({ messages: this.state.messages.concat(data) })
+    }
+    this.socket.emit('chat', content, hearOwnMessage);
   }
 
   joinRoom = (username) => {
     const room = this.props.match.url.split('/')[2];
     this.socket.emit('joinRoom', { room, username });
     this.socket.on('message', console.log);
-
   }
 
 
@@ -63,7 +73,9 @@ class Room extends Component {
             <Board room={this.props.match.url.split('/')[2]} socket={this.socket}/>
           </div>
           <div className="sidebar">
-            <div className="video-container"></div>
+            <div className="video-container">
+              <Video />
+            </div>
             <Chessbar />
             <Chat addNewMessage={this.addNewMessage} messages={this.state.messages} />
           </div>

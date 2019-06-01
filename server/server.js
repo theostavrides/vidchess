@@ -11,6 +11,9 @@ const bcrypt        = require('bcrypt');
 const cookieSession = require("cookie-session");
 const cors          = require('cors')
 const bodyParser    = require("body-parser");
+const uuid = require('uuid/v1');
+
+
 
 var corsOptions = {
   origin: 'http://localhost:3000',
@@ -124,6 +127,7 @@ app.get("/games/:id", cors(corsOptions), function(req, res) {
 
 //SOCKET LOGIC
 io.on('connection', function (socket) {
+
   let room;
   socket.on('joinRoom', function(data) {
     const username = data.username;
@@ -141,9 +145,16 @@ io.on('connection', function (socket) {
   socket.on("move", function (data) {
     socket.to(room).emit('move', data);
   })
-  //hello again!!!
-  socket.on('chat', function(data) {
 
+  socket.on('chat', function(data, callback) {
+    const message = {
+      content: data.content,
+      id: uuid()
+    }
+    if (callback) {
+      callback(message);
+    }
+    socket.broadcast.emit('msg', message)
   })
 });
 
@@ -154,5 +165,4 @@ server.listen(PORT, function() {
 
 
 //hello!!
-
 

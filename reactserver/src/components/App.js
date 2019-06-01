@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from './Navbar.js';
-import Login from './login/Login.js'
-import Home from './home/Home.js'
-import Room from './room/Room.js'
+import Login from './login/Login.js';
+import Home from './home/Home.js';
+import Room from './room/Room.js';
 import { BrowserRouter as Router, Redirect, Route, Link, withRouter } from "react-router-dom";
-import axios from 'axios'
+import axios from 'axios';
 
 
 

@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "chess.js": "^0.10.2",
+    "easyrtc": "^1.1.0",
     "react": "^16.8.6",
     "react-chess": "^1.1.1",
     "react-dom": "^16.8.6",
