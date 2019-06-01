@@ -86,42 +86,61 @@ app.post("/register", cors(corsOptions), function (req, res) {
 });
 
 app.post("/newLink", cors(corsOptions), function (req, res) {
-  const data = {
+  const roomData = {
     creator: req.session.username,
     time_per_move: req.body.time,
-    start_color: req.body.color,
+    start_color: getColor(req.body.color),
     url: randomString(10),
     current_game: null,
     games_completed: 0,
     creator_victories: 0,
   }
 
-  //MAKE NEW ROOM IN DB
-  dataHelpers.newRoom(data).then(()=>{
-    res.status(200).send(data.url);
-  })
+  //if a player selects random color, this needs to be
+  //dealt with before game & room inserted into db
+  function getColor(selectedColor){
+    return (selectedColor === 'r') ? ['w','b'][Math.floor(Math.random() * 2)] : selectedColor;
+  }
+
+  dataHelpers.newGameAndRoom(roomData).then(() => res.status(200).send(roomData.url))
 });
 
 app.get("/rooms/:id", cors(corsOptions), function(req, res) {
   const roomurl = req.params.id;
-  dataHelpers.getRoomData(roomurl).then((data) => res.status(200).send(data[0]), console.error);
+  dataHelpers.getRoomData(roomurl).then( data => res.status(200).send(data[0]), console.error);
 })
 
-let rooms = [];
+app.get("/games/:id", cors(corsOptions), function(req, res) {
+  let username = req.session.username;
+  const gameid = req.params.id;
+  dataHelpers.getGame(gameid).then( data => {
+    const gameData = data[0]
+    if (data[0].white_id === null) {
+      dataHelpers.addPlayerToGame('w', username, gameid, data[0]).then(res.status(200).send(gameData))
+    } else if (data[0].black_id === null) {
+      dataHelpers.addPlayerToGame('b', username, gameid, data[0]).then(res.status(200).send(gameData))
+    } else {
+      res.status(200).send(gameData)
+    }
+  })
+})
+
 //SOCKET LOGIC
 io.on('connection', function (socket) {
+  let room;
   socket.on('joinRoom', function(data) {
     const username = data.username;
-    const room = data.room;
+    room = data.room;
+
     if (NumClientsInRoom('/', room) < 2) {
       socket.join(room);
-      console.log(`${username} joined room ${room}`)
+      console.log(`${username} joined room ${room}`);
+
     }
     io.to(room).send(`Client connected to socket room ${room}`);
-  })
 
 
-  socket.on('move', function(data) {
+    socket.on('move', function(data) {
     console.log(data)
     //broadcast to others
   })
@@ -139,11 +158,6 @@ io.on('connection', function (socket) {
   })
 
 });
-
-
-
-
-
 
 server.listen(PORT, function() {
   console.log(`Socket server running on port ${PORT}`)
