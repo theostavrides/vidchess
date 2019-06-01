@@ -38,7 +38,7 @@
 
 label.time {
   padding: 5px;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
 }
 
 label.time:hover {
@@ -82,12 +82,13 @@ img.color:hover {
 }
 
 input.link-btn {
-  border: 1px solid white;
+  border: 2px solid white;
   background-color: transparent;
   color: white;
   font-weight: 600;
   font-size: 2vh;
   margin: 3px;
+  transition: all 0.6s;
 }
 
 input.link-btn:hover {
