@@ -38,6 +38,12 @@ function makeHelpers(knex) {
       .select("id")
       .where("username", username)
   }
+
+  const getUsername = (user_id) => {
+    return knex("users")
+      .select("username")
+      .where("id", user_id)
+  }
   const getGamesOfUser = (user_id) => {
     return knex("games")
       .where("white_id", user_id)
@@ -143,7 +149,8 @@ function makeHelpers(knex) {
     addPlayerToGame,
     addMove,
     endGame,
-    upDataRoomVictories
+    upDataRoomVictories,
+    getUsername
   }
 }
 

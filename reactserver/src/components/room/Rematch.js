@@ -35,9 +35,8 @@ class Rematch extends Component {
     //make a server route for getting
     axios.get(`http://localhost:3001/rooms/${this.props.room}`, axiosOptions)
       .then( res => this.setState({roomData: res.data}))
-      .then(axios.get(`http://localhost:3001/games/91`)
-        .then(res => this.setState({gameData: res.data})))
-        .then(axios.get(``))
+      .then(axios.get(`http://localhost:3001/games/${this.state.roomData.current_game}`))// replace with query string
+
 
 
   }

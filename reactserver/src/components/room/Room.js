@@ -22,8 +22,7 @@ class Room extends Component {
       messages: [],
       redirect: false,
       username: '',
-      opponent: '',
-      rematch: true
+      rematch: false
     };
     this.socket =  io(`http://localhost:3001`)
   }
@@ -41,11 +40,12 @@ class Room extends Component {
         console.log(data)
         this.setState({ messages: this.state.messages.concat(data) })
       })
-      this.socket.on('gameOver', this.gameOver)
+
   }
 
   //BRINGS UP REMATCH BOX
-  gameOver = () => {
+  setRematch = (data) => {
+    console.log(data)
     this.setState({ rematch: true })
   }
 
@@ -63,8 +63,6 @@ class Room extends Component {
     this.socket.on('message', console.log);
   }
 
-
-
   render() {
 
     return (
@@ -80,7 +78,11 @@ class Room extends Component {
                   <p contenteditable="true">This is how we do it</p>
                 </div>
               </div> */}
-            <Board room={this.props.match.url.split('/')[2]} socket={this.socket}/>
+            <Board room={this.props.match.url.split('/')[2]}
+                   socket={this.socket}
+                   updateGameData={this.updateGameData}
+                   updateBoardData={this.updateBoardData}
+                   setRematch={this.setRematch}/>
           </div>
           <div className="sidebar">
             <div className="video-container">

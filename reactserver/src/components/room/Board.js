@@ -67,6 +67,10 @@ class Board extends React.PureComponent {
       console.log('in stalemate', this.state.game.in_stalemate());
       console.log('threefold', this.state.game.in_threefold_repetition())
     })
+
+    this.props.socket.on("gameOver", (data) => {
+      this.props.setRematch(data)
+    })
   }
 
   handleCheckmate = () => {
