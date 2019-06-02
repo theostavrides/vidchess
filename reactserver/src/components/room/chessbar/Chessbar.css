@@ -5,10 +5,11 @@
   display: grid;
   grid-template-columns: 35% 35% 15% 15%;
   grid-template-rows: 8vh;
+  box-shadow: 3px 5px 4px 1px rgba(78, 78, 78, 0.137);
 }
 
 .chessbar-container > div.timer {
-  font-size: 30px;
+  font-size: 35px;
   font-weight: 600;
   text-align: center;
   vertical-align: middle;
@@ -16,24 +17,20 @@
 }
 
 .chessbar-container > div.player1 {
-  color: #999;
+  color: white;
+  border-right: 2px solid #333;
   background-color: #444;
-}
-
-.chessbar-container > div.player2 {
-  background-color: #999;
 }
 
 .chessbar-container > div.resign {
   background-color: rgb(228, 67, 67);
   height: 100%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 .resign img {
-  display: block;
-  margin: 0 auto;
-  margin-top: 9%;
-  color: white;
   height: 5vh;
 }
 
@@ -45,13 +42,12 @@
 .chessbar-container > div.draw {
   height: 100%;
   background-color: rgb(79, 79, 230);
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 .draw img {
-  display: block;
-  margin: 0 auto;
-  margin-top: 15%;
-  color: white;
   height: 4vh;
 }
 
