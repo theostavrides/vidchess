@@ -144,6 +144,25 @@ io.on('connection', function (socket) {
 
   socket.on("move", function (data) {
     socket.to(room).emit('move', data);
+
+    let gameData = data.state.gameData;
+    let username = data.username;
+    let gameObj = data.game;
+    let move = data.lastMove.from + data.lastMove.to;
+
+    dataHelpers.addMove(gameData.id, move)
+
+    //check for checkmate
+  })
+
+  socket.on("checkmate", function(data) {
+    console.log(data)
+    let gameData = data.gameData;
+    let username = data.username;
+    let winner = ''
+    data.color === 'w' ? winner = 'b' : winner = 'w';
+    dataHelpers.endGame( gameData.id, winner ).then(console.log,console.error)
+    // dataHelpers.upDataRoomVictories
   })
 
   socket.on('chat', function(data, callback) {
