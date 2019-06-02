@@ -3,6 +3,7 @@ import Board from './Board.js'
 import Chat from './Chat/Chat.js'
 import Chessbar from './chessbar/Chessbar.js'
 import Video from './Video.js'
+import Rematch from './Rematch.js'
 import './Room.css';
 import io from 'socket.io-client';
 import axios from 'axios'
@@ -20,9 +21,10 @@ class Room extends Component {
     this.state = {
       messages: [],
       redirect: false,
-      username: ''
+      username: '',
+      rematch: true
     };
-  this.socket =  io(`http://localhost:3001`)
+    this.socket =  io(`http://localhost:3001`)
   }
 
 
@@ -38,6 +40,11 @@ class Room extends Component {
         console.log(data)
         this.setState({ messages: this.state.messages.concat(data) })
       })
+      this.socket.on('gameOver', this.gameOver)
+  }
+
+  gameOver = () => {
+    this.setState({ rematch: true })
   }
 
   addNewMessage = (content) => {
@@ -61,6 +68,7 @@ class Room extends Component {
     return (
       <div className="wrapper">
         <div className="room-2col">
+          {this.state.rematch && <Rematch />}
           <div className="chessboard-container">
               {/* <div className="link-container">
                 <div className="link-header">

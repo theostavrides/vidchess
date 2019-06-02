@@ -167,7 +167,8 @@ io.on('connection', function (socket) {
     let loserUsername = data.username;
     let roomCreator = data.roomData.creator;
     dataHelpers.upDataRoomVictories(roomid, loserUsername, roomCreator).then(console.log,console.error)
-    socket.emit("triggerRematchEvent", "open rematch screen")
+
+    socket.to(room).emit("gameOver", { loserUsername })
   })
 
   socket.on('chat', function(data, callback) {
