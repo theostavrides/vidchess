@@ -25,9 +25,21 @@
     <script type="text/javascript" src="/easyrtc/easyrtc.js"></script>
     <script type="text/javascript" src="js/mylogic.js"></script>
   </head>
-  <body>
-    <div id="root"></div>
-    
+  <body onload="my_init()">
+
+
+    <div id="container">
+      <div id="otherClients">
+      </div>
+
+      <video  style="float:left" id="self" width="400" height="300">
+      </video>
+
+      <div style="position:absolute;float:right;width:400px">
+        <video id="caller" width="400" ></video>
+      </div>
+      <div id="root"></div>
+    </div>
 
 
   </body>
