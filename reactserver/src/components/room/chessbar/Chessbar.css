@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: 35% 35% 15% 15%;
   grid-template-rows: 8vh;
-  box-shadow: 3px 5px 4px 1px rgba(78, 78, 78, 0.137);
+  box-shadow: 3px 5px 6px 1px rgba(78, 78, 78, 0.1);
 }
 
 .chessbar-container > div.timer {
@@ -16,14 +16,19 @@
   line-height: 8vh;
 }
 
-.chessbar-container > div.player1 {
+.chessbar-container > div {
   color: white;
-  border-right: 2px solid #333;
+  background-color: #444;
+}
+
+.chessbar-container > div.player2 {
+  color: white;
+  border-left: 2px solid white;
   background-color: #444;
 }
 
 .chessbar-container > div.resign {
-  background-color: rgb(228, 67, 67);
+  border-left: 2px solid white;
   height: 100%;
   display: grid;
   justify-content: center;
@@ -41,7 +46,7 @@
 
 .chessbar-container > div.draw {
   height: 100%;
-  background-color: rgb(79, 79, 230);
+  border-left: 2px solid white;
   display: grid;
   justify-content: center;
   align-content: center;
