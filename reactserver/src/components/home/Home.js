@@ -66,11 +66,11 @@ class Home extends Component {
           <h1>Create A Game</h1>
           <div className="new-game">
             {
-              [1, 3, 5, 10, 15].map((n, i) => {
+              ["01", "03", "05", "10", "15"].map((n, i) => {
                 return (
                   <Fragment>
                     <input onChange={this.handleChangeTime} key={i} value={n} type="radio" id={i} name="minute" />
-                    <label className="time" htmlFor={i}>{n}min</label>
+                    <label className="time" htmlFor={i}>{n}</label>
                   </Fragment>
                 )
               })

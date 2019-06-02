@@ -8,15 +8,24 @@
 
 .logo {
   padding-left: 20px;
+  padding-top: 9px;
   font-size: 30px;
+  font-weight: 700;
   color: #333;
   align-self: center;
   text-decoration: none;
+  line-height: 7vh;
+}
+
+.logo > img {
+  height: 50px;
+  float: left;
+  padding-right: 10px;
 }
 
 .logout {
-  font-weight: 600;
   grid-column-start: 14;
+  font-size: 20px;
   align-self: center;
   color: #333;
   text-decoration: none;
