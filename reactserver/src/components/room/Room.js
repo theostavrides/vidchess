@@ -22,6 +22,7 @@ class Room extends Component {
       messages: [],
       redirect: false,
       username: '',
+      opponent: '',
       rematch: true
     };
     this.socket =  io(`http://localhost:3001`)
@@ -43,6 +44,7 @@ class Room extends Component {
       this.socket.on('gameOver', this.gameOver)
   }
 
+  //BRINGS UP REMATCH BOX
   gameOver = () => {
     this.setState({ rematch: true })
   }
@@ -68,7 +70,7 @@ class Room extends Component {
     return (
       <div className="wrapper">
         <div className="room-2col">
-          {this.state.rematch && <Rematch />}
+          {this.state.rematch && <Rematch username={this.state.username} room={this.props.match.url.split('/')[2]}/>}
           <div className="chessboard-container">
               {/* <div className="link-container">
                 <div className="link-header">
