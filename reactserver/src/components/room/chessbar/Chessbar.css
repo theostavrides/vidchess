@@ -14,11 +14,26 @@
   text-align: center;
   vertical-align: middle;
   line-height: 8vh;
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.player-time {
+  border-right: 2px solid rgb(148, 148, 148);
+}
+
+.player1 > player-time {
+  background: #555;
 }
 
 .chessbar-container > div {
   color: white;
   background-color: #444;
+}
+
+.chessbar-container > div.player1 {
+  color: white;
+  background-color: #888;
 }
 
 .chessbar-container > div.player2 {
@@ -41,7 +56,7 @@
 
 .chessbar-container > div.resign:hover {
   background-color: #777;
-  transition: all 0.6s;
+  transition: all 0.3s;
 }
 
 
@@ -59,7 +74,7 @@
 
 .chessbar-container > div.draw:hover {
   background-color: #777;
-  transition: all 0.6s;
+  transition: all 0.3s;
 }
 
 
@@ -77,12 +92,12 @@ div.option .accept {
   display: grid;
   justify-content: center;
   align-content: center;
-  transition: ease-out 0.6s;
+  transition: ease-out 0.3s;
 }
 
 div.option .accept:hover {
   background: rgb(58, 131, 52);
-  transition: ease-in 0.6s;
+  transition: ease-in 0.3s;
 }
 
 div.option img {
@@ -94,10 +109,10 @@ div.option .decline {
   display: grid;
   justify-content: center;
   align-content: center;
-  transition: ease-out 0.6s;
+  transition: ease-out 0.3s;
 }
 
 div.option .decline:hover {
   background: rgb(136, 54, 54);
-  transition: ease-in 0.6s;
+  transition: ease-in 0.3s;
 }
