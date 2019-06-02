@@ -1,19 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 
-function Modal() {
+class Modal extends Component {
+  constructor() {
+    super();
+    this.state = {
+      link: ''
+    };
+  }
 
 
-  return (
-    <div className="link-container">
-      <div className="link-header">
-        <h3>Send this link to a Friend...Or Enemy</h3>
+  render () {
+    return (
+      <div className="link-container">
+        <div className="link-header">
+          <h3>Send this link to a Friend...Or Enemy</h3>
+        </div>
+        <div className="link-box">
+          <p contenteditable="true">{window.location.href}</p>
+        </div>
       </div>
-      <div className="link-box">
-        <p contenteditable="true"></p>
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default Modal;
