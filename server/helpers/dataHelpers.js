@@ -114,6 +114,18 @@ function makeHelpers(knex) {
       .update({ result })
   }
 
+  const upDataRoomVictories = (roomid, loserUsername, roomCreator) => {
+    if (loserUsername !== roomCreator) {
+      return knex('rooms')
+        .where({id: roomid})
+        .increment({'creator_victories': 1, 'games_completed': 1})
+    } else {
+      return knex('rooms')
+        .where({id: roomid})
+        .increment({'games_completed': 1})
+    }
+  }
+
   return  {
     getAllGames,
     getAllUsers,
@@ -130,7 +142,8 @@ function makeHelpers(knex) {
     newGameAndRoom,
     addPlayerToGame,
     addMove,
-    endGame
+    endGame,
+    upDataRoomVictories
   }
 }
 

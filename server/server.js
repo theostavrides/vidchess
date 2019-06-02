@@ -162,7 +162,12 @@ io.on('connection', function (socket) {
     let winner = ''
     data.color === 'w' ? winner = 'b' : winner = 'w';
     dataHelpers.endGame( gameData.id, winner ).then(console.log,console.error)
-    // dataHelpers.upDataRoomVictories
+
+    let roomid = data.roomData.id;
+    let loserUsername = data.username;
+    let roomCreator = data.roomData.creator;
+    dataHelpers.upDataRoomVictories(roomid, loserUsername, roomCreator).then(console.log,console.error)
+    socket.emit("triggerRematchEvent", "open rematch screen")
   })
 
   socket.on('chat', function(data, callback) {
