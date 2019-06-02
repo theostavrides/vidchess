@@ -27,7 +27,7 @@ div.link-container {
   position: absolute;
   top: 40%;
   left: 40%;
-  z-index: 10;
+  z-index: 15;
   min-width: 400px;
   background-color: rgb(223, 223, 223);
   box-shadow: 1px 1px 4px 1px rgba(73, 73, 73, 0.4);

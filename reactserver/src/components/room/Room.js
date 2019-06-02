@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Board from './Board.js'
-import Chat from './Chat/Chat.js'
-import Chessbar from './chessbar/Chessbar.js'
-import Video from './Video.js'
+import Board from './Board.js';
+import Chat from './Chat/Chat.js';
+import Chessbar from './chessbar/Chessbar.js';
+import Video from './Video.js';
+import Modal from './Modal.js';
 import './Room.css';
 import io from 'socket.io-client';
-import axios from 'axios'
+import axios from 'axios';
 const axiosOptions = {
   headers: {
     'Content-Type': 'application/json',
@@ -62,14 +63,7 @@ class Room extends Component {
       <div className="wrapper">
         <div className="room-2col">
           <div className="chessboard-container">
-              {/* <div className="link-container">
-                <div className="link-header">
-                  <h3>Send this link to a Friend...Or Enemy</h3>
-                </div>
-                <div className="link-box">
-                  <p contenteditable="true">This is how we do it</p>
-                </div>
-              </div> */}
+            <Modal />
             <Board room={this.props.match.url.split('/')[2]} socket={this.socket}/>
           </div>
           <div className="sidebar">
