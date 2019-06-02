@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 
-function Option() {
+class Option extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      
+    };
+  }
 
-  return (
-    <div className="option">
-      <div className="yes-btn"><img src={require('./images/yes.png')} /></div>
-      <div className="no-btn"><img src={require('./images/no.png')} /></div>
-    </div>
-  );
+  onClickOption() {
+
+  }
+
+
+  render() {
+    return (
+      <div className="option">
+        <div className="accept"><img src={require('./images/yes.png')} /></div>
+        <div className="decline"><img src={require('./images/no.png')} /></div>
+      </div>
+    );
+  }
 }
 
 export default Option;

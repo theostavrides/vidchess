@@ -16,7 +16,7 @@ class Navbar extends Component {
   render() {
     return ( 
       <nav>
-        <h4 className="logo">vidchess</h4>
+        <h4 className="logo"><img src={require("./vidchess-logo.png")} />vidchess</h4>
         <h3 onClick={this.onClickLogout} className="logout">Logout</h3>
       </nav>
     );

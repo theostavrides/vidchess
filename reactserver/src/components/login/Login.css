@@ -80,7 +80,7 @@
   margin-top: 10px;
   margin-bottom: 20px;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   outline: none;
   border-top: none;
   border-right: none;
@@ -92,8 +92,8 @@
 }
 
 input.form-input::-webkit-input-placeholder {
-  color: rgb(134, 134, 134);
-  font-weight: 300;
+  color: rgb(173, 173, 173);
+  font-weight: 400;
 }
 
 input#submit-btn {
