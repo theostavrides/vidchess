@@ -88,7 +88,7 @@ div.sidebar {
   display: grid;
   grid-template-columns: 1fr ;
   grid-template-rows: 67% 15%;
-  background: rgb(241, 241, 241)
+  background: rgb(247, 247, 247)
 }
 
 .message-area {
