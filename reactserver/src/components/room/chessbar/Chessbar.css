@@ -40,7 +40,8 @@
 }
 
 .chessbar-container > div.resign:hover {
-  background-color: rgb(179, 53, 53);
+  background-color: #777;
+  transition: all 0.6s;
 }
 
 
@@ -57,7 +58,8 @@
 }
 
 .chessbar-container > div.draw:hover {
-  background-color: rgb(63, 63, 187);
+  background-color: #777;
+  transition: all 0.6s;
 }
 
 

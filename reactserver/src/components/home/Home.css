@@ -34,6 +34,9 @@
   font-weight: 400;
   text-align: center;
   line-height: 6vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 label.time {
@@ -58,7 +61,6 @@ label.time:hover {
 
 img.color {
   height: 90px;
-  margin-top: 40%;
   transition: all 0.6s;
 }
 
