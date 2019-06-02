@@ -39,6 +39,7 @@
 label.time {
   padding: 5px;
   border-bottom: 2px solid white;
+  font-weight: 700;
 }
 
 label.time:hover {

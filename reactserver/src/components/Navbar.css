@@ -15,8 +15,8 @@
 }
 
 .logout {
-  font-weight: 600;
   grid-column-start: 14;
+  font-size: 20px;
   align-self: center;
   color: #333;
   text-decoration: none;

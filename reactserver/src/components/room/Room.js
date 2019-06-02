@@ -36,7 +36,6 @@ class Room extends Component {
       }, () => this.setState({ redirect: true }))
 
       this.socket.on('msg', (data) => {
-        console.log(data)
         this.setState({ messages: this.state.messages.concat(data) })
       })
   }
@@ -63,7 +62,7 @@ class Room extends Component {
       <div className="wrapper">
         <div className="room-2col">
           <div className="chessboard-container">
-            <Modal />
+            {/* <Modal /> */}
             <Board room={this.props.match.url.split('/')[2]} socket={this.socket}/>
           </div>
           <div className="sidebar">
