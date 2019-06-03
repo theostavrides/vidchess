@@ -162,12 +162,28 @@ div.modal-title {
   color: white;
 }
 
-.modal-body {
-  display: flex;
-  flex-direction: column;
+div.modal-title > p {
+  font-size: 16px;
+  font-weight: 500;
 }
 
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 25px;
+}
 
+.modal-body > h4 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.modal-body > p {
+  font-size: 15px;
+  line-height: 26px;
+  padding: 0px 15px 0px 15px;
+}
 
 .btn-primary {
   background-color: transparent;
@@ -176,6 +192,10 @@ div.modal-title {
   border-radius: 0;
   font-weight: 500;
 
+}
+
+.modal-footer > .btn {
+  width: 50%;
 }
 
 .btn-primary:hover {

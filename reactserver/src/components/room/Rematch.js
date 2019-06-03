@@ -69,12 +69,20 @@ class Rematch extends Component {
       centered
     >
       <Modal.Header>
-        <Modal.Title>Theo Won The Game</Modal.Title>
+        <Modal.Title>
+          Theo Won The Game
+          <p>By Checkmate</p>
+        </Modal.Title>
       </Modal.Header>
         <Modal.Body>
-          <p>Theo(1) - Tom(2)</p>
-          <Button onClick={this.handleRematch}>Rematch</Button>
+          <h4>Theo</h4>
+          <p>0 - 1</p>
+          <h4>Tom</h4>
         </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.handleRematch}>Rematch</Button>
+          <Button onClick={this.handleRematch}>Go Home</Button>
+        </Modal.Footer>
       </Modal>
     )
   }
