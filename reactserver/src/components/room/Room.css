@@ -198,6 +198,15 @@ div.modal-title > p {
   width: 50%;
 }
 
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  border: 2px solid #333;
+}
+
+
 .btn-primary:hover {
   background-color: #333;
   border: 2px solid #333;

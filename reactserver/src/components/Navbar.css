@@ -25,9 +25,14 @@
 
 .logout {
   grid-column-start: 14;
-  font-size: 20px;
+  font-size: 2.5vh;
+  font-weight: 700;
   align-self: center;
   color: #333;
   text-decoration: none;
   cursor: pointer;
+}
+
+.logout:hover {
+  text-decoration: underline;
 }

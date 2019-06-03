@@ -4,7 +4,6 @@ import Chat from './Chat/Chat.js';
 import Chessbar from './chessbar/Chessbar.js';
 import Video from './Video.js';
 import { Modal, Button } from 'react-bootstrap';
-// import Modal from './Modal.js';
 import Rematch from './Rematch.js'
 import './Room.css';
 import io from 'socket.io-client';
