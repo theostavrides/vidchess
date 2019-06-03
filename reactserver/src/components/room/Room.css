@@ -113,7 +113,7 @@ div.messages > p {
 
 .talkbubble-1 {
   float: left;
-  clear: right;
+  clear: both;
   text-align: left;
   background: white;
   color: grey;
