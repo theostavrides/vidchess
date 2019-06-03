@@ -37,7 +37,7 @@ class Board extends React.PureComponent {
       .then(this.setGameData)
       .then(this.setUpBoard)
     this.props.socket.on("move", (data) => {
-      this.props.handleTimer('other players move valid, change timer', data)
+      this.props.handleTimer('player2', this.state.roomData)
       let { fromSquare, toSquare } = data;
 
       if (this.state.color === 'b') {
@@ -62,15 +62,17 @@ class Board extends React.PureComponent {
       this.handleDrawRequest();
     })
 
+    //GAME OVER SOCKET EVENT!!
     this.props.socket.on("gameOver", (data) => {
       this.props.setRematch(data)
+      this.props.handleTimer('stop')
     })
   }
 
   handleCheckmate = () => {
-    console.log(this.state)
     if (this.state.game.in_checkmate()) {
       this.props.socket.emit('checkmate', this.state)
+
     }
   };
   handleResignation = () => {
@@ -132,7 +134,7 @@ class Board extends React.PureComponent {
 
 
     if (validMove) {
-      this.props.handleTimer('handle my own timer')
+      this.props.handleTimer('player1', this.state.roomData)
       let history = this.state.game.history({ verbose: true });
       let lastMove = history.pop();
 

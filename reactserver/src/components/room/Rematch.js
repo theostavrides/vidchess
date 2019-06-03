@@ -63,10 +63,6 @@ class Rematch extends Component {
       // {resultSentence} {me}{myVictories} - {them}{theirVictories}
     }
 
-
-
-
-    console.log(this.props.allData)
     return (
 
 

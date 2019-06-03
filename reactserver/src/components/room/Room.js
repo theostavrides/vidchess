@@ -79,8 +79,48 @@ class Room extends Component {
     this.setState({ show: true });
   }
 
-  handleTimer = (msg, data) => {
-    console.log(msg)
+  player1Interval = (bool) => {
+    if (bool) {
+      window.timer1 = setInterval(() => {
+        let oldTime = this.state.myTime
+        let newTime = oldTime - 1;
+        this.setState({myTime: newTime })
+      }, 1000)
+    } else {
+      clearInterval(window.timer1)
+    }
+
+  }
+
+  player2Interval = (bool) => {
+    if (bool) {
+      window.timer2 = setInterval(() => {
+        let oldTime = this.state.theirTime
+        let newTime = oldTime - 1;
+        this.setState({theirTime: newTime })
+      }, 1000)
+    } else {
+      clearInterval(window.timer2)
+    }
+  }
+
+  handleTimer = (msg, gameData, roomData, startTime) => {
+    if (msg === 'set'){
+      this.setState({ myTime: startTime, theirTime: startTime})
+    }
+    if (msg === 'player1'){
+      this.player2Interval(true)
+      this.player1Interval(false)
+    }
+    if (msg === 'player2'){
+      this.player1Interval(true)
+      this.player2Interval(false)
+    }
+    if (msg === 'stop'){
+      clearInterval(window.timer1)
+      clearInterval(window.timer2)
+    }
+
   }
 
   myTime = () => {}
