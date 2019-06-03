@@ -42,7 +42,10 @@ class Room extends Component {
 
     this.socket.on('msg', (data) => { this.setState({ messages: this.state.messages.concat(data) }) })
     this.socket.on('roomFull', (bool) => { this.setState({show: !bool}) })
-
+    this.socket.on('startRematch', (data) => {
+      this.setState({rematch: false});
+      console.log(data)
+    })
   }
 
   //When game is over, this fires to bring up rematch box
@@ -50,6 +53,7 @@ class Room extends Component {
     this.setState({ allData: data})
     this.setState({ rematch: true })
   }
+
 
   //Messages
   addNewMessage = (content) => {

@@ -129,7 +129,7 @@ app.get("/games/:id", cors(corsOptions), function(req, res) {
 io.on('connection', function (socket) {
 
   let room;
-  let rematchRequestClicks = 0;
+
   socket.on('joinRoom', function(data) {
     const username = data.username;
     room = data.room;
@@ -209,7 +209,10 @@ io.on('connection', function (socket) {
     let oldBlackId = data.gameData.black_id;
 
     dataHelpers.newGameReturningId({white_id: oldBlackId, black_id: oldWhiteId})
-      .then(res => { dataHelpers.updateCurrentGameInRoom(roomId, res[0]).then(console.log,console.error)})
+      .then(res => { dataHelpers.updateCurrentGameInRoom(roomId, res[0])})
+      .then(() => { io.to(room).emit('startRematch') })
+
+
   })
 
   socket.on('chat', function(data, callback) {
