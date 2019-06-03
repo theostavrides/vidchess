@@ -22,7 +22,7 @@ class Room extends Component {
       messages: [],
       redirect: false,
       username: '',
-      rematch: false,
+      rematch: true,
       allData: {}
     };
     this.socket =  io(`http://localhost:3001`)
