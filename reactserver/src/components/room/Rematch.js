@@ -11,32 +11,9 @@ const axiosOptions = {
 class Rematch extends Component {
   constructor(props){
     super(props);
-
-    this.state = {
-      roomData: '',
-      gameData: '',
-      opponentUsername: '',
-      myVictories: '',
-      theirVictories: ''
-
-    }
   }
-// creator: "theo"
-// creator_victories: 1
-// current_game: 91
-// games_completed: 2
-// id: 17
-// start_color: "w"
-// time_per_move: 15
-// timestamp: "2019-06-02T07:15:03.685Z"
-// url: "MUa8mfDdEI"
+
   componentDidMount(){
-
-    //make a server route for getting
-    axios.get(`http://localhost:3001/rooms/${this.props.room}`, axiosOptions)
-      .then( res => this.setState({roomData: res.data}))
-      .then(axios.get(`http://localhost:3001/games/${this.state.roomData.current_game}`))// replace with query string
-
 
 
   }
@@ -50,8 +27,48 @@ class Rematch extends Component {
       'width': '400px'
 
     }
+
+    let { black_username, white_username, gameData, roomData } = this.props.allData;
+
+    const room = this.props.room;
+
+    const me = this.props.username;
+    black_username = black_username.username;
+    white_username = white_username.username;
+    const them = (me === black_username) ? white_username : black_username;
+
+
+    console.log(me, them)
+    const blackid = gameData.black_id;
+    const whiteid = gameData.white_id;
+
+    const result = gameData.result;
+
+    const creator_victories = roomData.creator_victories;
+    const guest_victories = roomData.games_completed - roomData.creator_victories;
+
+    const start_color = roomData.start_color;
+    const time_per_move = roomData.time_per_move;
+
+
+
+
+    if (result === 'w') {
+
+    }
+
+    if (result === 'b') {
+
+    }
+
+    if (result === 'd') {
+
+    }
+
+
+    console.log(this.props.allData)
     return (
-      <h1 style={boxStyle}> {this.props.username} {this.props.room} </h1>
+      <h1 style={boxStyle}> {me} </h1>
 
     )
   }

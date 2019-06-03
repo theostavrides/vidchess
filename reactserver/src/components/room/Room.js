@@ -22,7 +22,8 @@ class Room extends Component {
       messages: [],
       redirect: false,
       username: '',
-      rematch: false
+      rematch: false,
+      allData: {}
     };
     this.socket =  io(`http://localhost:3001`)
   }
@@ -45,7 +46,7 @@ class Room extends Component {
 
   //BRINGS UP REMATCH BOX
   setRematch = (data) => {
-    console.log(data)
+    this.setState({ allData: data})
     this.setState({ rematch: true })
   }
 
@@ -68,7 +69,9 @@ class Room extends Component {
     return (
       <div className="wrapper">
         <div className="room-2col">
-          {this.state.rematch && <Rematch username={this.state.username} room={this.props.match.url.split('/')[2]}/>}
+          {this.state.rematch && <Rematch username={this.state.username}
+                                          room={this.props.match.url.split('/')[2]}
+                                          allData={this.state.allData}/>}
           <div className="chessboard-container">
               {/* <div className="link-container">
                 <div className="link-header">

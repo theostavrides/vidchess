@@ -158,14 +158,10 @@ io.on('connection', function (socket) {
 
   //event comes from loser
   socket.on("checkmate", function(data) {
-
-
     let gameData = data.gameData;
     let username = data.username;
     let winner = ''
     data.color === 'w' ? winner = 'b' : winner = 'w';
-
-
     let roomid = data.roomData.id;
     let loserUsername = data.username;
     let roomCreator = data.roomData.creator;
@@ -174,9 +170,6 @@ io.on('connection', function (socket) {
         gameOverUpdate(data);
       })
     })
-
-
-
   })
 
   function gameOverUpdate(data) {
@@ -193,16 +186,13 @@ io.on('connection', function (socket) {
   }
 
   function sendUpdateData(roomData, gameData){
-    console.log('HERE!')
     let white_username = '';
     let black_username = '';
     dataHelpers.getUsername(gameData.white_id).then(res => {
       white_username = res[0]
       dataHelpers.getUsername(gameData.black_id).then(res => {
         black_username = res[0]}).then(() => {
-          console.log('????')
           io.to(room).emit("gameOver", {roomData, gameData, white_username, black_username})
-          console.log('!!!!')
         })
     })
 
