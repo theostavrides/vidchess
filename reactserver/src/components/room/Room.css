@@ -144,4 +144,47 @@ form.chatbar > input {
 }
 
 
+/* Modal Styling */
+
+.modal-content {
+  border: none;
+}
+
+div.modal-header {
+  justify-content: center; 
+  align-content: center;
+  background-color: #333;
+}
+
+div.modal-title {
+  text-align: center;
+  font-weight: 700;
+  color: white;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.btn-primary {
+  background-color: transparent;
+  color: #333;
+  border: 2px solid #333;
+  border-radius: 0;
+  font-weight: 500;
+
+}
+
+.btn-primary:hover {
+  background-color: #333;
+  border: 2px solid #333;
+  transition: all 0.3;
+}
+
+.btn-primary:focus {
+  outline: none;
+}
 

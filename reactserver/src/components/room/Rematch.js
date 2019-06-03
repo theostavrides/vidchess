@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import { Modal, Button } from 'react-bootstrap';
 const axiosOptions = {
   headers: {
     'Content-Type': 'application/json',
@@ -18,15 +19,11 @@ class Rematch extends Component {
 
   }
 
-  render() {
-    const boxStyle = {
-      'zIndex': '1000',
-      'position': 'absolute',
-      'backgroundColor': 'white',
-      'height': '400px',
-      'width': '400px'
+  handleRematch = () => {
 
-    }
+  }
+
+  render() {
 
     let { black_username, white_username, gameData, roomData } = this.props.allData;
 
@@ -64,15 +61,21 @@ class Rematch extends Component {
     }
 
 
-
-
     console.log(this.props.allData)
     return (
-
-
-        <h3 style={boxStyle}> theo won the game    theo(1) - tom(2) </h3>
-
-
+      <Modal
+      show={this.props.rematch}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header>
+        <Modal.Title>Theo Won The Game</Modal.Title>
+      </Modal.Header>
+        <Modal.Body>
+          <p>Theo(1) - Tom(2)</p>
+          <Button onClick={this.handleRematch}>Rematch</Button>
+        </Modal.Body>
+      </Modal>
     )
   }
 }
