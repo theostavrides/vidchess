@@ -9,7 +9,7 @@
 .logo {
   padding-left: 20px;
   padding-top: 9px;
-  font-size: 30px;
+  font-size: 4vh;
   font-weight: 700;
   color: #333;
   align-self: center;
@@ -18,7 +18,7 @@
 }
 
 .logo > img {
-  height: 50px;
+  height: 6vh;
   float: left;
   padding-right: 10px;
 }
