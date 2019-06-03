@@ -3,7 +3,8 @@ import Board from './Board.js';
 import Chat from './Chat/Chat.js';
 import Chessbar from './chessbar/Chessbar.js';
 import Video from './Video.js';
-import Modal from './Modal.js';
+import { Modal, Button } from 'react-bootstrap';
+// import Modal from './Modal.js';
 import './Room.css';
 import io from 'socket.io-client';
 import axios from 'axios';
@@ -21,7 +22,8 @@ class Room extends Component {
     this.state = {
       messages: [],
       redirect: false,
-      username: ''
+      username: '',
+      show: true
     };
   this.socket =  io(`http://localhost:3001`)
   }
@@ -54,15 +56,30 @@ class Room extends Component {
     this.socket.on('message', console.log);
   }
 
+  handleClose = () => {
+    this.setState({ show: false });
+  }
 
+  handleShow = () => {
+    this.setState({ show: true });
+  }
 
   render() {
 
     return (
       <div className="wrapper">
         <div className="room-2col">
+          <Modal
+            show={this.state.show}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header>
+              <Modal.Title>Send This Link</Modal.Title>
+            </Modal.Header>
+              <Modal.Body>{window.location.href}</Modal.Body>
+              </Modal>
           <div className="chessboard-container">
-            {/* <Modal /> */}
             <Board room={this.props.match.url.split('/')[2]} socket={this.socket}/>
           </div>
           <div className="sidebar">
