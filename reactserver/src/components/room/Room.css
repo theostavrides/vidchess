@@ -185,13 +185,19 @@ div.modal-title > p {
   padding: 0px 15px 0px 15px;
 }
 
+.modal-body > div > input {
+  text-align: center;
+  width: 100%;
+  border: 2px solid #333;
+  border-right: none;
+}
+
 .btn-primary {
   background-color: transparent;
   color: #333;
   border: 2px solid #333;
   border-radius: 0;
-  font-weight: 500;
-
+  font-weight: 700;
 }
 
 .modal-footer > .btn {
@@ -206,7 +212,6 @@ div.modal-title > p {
   border: 2px solid #333;
 }
 
-
 .btn-primary:hover {
   background-color: #333;
   border: 2px solid #333;
@@ -217,3 +222,23 @@ div.modal-title > p {
   outline: none;
 }
 
+#box {
+  display: flex;
+  justify-content: center;
+  height: 10vh;
+  width: 100%
+}
+
+#box > div {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  width: 20%;
+  padding: 10px;
+  background-color: rgb(65, 156, 53);
+}
+
+#box > div > img {
+  height: 3vh;
+}
