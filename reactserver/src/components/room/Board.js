@@ -69,6 +69,15 @@ class Board extends React.PureComponent {
       this.props.setRematch(data)
       this.props.handleTimer('stop')
     })
+
+    this.props.socket.on("startRematch", (room) => {
+      this.state.game = new ChessJS()
+      axios.get(`http://localhost:3001/rooms/${room}`, axiosOptions)
+        .then(res => this.setState({roomData: res.data}))
+        .then(this.setUsername)
+        .then(this.setGameData)
+        .then(this.setUpBoard)
+    })
   }
 
   handleCheckmate = () => {

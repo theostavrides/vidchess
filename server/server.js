@@ -203,6 +203,7 @@ io.on('connection', function (socket) {
     console.log("rematchRequest received")
     console.log(data)
     let roomId = data.roomData.id;
+    let url = data.roomData.url
     let oldWhitePlayer = data.white_username.username;
     let oldWhiteId = data.gameData.white_id;
     let oldBlackPlayer = data.black_username.username;
@@ -210,7 +211,7 @@ io.on('connection', function (socket) {
 
     dataHelpers.newGameReturningId({white_id: oldBlackId, black_id: oldWhiteId})
       .then(res => { dataHelpers.updateCurrentGameInRoom(roomId, res[0])})
-      .then(() => { io.to(room).emit('startRematch') })
+      .then(() => { io.to(room).emit('startRematch', url) })
 
 
   })
