@@ -25,8 +25,10 @@ class Room extends Component {
       redirect: false,
       username: '',
       show: false,
-      rematch: true,
-      allData: {}
+      rematch: false,
+      allData: {},
+      myTime: 500,
+      theirTime: 500
     };
     this.socket =  io(`http://localhost:3001`)
   }
@@ -40,18 +42,19 @@ class Room extends Component {
         this.joinRoom(res.data)
       }, () => this.setState({ redirect: true }))
 
-      this.socket.on('msg', (data) => {
-        this.setState({ messages: this.state.messages.concat(data) })
-      })
+    this.socket.on('msg', (data) => { this.setState({ messages: this.state.messages.concat(data) }) })
+
+    this.socket.on('roomFull', (bool) => { this.setState({show: !bool}) })
 
   }
 
-  //BRINGS UP REMATCH BOX
+  //Handler for the link url box
   setRematch = (data) => {
     this.setState({ allData: data})
     this.setState({ rematch: true })
   }
 
+  //Messages
   addNewMessage = (content) => {
     const hearOwnMessage = (data) => {
       data.id = null
@@ -60,12 +63,14 @@ class Room extends Component {
     this.socket.emit('chat', content, hearOwnMessage);
   }
 
+  //Join room
   joinRoom = (username) => {
     const room = this.props.match.url.split('/')[2];
     this.socket.emit('joinRoom', { room, username });
     this.socket.on('message', console.log);
   }
 
+  //Handlers for showing link bar
   handleClose = () => {
     this.setState({ show: false });
   }
@@ -73,6 +78,13 @@ class Room extends Component {
   handleShow = () => {
     this.setState({ show: true });
   }
+
+  handleTimer = (msg, data) => {
+    console.log(msg)
+  }
+
+  myTime = () => {}
+  theirTime = () => {}
 
   render() {
 
@@ -82,36 +94,33 @@ class Room extends Component {
           <Modal
             show={this.state.show}
             aria-labelledby="contained-modal-title-vcenter"
-            centered
-          >
+            centered>
+
             <Modal.Header>
               <Modal.Title>Send This Link</Modal.Title>
             </Modal.Header>
-              <Modal.Body>{window.location.href}</Modal.Body>
-              </Modal>
+
+            <Modal.Body>{window.location.href}</Modal.Body>
+          </Modal>
+
           {this.state.rematch && <Rematch username={this.state.username}
                                           room={this.props.match.url.split('/')[2]}
                                           allData={this.state.allData}/>}
           <div className="chessboard-container">
-              {/* <div className="link-container">
-                <div className="link-header">
-                  <h3>Send this link to a Friend...Or Enemy</h3>
-                </div>
-                <div className="link-box">
-                  <p contenteditable="true">This is how we do it</p>
-                </div>
-              </div> */}
+
             <Board room={this.props.match.url.split('/')[2]}
                    socket={this.socket}
                    updateGameData={this.updateGameData}
                    updateBoardData={this.updateBoardData}
-                   setRematch={this.setRematch}/>
+                   setRematch={this.setRematch}
+                   handleTimer={this.handleTimer} />
           </div>
+
           <div className="sidebar">
             <div className="video-container">
               <Video />
             </div>
-            <Chessbar />
+            <Chessbar theirTime={this.state.theirTime} myTime={this.state.myTime}/>
             <Chat addNewMessage={this.addNewMessage} messages={this.state.messages} />
           </div>
         </div>
