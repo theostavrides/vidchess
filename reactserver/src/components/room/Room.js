@@ -88,10 +88,11 @@ class Room extends Component {
               <Modal.Title>Send This Link</Modal.Title>
             </Modal.Header>
               <Modal.Body>{window.location.href}</Modal.Body>
-              </Modal>
-          {this.state.rematch && <Rematch username={this.state.username}
-                                          room={this.props.match.url.split('/')[2]}
-                                          allData={this.state.allData}/>}
+            </Modal>
+            {this.state.rematch && <Rematch username={this.state.username}
+                                            rematch={this.state.rematch}
+                                            room={this.props.match.url.split('/')[2]}
+                                            allData={this.state.allData}/>}
           <div className="chessboard-container">
               {/* <div className="link-container">
                 <div className="link-header">
