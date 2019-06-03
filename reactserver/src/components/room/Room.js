@@ -27,8 +27,8 @@ class Room extends Component {
       show: false,
       rematch: false,
       allData: {},
-      myTime: 500,
-      theirTime: 500
+      myTime: 300,
+      theirTime: 300
     };
     this.socket =  io(`http://localhost:3001`)
   }
