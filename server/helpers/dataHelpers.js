@@ -38,6 +38,12 @@ function makeHelpers(knex) {
       .select("id")
       .where("username", username)
   }
+
+  const getUsername = (user_id) => {
+    return knex("users")
+      .select("username")
+      .where("id", user_id)
+  }
   const getGamesOfUser = (user_id) => {
     return knex("games")
       .where("white_id", user_id)
@@ -47,15 +53,7 @@ function makeHelpers(knex) {
         return Promise.resolve(id)
       })
   }
-  const getMovesOfGame = (game_id) => {
-    return knex("moves")
-      .select("*")
-      .where('game_id', game_id)
-      .orderBy('id')
-      .then((id) => {
-        return Promise.resolve(id);
-      })
-  }
+
   const registerUser = (data) => {
     return knex("users").insert(data)
   }
@@ -100,6 +98,40 @@ function makeHelpers(knex) {
 
       })
   }
+
+  // MOVES
+  const getMovesOfGame = (game_id) => {
+    return knex("moves")
+      .select("*")
+      .where('game_id', game_id)
+      .orderBy('id')
+  }
+
+  const addMove = (game_id, move) => {
+    return knex("moves")
+      .insert({ game_id, move})
+  }
+
+  // END GAME
+  const endGame = (game_id, result) => {
+    console.log('result!', result)
+    return knex("games")
+      .where('id', game_id)
+      .update({ result })
+  }
+
+  const upDataRoomVictories = (roomid, loserUsername, roomCreator) => {
+    if (loserUsername !== roomCreator) {
+      return knex('rooms')
+        .where({id: roomid})
+        .increment({'creator_victories': 1, 'games_completed': 1})
+    } else {
+      return knex('rooms')
+        .where({id: roomid})
+        .increment({'games_completed': 1})
+    }
+  }
+
   return  {
     getAllGames,
     getAllUsers,
@@ -114,7 +146,11 @@ function makeHelpers(knex) {
     getUserId,
     newGame,
     newGameAndRoom,
-    addPlayerToGame
+    addPlayerToGame,
+    addMove,
+    endGame,
+    upDataRoomVictories,
+    getUsername
   }
 }
 

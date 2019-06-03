@@ -144,7 +144,59 @@ io.on('connection', function (socket) {
 
   socket.on("move", function (data) {
     socket.to(room).emit('move', data);
+
+    let gameData = data.state.gameData;
+    let username = data.username;
+    let gameObj = data.game;
+    let move = data.lastMove.from + data.lastMove.to;
+
+    dataHelpers.addMove(gameData.id, move)
+
+
+    //check for checkmate
   })
+
+  //event comes from loser
+  socket.on("checkmate", function(data) {
+    let gameData = data.gameData;
+    let username = data.username;
+    let winner = ''
+    data.color === 'w' ? winner = 'b' : winner = 'w';
+    let roomid = data.roomData.id;
+    let loserUsername = data.username;
+    let roomCreator = data.roomData.creator;
+    dataHelpers.endGame( gameData.id, winner ).then(() => {
+      dataHelpers.upDataRoomVictories(roomid, loserUsername, roomCreator).then(() => {
+        gameOverUpdate(data);
+      })
+    })
+  })
+
+  function gameOverUpdate(data) {
+    console.log('time to update plays when gameover')
+    console.log(data.roomData.url)
+
+
+    let roomData = {}
+    let gameData = {}
+    dataHelpers.getRoomData(data.roomData.url)
+      .then(res => roomData = res[0])
+      .then(dataHelpers.getGame(data.gameData.id)
+        .then(res => sendUpdateData(roomData, res[0])))
+  }
+
+  function sendUpdateData(roomData, gameData){
+    let white_username = '';
+    let black_username = '';
+    dataHelpers.getUsername(gameData.white_id).then(res => {
+      white_username = res[0]
+      dataHelpers.getUsername(gameData.black_id).then(res => {
+        black_username = res[0]}).then(() => {
+          io.to(room).emit("gameOver", {roomData, gameData, white_username, black_username})
+        })
+    })
+
+  }
 
   socket.on('chat', function(data, callback) {
     const message = {

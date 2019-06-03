@@ -43,8 +43,6 @@ class Board extends React.PureComponent {
         console.log(this.state.game.move( {from: blackMove(fromSquare), to: blackMove(toSquare)} ))
       }
       if (this.state.color === 'w') {
-
-
         console.log(this.state.game.move( {from: fromSquare, to: toSquare} ))
       }
       let { color, piece } = data.lastMove;
@@ -58,20 +56,36 @@ class Board extends React.PureComponent {
 
       boardIfCapture.push(newPiece)
       this.setState({pieces: boardIfCapture})
-      // const newPieces = this.state.pieces
-      //   .map((curr, index) => {
-      //     if (piece.index === index) {
-      //       return `${piece.name}@${toSquare}`
-      //     } else if (curr.indexOf(toSquare) === 2) {
-      //       return false // To be removed from the board
-      //     }
-      //     return curr
-      //   })
-      //   .filter(Boolean)
+
+      this.handleDraw();
+      this.handleCheckmate();
+      this.handleResignation();
+      this.handleDrawRequest();
+      console.log('game over', this.state.game.game_over());
+      console.log('in checkmate', this.state.game.in_checkmate());
+      console.log('in draw', this.state.game.in_draw());
+      console.log('in stalemate', this.state.game.in_stalemate());
+      console.log('threefold', this.state.game.in_threefold_repetition())
+    })
+
+    this.props.socket.on("gameOver", (data) => {
+      this.props.setRematch(data)
     })
   }
 
+  handleCheckmate = () => {
+    console.log(this.state)
+    if (this.state.game.in_checkmate()) {
+      this.props.socket.emit('checkmate', this.state)
+    }
+  };
+  handleResignation = () => {
 
+  };
+
+  handleDraw = () => {}
+
+  handleDrawRequest = () => {};
 
   setGameData = () => {
     let gameid = this.state.roomData.current_game;
@@ -122,12 +136,14 @@ class Board extends React.PureComponent {
       this.state.game.move({from: fromSquare, to: toSquare}) :
       this.state.game.move({from: blackMove(fromSquare), to: blackMove(toSquare)})
 
+
     if (validMove) {
       let history = this.state.game.history({ verbose: true });
       let lastMove = history.pop();
+
       this.state.color === 'w' ?
-        socket.emit('move', {fromSquare: blackMove(fromSquare), toSquare: blackMove(toSquare), lastMove}) :
-        socket.emit('move', {fromSquare: blackMove(fromSquare), toSquare: blackMove(toSquare), lastMove});
+        socket.emit('move', {fromSquare: blackMove(fromSquare), toSquare: blackMove(toSquare), lastMove, state: this.state}) :
+        socket.emit('move', {fromSquare: blackMove(fromSquare), toSquare: blackMove(toSquare), lastMove, state: this.state});
 
 
       const newPieces = this.state.pieces

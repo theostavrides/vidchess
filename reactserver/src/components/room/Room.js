@@ -5,6 +5,7 @@ import Chessbar from './chessbar/Chessbar.js';
 import Video from './Video.js';
 import { Modal, Button } from 'react-bootstrap';
 // import Modal from './Modal.js';
+import Rematch from './Rematch.js'
 import './Room.css';
 import io from 'socket.io-client';
 import axios from 'axios';
@@ -23,9 +24,11 @@ class Room extends Component {
       messages: [],
       redirect: false,
       username: '',
-      show: false
+      show: false,
+      rematch: true,
+      allData: {}
     };
-  this.socket =  io(`http://localhost:3001`)
+    this.socket =  io(`http://localhost:3001`)
   }
 
 
@@ -40,6 +43,13 @@ class Room extends Component {
       this.socket.on('msg', (data) => {
         this.setState({ messages: this.state.messages.concat(data) })
       })
+
+  }
+
+  //BRINGS UP REMATCH BOX
+  setRematch = (data) => {
+    this.setState({ allData: data})
+    this.setState({ rematch: true })
   }
 
   addNewMessage = (content) => {
@@ -79,8 +89,23 @@ class Room extends Component {
             </Modal.Header>
               <Modal.Body>{window.location.href}</Modal.Body>
               </Modal>
+          {this.state.rematch && <Rematch username={this.state.username}
+                                          room={this.props.match.url.split('/')[2]}
+                                          allData={this.state.allData}/>}
           <div className="chessboard-container">
-            <Board room={this.props.match.url.split('/')[2]} socket={this.socket}/>
+              {/* <div className="link-container">
+                <div className="link-header">
+                  <h3>Send this link to a Friend...Or Enemy</h3>
+                </div>
+                <div className="link-box">
+                  <p contenteditable="true">This is how we do it</p>
+                </div>
+              </div> */}
+            <Board room={this.props.match.url.split('/')[2]}
+                   socket={this.socket}
+                   updateGameData={this.updateGameData}
+                   updateBoardData={this.updateBoardData}
+                   setRematch={this.setRematch}/>
           </div>
           <div className="sidebar">
             <div className="video-container">
