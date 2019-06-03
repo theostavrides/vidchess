@@ -113,7 +113,7 @@ div.messages > p {
 
 .talkbubble-1 {
   float: left;
-  clear: right;
+  clear: both;
   text-align: left;
   background: white;
   color: grey;
@@ -144,4 +144,76 @@ form.chatbar > input {
 }
 
 
+/* Modal Styling */
+
+.modal-content {
+  border: none;
+}
+
+div.modal-header {
+  justify-content: center; 
+  align-content: center;
+  background-color: #333;
+}
+
+div.modal-title {
+  text-align: center;
+  font-weight: 700;
+  color: white;
+}
+
+div.modal-title > p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 25px;
+}
+
+.modal-body > h4 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.modal-body > p {
+  font-size: 15px;
+  line-height: 26px;
+  padding: 0px 15px 0px 15px;
+}
+
+.btn-primary {
+  background-color: transparent;
+  color: #333;
+  border: 2px solid #333;
+  border-radius: 0;
+  font-weight: 500;
+
+}
+
+.modal-footer > .btn {
+  width: 50%;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  border: 2px solid #333;
+}
+
+
+.btn-primary:hover {
+  background-color: #333;
+  border: 2px solid #333;
+  transition: all 0.3;
+}
+
+.btn-primary:focus {
+  outline: none;
+}
 

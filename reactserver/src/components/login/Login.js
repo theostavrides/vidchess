@@ -87,7 +87,7 @@ class Login extends Component {
     return (
       <div id="login-grid">
         <div id="login-left-side">
-          <h2>Playing Chess With Video</h2>
+          <h2>Playing Chess<br></br>With Video</h2>
           <p>ceteros nam. Recusabo indoctum scriptorem ei ius, qui cu autem cotidieque. In per tale velit. Mei mandamus salutandi complectitur te. Nec ea possit mentitum verterem, at mea errem forensibus mnesarchum.</p>
         </div>
 

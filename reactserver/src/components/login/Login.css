@@ -21,13 +21,14 @@
 }
 
 #login-left-side > h2 {
-  font-size: 25px;
+  font-size: 8vh;
+  font-weight: 700;
 }
 
 #login-left-side > p {
   padding-top: 10px;
   font-weight: 300;
-  font-size: 15px;
+  font-size: 2vh;
   line-height: 19px;
 }
 
