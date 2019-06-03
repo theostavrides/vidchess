@@ -28,6 +28,12 @@ function makeHelpers(knex) {
   const newGame = (data) => {
     return knex('games').insert(data)
     }
+
+  const newGameReturningId = (data) => {
+    return knex('games')
+      .insert(data)
+      .returning('id')
+  }
   const getUser = (username) => {
     return knex("users")
       .select("*")
@@ -132,6 +138,12 @@ function makeHelpers(knex) {
     }
   }
 
+  const updateCurrentGameInRoom = (roomId, gameId) => {
+    return knex('rooms')
+      .where({id: roomId})
+      .update({current_game: gameId})
+  }
+
   return  {
     getAllGames,
     getAllUsers,
@@ -146,11 +158,13 @@ function makeHelpers(knex) {
     registerUser,
     newRoom,
     newGame,
+    newGameReturningId,
     newGameAndRoom,
     addPlayerToGame,
     addMove,
     endGame,
-    upDataRoomVictories
+    upDataRoomVictories,
+    updateCurrentGameInRoom
   }
 }
 
