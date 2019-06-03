@@ -61,7 +61,6 @@ class Rematch extends Component {
     }
 
 
-    console.log(this.props.allData)
     return (
       <Modal
       show={this.props.rematch}

@@ -38,14 +38,17 @@ class Chessbar extends Component {
 
     return (
       <div className="chessbar-container">
+
         <div className="timer player1">
-        <div className="player-time">P1</div>
-        <div>00:00</div>
+          <div className="player-time">P1</div>
+          <div>{this.props.myTime}</div>
         </div>
+
         <div className="timer player2">
-        <div className="player-time">P2</div>
-        <div>00:00</div>
+          <div className="player-time">P2</div>
+          <div>{this.props.theirTime}</div>
         </div>
+
         {!isResignClicked && <Resign handleResignClick={this.handleResignClick}/>}
         {resignOptionButton}
         {!isDrawClicked && <Draw handleDrawClick={this.handleDrawClick}/>}

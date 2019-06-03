@@ -24,7 +24,8 @@ class Board extends React.PureComponent {
       color: 'b',
       pieces: whiteSetup,
       username: '',
-      game: new ChessJS()
+      game: new ChessJS(),
+
     };
     this.handleMovePiece = this.handleMovePiece.bind(this);
   }
@@ -36,14 +37,14 @@ class Board extends React.PureComponent {
       .then(this.setGameData)
       .then(this.setUpBoard)
     this.props.socket.on("move", (data) => {
-
+      this.props.handleTimer('player2', this.state.roomData)
       let { fromSquare, toSquare } = data;
-      console.log('move from socket', fromSquare, toSquare)
+
       if (this.state.color === 'b') {
-        console.log(this.state.game.move( {from: blackMove(fromSquare), to: blackMove(toSquare)} ))
+        this.state.game.move( {from: blackMove(fromSquare), to: blackMove(toSquare)} )
       }
       if (this.state.color === 'w') {
-        console.log(this.state.game.move( {from: fromSquare, to: toSquare} ))
+        this.state.game.move( {from: fromSquare, to: toSquare} )
       }
       let { color, piece } = data.lastMove;
       if (color === 'w') piece = piece.toUpperCase();
@@ -52,8 +53,6 @@ class Board extends React.PureComponent {
 
       let boardIfCapture = this.state.pieces.filter(e => e.split('@')[1] !== toSquare).filter(e => e.split('@')[1] !== fromSquare)
 
-
-
       boardIfCapture.push(newPiece)
       this.setState({pieces: boardIfCapture})
 
@@ -61,22 +60,19 @@ class Board extends React.PureComponent {
       this.handleCheckmate();
       this.handleResignation();
       this.handleDrawRequest();
-      console.log('game over', this.state.game.game_over());
-      console.log('in checkmate', this.state.game.in_checkmate());
-      console.log('in draw', this.state.game.in_draw());
-      console.log('in stalemate', this.state.game.in_stalemate());
-      console.log('threefold', this.state.game.in_threefold_repetition())
     })
 
+    //GAME OVER SOCKET EVENT!!
     this.props.socket.on("gameOver", (data) => {
       this.props.setRematch(data)
+      this.props.handleTimer('stop')
     })
   }
 
   handleCheckmate = () => {
-    console.log(this.state)
     if (this.state.game.in_checkmate()) {
       this.props.socket.emit('checkmate', this.state)
+
     }
   };
   handleResignation = () => {
@@ -138,6 +134,7 @@ class Board extends React.PureComponent {
 
 
     if (validMove) {
+      this.props.handleTimer('player1', this.state.roomData)
       let history = this.state.game.history({ verbose: true });
       let lastMove = history.pop();
 

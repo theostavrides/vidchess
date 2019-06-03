@@ -136,9 +136,15 @@ io.on('connection', function (socket) {
     if (NumClientsInRoom('/', room) < 2) {
       socket.join(room);
       console.log(`${username} joined room ${room}`);
-
+      io.to(room).emit(`roomFull`,false);
     }
-    io.to(room).send(`Client connected to socket room ${room}`);
+    io.to(room).send(`${username} connected to socket room ${room}`);
+
+
+    //When two players are in the room, the link box must disappear
+    if (NumClientsInRoom('/', room) == 2) {
+      io.to(room).emit(`roomFull`,true);
+    }
 
   })
 
@@ -150,7 +156,7 @@ io.on('connection', function (socket) {
     let gameObj = data.game;
     let move = data.lastMove.from + data.lastMove.to;
 
-    dataHelpers.addMove(gameData.id, move)
+    dataHelpers.addMove(gameData.id, move).then(console.log,console.error)
 
 
     //check for checkmate
