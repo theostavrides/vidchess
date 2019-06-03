@@ -19,6 +19,14 @@ class Chessbar extends Component {
 
   }
 
+  handleAcceptClick = () => {
+    this.setState({isResignClicked: false})
+  }
+
+  handleDeclineClick = () => {
+    this.setState({isResignClicked: false})
+  }
+
   handleDrawClick = () => {
     this.setState({isResignClicked: false, isDrawClicked: true})
   }
@@ -40,7 +48,10 @@ class Chessbar extends Component {
     let drawOptionButton;
 
     if (isResignClicked) {
-      resignOptionButton = <Option />
+      resignOptionButton = <Option
+                              handleAcceptClick={this.handleAcceptClick}
+                              handleDeclineClick={this.handleDeclineClick}
+                            />
     } else if (isDrawClicked) {
       drawOptionButton = <Option />
     }
