@@ -23,22 +23,26 @@
   display: grid;
   min-width: 400px;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 8vh 25vh 7vh;
+  grid-template-rows: 8vh 23vh 7vh;
 }
 
 .new-game label {
-  margin: 3px;
+  margin: 4px;
   color: white;
   transition: all 0.3s;
   font-size: 20px;
   font-weight: 400;
   text-align: center;
   line-height: 6vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 label.time {
   padding: 5px;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
+  font-weight: 700;
 }
 
 label.time:hover {
@@ -56,8 +60,7 @@ label.time:hover {
 }
 
 img.color {
-  height: 90px;
-  margin-top: 40%;
+  height: 100px;
   transition: all 0.6s;
 }
 
@@ -82,12 +85,13 @@ img.color:hover {
 }
 
 input.link-btn {
-  border: 1px solid white;
+  border: 2px solid white;
   background-color: transparent;
   color: white;
   font-weight: 600;
   font-size: 2vh;
   margin: 3px;
+  transition: all 0.6s;
 }
 
 input.link-btn:hover {

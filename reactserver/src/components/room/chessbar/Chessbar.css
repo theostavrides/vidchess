@@ -4,62 +4,77 @@
   grid-row-end: 3;
   display: grid;
   grid-template-columns: 35% 35% 15% 15%;
-  grid-template-rows: 1fr;
+  grid-template-rows: 8vh;
+  box-shadow: 3px 5px 6px 1px rgba(78, 78, 78, 0.1);
 }
 
 .chessbar-container > div.timer {
-  font-size: 30px;
+  font-size: 35px;
+  font-weight: 600;
   text-align: center;
   vertical-align: middle;
   line-height: 8vh;
+  display: grid;
+  grid-template-columns: 30% 70%;
 }
 
-.chessbar-container > div.player1 {
-  color: #999;
+.player-time {
+  border-right: 2px solid rgb(148, 148, 148);
+}
+
+.player1 > player-time {
+  background: #555;
+}
+
+.chessbar-container > div {
+  color: white;
   background-color: #444;
 }
 
+.chessbar-container > div.player1 {
+  color: white;
+  background-color: #888;
+}
+
 .chessbar-container > div.player2 {
-  background-color: #999;
+  color: white;
+  border-left: 2px solid white;
+  background-color: #444;
 }
 
 .chessbar-container > div.resign {
-  background-color: rgb(228, 67, 67);
+  border-left: 2px solid white;
   height: 100%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 .resign img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10%;
-  margin-bottom: 10%;
-  color: white;
   height: 5vh;
 }
 
 .chessbar-container > div.resign:hover {
-  background-color: rgb(179, 53, 53);
+  background-color: #777;
+  transition: all 0.3s;
 }
 
 
 .chessbar-container > div.draw {
   height: 100%;
-  background-color: rgb(79, 79, 230);
+  border-left: 2px solid white;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 .draw img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15%;
-  margin-bottom: 15%;
-  color: white;
   height: 4vh;
 }
 
 .chessbar-container > div.draw:hover {
-  background-color: rgb(63, 63, 187);
+  background-color: #777;
+  transition: all 0.3s;
 }
 
 
@@ -69,22 +84,35 @@ div.option {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100%;
+  border-left: 2px solid white;
 }
 
-div.option .yes-btn {
-  background: #555;
+div.option .accept {
+  background: rgb(80, 179, 71);
   display: grid;
   justify-content: center;
   align-content: center;
+  transition: ease-out 0.3s;
+}
+
+div.option .accept:hover {
+  background: rgb(58, 131, 52);
+  transition: ease-in 0.3s;
 }
 
 div.option img {
   height: 30px;
 }
 
-div.option .no-btn {
-  background: #444;
+div.option .decline {
+  background: rgb(179, 71, 71);
   display: grid;
   justify-content: center;
   align-content: center;
+  transition: ease-out 0.3s;
+}
+
+div.option .decline:hover {
+  background: rgb(136, 54, 54);
+  transition: ease-in 0.3s;
 }

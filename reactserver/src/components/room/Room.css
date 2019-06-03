@@ -27,7 +27,7 @@ div.link-container {
   position: absolute;
   top: 40%;
   left: 40%;
-  z-index: 10;
+  z-index: 15;
   min-width: 400px;
   background-color: rgb(223, 223, 223);
   box-shadow: 1px 1px 4px 1px rgba(73, 73, 73, 0.4);
@@ -88,6 +88,7 @@ div.sidebar {
   display: grid;
   grid-template-columns: 1fr ;
   grid-template-rows: 67% 15%;
+  background: rgb(247, 247, 247)
 }
 
 .message-area {
@@ -103,6 +104,7 @@ div.messages {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
+  box-shadow: 1px 1px 6px 1px rgba(78, 78, 78, 0.178);
 }
 
 div.messages > p {
@@ -113,7 +115,7 @@ div.messages > p {
   float: left;
   clear: right;
   text-align: left;
-  background: rgb(243, 243, 243);
+  background: white;
   color: grey;
 }
 
@@ -129,7 +131,7 @@ div.chatbar-container {
   display: grid;
   align-content: center;
   padding: 0px 30px 0px 30px;
-  background: rgb(243, 243, 243);
+  background: white;
 }
 
 form.chatbar > input {

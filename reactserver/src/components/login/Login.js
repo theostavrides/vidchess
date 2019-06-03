@@ -30,13 +30,13 @@ class Login extends Component {
     };
   }
 
-  onLoginClick = (event) => {
+  onLoginClick = () => {
     this.setState({
       login:true
     })
   }
 
-  onRegisterClick = (event) => {
+  onRegisterClick = () => {
     this.setState({
       login:false
     })

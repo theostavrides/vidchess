@@ -1,6 +1,3 @@
-h1, h2, h3, h4, h5, h6, p {
-  font-family: 'Frank Ruhl Libre', serif;
-}
 
 html, body {
   overflow: hidden;
@@ -9,6 +6,7 @@ html, body {
 div > h1 {
   color: #333;
   padding: 20px;
+  font-weight: 700;
   font-size: 40px;
   text-align: center;
 }

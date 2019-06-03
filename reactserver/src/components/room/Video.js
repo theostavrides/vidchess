@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
-function Video(props) {
+function Video() {
 
 
   return (

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import Board from './Board.js'
-import Chat from './Chat/Chat.js'
-import Chessbar from './chessbar/Chessbar.js'
-import Video from './Video.js'
+import Board from './Board.js';
+import Chat from './Chat/Chat.js';
+import Chessbar from './chessbar/Chessbar.js';
+import Video from './Video.js';
+import { Modal, Button } from 'react-bootstrap';
+// import Modal from './Modal.js';
 import Rematch from './Rematch.js'
 import './Room.css';
 import io from 'socket.io-client';
-import axios from 'axios'
+import axios from 'axios';
 const axiosOptions = {
   headers: {
     'Content-Type': 'application/json',
@@ -22,6 +24,7 @@ class Room extends Component {
       messages: [],
       redirect: false,
       username: '',
+      show: false,
       rematch: true,
       allData: {}
     };
@@ -38,7 +41,6 @@ class Room extends Component {
       }, () => this.setState({ redirect: true }))
 
       this.socket.on('msg', (data) => {
-        console.log(data)
         this.setState({ messages: this.state.messages.concat(data) })
       })
 
@@ -64,11 +66,29 @@ class Room extends Component {
     this.socket.on('message', console.log);
   }
 
+  handleClose = () => {
+    this.setState({ show: false });
+  }
+
+  handleShow = () => {
+    this.setState({ show: true });
+  }
+
   render() {
 
     return (
       <div className="wrapper">
         <div className="room-2col">
+          <Modal
+            show={this.state.show}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header>
+              <Modal.Title>Send This Link</Modal.Title>
+            </Modal.Header>
+              <Modal.Body>{window.location.href}</Modal.Body>
+              </Modal>
           {this.state.rematch && <Rematch username={this.state.username}
                                           room={this.props.match.url.split('/')[2]}
                                           allData={this.state.allData}/>}
