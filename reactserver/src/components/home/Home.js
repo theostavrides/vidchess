@@ -100,17 +100,17 @@ class Home extends Component {
             <ul className="game-outcome">
               <li>
                 <img className="game-icon" src={require('./images/checkmark.png')} alt="" />
-                <p><strong>You</strong> won against <strong>Them</strong></p>
+                <p><strong>Tom</strong> won against <strong>Theo</strong></p>
               </li>
 
               <li>
                 <img className="game-icon" src={require('./images/loss.png')} alt="" />
-                <p><strong>You</strong> lost against <strong>Them</strong></p>
+                <p><strong>Theo</strong> lost against <strong>Tom</strong></p>
               </li>
 
               <li>
                 <img className="game-icon" src={require('./images/draw.png')} />
-                <p><strong>You</strong> had a draw with <strong>Them</strong></p>
+                <p><strong>Tom</strong> had a draw with <strong>Theo</strong></p>
               </li>
             </ul>
           </div>
