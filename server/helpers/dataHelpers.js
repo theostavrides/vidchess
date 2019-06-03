@@ -137,20 +137,20 @@ function makeHelpers(knex) {
     getAllUsers,
     getAllMoves,
     getUser,
+    getUsername,
     getGame,
     getGamesOfUser,
     getMovesOfGame,
-    registerUser,
-    newRoom,
     getRoomData,
     getUserId,
+    registerUser,
+    newRoom,
     newGame,
     newGameAndRoom,
     addPlayerToGame,
     addMove,
     endGame,
-    upDataRoomVictories,
-    getUsername
+    upDataRoomVictories
   }
 }
 

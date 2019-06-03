@@ -178,6 +178,12 @@ io.on('connection', function (socket) {
     })
   })
 
+  socket.on("rematchRequest", function(data) {
+    console.log("rematchRequest received")
+    console.log("here is the incoming data:")
+    console.log(data)
+  })
+
   function gameOverUpdate(data) {
     console.log('time to update plays when gameover')
     console.log(data.roomData.url)
