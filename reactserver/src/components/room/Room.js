@@ -33,6 +33,7 @@ class Room extends Component {
   }
 
   componentDidMount(){
+    window["connect"]()
     axios.get('http://localhost:3001/auth', axiosOptions)
       .then((res) => {
         this.setState({username: res.data})
