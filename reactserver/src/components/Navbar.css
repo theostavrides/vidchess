@@ -1,12 +1,13 @@
 #wrapper > nav {
   z-index: 10;
-  grid-column: 1 / 13;
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
   background-color: white;
   box-shadow: 1px 1px 6px 2px rgba(78, 78, 78, 0.4);
 }
 
 .logo {
+  grid-column: 1;
   padding-left: 20px;
   padding-top: 9px;
   font-size: 4vh;
@@ -20,11 +21,12 @@
 .logo > img {
   height: 6vh;
   float: left;
-  padding-right: 10px;
+  padding-right: 12px;
 }
 
 .logout {
-  grid-column-start: 14;
+  grid-column-start: 3;
+  padding-right: 30px;
   font-size: 2.5vh;
   font-weight: 700;
   align-self: center;

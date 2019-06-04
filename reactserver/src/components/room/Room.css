@@ -6,21 +6,9 @@ body {
   margin: 0px;
 }
 
-.wrapper {
-  grid-column: 1 / 13;
-  display: grid; 
-  grid-template-rows: repeat(12, 8.33vh); 
-}
-
 .room-2col {
-  grid-column: 1 / 13;
-  grid-row: 1 / 13;
   display: grid;
   grid-template-columns: 90vh 1fr;
-}
-
-.chessboard-container { 
-  border-right: 1px solid #333;
 }
 
 div.link-container {
