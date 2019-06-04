@@ -19,19 +19,39 @@ class Chessbar extends Component {
 
   }
 
+  handleAcceptClick = () => {
+    this.setState({isResignClicked: false})
+  }
+
+  handleDeclineClick = () => {
+    this.setState({isResignClicked: false})
+  }
+
   handleDrawClick = () => {
     this.setState({isResignClicked: false, isDrawClicked: true})
   }
 
-  render() {
+  convertSeconds = (time) => {
+    const minute = Math.floor(time / 60);
+    let seconds = time - (minute * 60);
+    seconds = Math.round(seconds * 100) / 100;
 
+    let timer = (minute < 10 ? "0" + minute : minute);
+    timer += ":" + (seconds < 10 ? "0" + seconds : seconds);
+    return timer
+  }
+
+  render() {
     const isResignClicked = this.state.isResignClicked;
     const isDrawClicked = this.state.isDrawClicked;
     let resignOptionButton;
     let drawOptionButton;
 
     if (isResignClicked) {
-      resignOptionButton = <Option />
+      resignOptionButton = <Option
+                              handleAcceptClick={this.handleAcceptClick}
+                              handleDeclineClick={this.handleDeclineClick}
+                            />
     } else if (isDrawClicked) {
       drawOptionButton = <Option />
     }
@@ -41,12 +61,12 @@ class Chessbar extends Component {
 
         <div className="timer player1">
           <div className="player-time">P1</div>
-          <div>{this.props.myTime}</div>
+          <div>{this.convertSeconds(this.props.myTime)}</div>
         </div>
 
         <div className="timer player2">
           <div className="player-time">P2</div>
-          <div>{this.props.theirTime}</div>
+          <div>{this.convertSeconds(this.props.theirTime)}</div>
         </div>
 
         {!isResignClicked && <Resign handleResignClick={this.handleResignClick}/>}
