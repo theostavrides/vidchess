@@ -3,7 +3,7 @@ var selfEasyrtcid = "";
 
 function connect() {
     easyrtc.setSocketUrl(":8080")
-    easyrtc.setVideoDims(300,200);
+    easyrtc.setVideoDims(400,300);
     easyrtc.setRoomOccupantListener(convertListToButtons);
     easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
  }
@@ -25,10 +25,11 @@ function convertListToButtons (roomName, data, isPrimary) {
         button.onclick = function(easyrtcid) {
             return function() {
                 performCall(easyrtcid);
+                button.parentNode.removeChild(button)
             };
         }(easyrtcid);
 
-        var label = document.createTextNode(easyrtc.idToName(easyrtcid));
+        var label = document.createTextNode("start video");
         button.appendChild(label);
         otherClientDiv.appendChild(button);
     }
@@ -46,7 +47,7 @@ function performCall(otherEasyrtcid) {
 
 function loginSuccess(easyrtcid) {
     selfEasyrtcid = easyrtcid;
-    document.getElementById("iam").innerHTML = "I am " + easyrtc.cleanId(easyrtcid);
+    console.log('my easyrtcid = ', selfEasyrtcid)
 }
 
 

@@ -35,20 +35,20 @@
   <!-- onload="connect();" -->
   <body >
 
-    <div id="demoContainer" style="z-index: 10000; position:absolute; right:0">
-      <div id="connectControls" style="">
-          <div id="iam">Not yet connected...</div>
-          <br />
-          <strong>Connected users:</strong>
-          <div id="otherClients"></div>
-      </div>
+    <div id="connectControls" style="z-index: 10001; position:absolute; right:0; top: 10%">
+        <div id="otherClients"></div>
+    </div>
+
+
+    <div id="demoContainer" style="z-index: 10000; position:absolute; top: 10%; right:0">
+
       <div id="videos">
         <!-- ignore this (video of self) -->
         <video autoplay="autoplay" playsinline="playsinline" class="easyrtcMirror" id="selfVideo" muted="muted" volume="0" style="display:none"></video>
 
         <!-- other person's video -->
         <div style="">
-          <video autoplay="autoplay" playsinline="playsinline" id="callerVideo"></video>
+          <video autoplay="autoplay" playsinline="playsinline" id="callerVideo" style="height:40vh"></video>
         </div>
 
       </div>
