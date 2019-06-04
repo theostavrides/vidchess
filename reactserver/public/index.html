@@ -21,96 +21,37 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>vidchess</title>
-        <link rel="stylesheet" type="text/css" href="//localhost:8080/easyrtc/easyrtc.css" />
-        <link rel="stylesheet" type="text/css" href="css/demo_audio_video_simple.css" />
-        <script src="/socket.io/socket.io.js"></script>
-        <script type="text/javascript" src="/easyrtc/easyrtc.js"></script>
-        <script type="text/javascrript" src="/js/demo_audio_video_simple.js"></script>
-<script>
-var selfEasyrtcid = "";
 
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/easyrtc/easyrtc.js"></script>
+    <script type="text/javascript" src="./videologic.js"></script>
 
-function connect() {
-    easyrtc.setSocketUrl(":8080");
-    easyrtc.setVideoDims(640,480);
-    easyrtc.setRoomOccupantListener(convertListToButtons);
-    easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
- }
-
-
-function clearConnectList() {
-    var otherClientDiv = document.getElementById('otherClients');
-    while (otherClientDiv.hasChildNodes()) {
-        otherClientDiv.removeChild(otherClientDiv.lastChild);
-    }
-}
-
-
-function convertListToButtons (roomName, data, isPrimary) {
-    clearConnectList();
-    var otherClientDiv = document.getElementById('otherClients');
-    for(var easyrtcid in data) {
-        var button = document.createElement('button');
-        button.onclick = function(easyrtcid) {
-            return function() {
-                performCall(easyrtcid);
-            };
-        }(easyrtcid);
-
-        var label = document.createTextNode(easyrtc.idToName(easyrtcid));
-        button.appendChild(label);
-        otherClientDiv.appendChild(button);
-    }
-}
-
-
-function performCall(otherEasyrtcid) {
-    easyrtc.hangupAll();
-
-    var successCB = function() {};
-    var failureCB = function() {};
-    easyrtc.call(otherEasyrtcid, successCB, failureCB);
-}
-
-
-function loginSuccess(easyrtcid) {
-    selfEasyrtcid = easyrtcid;
-    document.getElementById("iam").innerHTML = "I am " + easyrtc.cleanId(easyrtcid);
-}
-
-
-function loginFailure(errorCode, message) {
-    easyrtc.showError(errorCode, message);
-}
-</script>
   </head>
 
 
-
-  <body onload="connect();">
-    <div id="root" style="display:none"></div>
-        <div id="container">
-
-            <div id="main">
-
-                <div id="demoContainer">
-                    <div id="connectControls">
-                        <div id="iam">Not yet connected...</div>
-                        <br />
-                        <strong>Connected users:</strong>
-                        <div id="otherClients"></div>
-                    </div>
-                    <div id="videos">
-                        <video autoplay="autoplay" playsinline="playsinline" class="easyrtcMirror" id="selfVideo" muted="muted" volume="0" ></video>
-                        <div style="position:relative;float:left;">
-                        <video autoplay="autoplay" playsinline="playsinline" id="callerVideo"></video>
-                        </div>
-                        <!-- each caller video needs to be in it's own div so it's close button can be positioned correctly -->
-                    </div>
-                </div>
-
+<!-- onload="connect();" -->
+  <body >
+    <!-- REACT RENDERED HERE -->
+    <div id="demoContainer" style="position: absolute; right: 0; z-index: 900000">
+        <div id="connectControls">
+            <div id="iam">Not yet connected...</div>
+            <br />
+            <strong>Connected users:</strong>
+            <div id="otherClients"></div>
+        </div>
+        <div id="videos">
+            <video autoplay="autoplay" playsinline="playsinline" class="easyrtcMirror" id="selfVideo" muted="muted" volume="0" ></video>
+            <div style="position:relative;float:left;">
+                <video autoplay="autoplay" playsinline="playsinline" id="callerVideo"></video>
             </div>
         </div>
+    </div>
+    <div id="root"></div>
+
+    <!-- VIDEOS RENDERED HERE -->
+
+
+
 
 
   </body>

@@ -2,30 +2,12 @@ var selfEasyrtcid = "";
 
 
 function connect() {
-    easyrtc.setVideoDims(640,480);
+    easyrtc.setSocketUrl(":8080");
+    easyrtc.setVideoDims(200,150);
     easyrtc.setRoomOccupantListener(convertListToButtons);
     easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
-    easyrtc.setOnCall( function(easyrtcid){
-       DoStatsLoop(easyrtcid);
-    });
  }
 
-
-function DoStatsLoop(easyrtcid) {
-    let status = easyrtc.getConnectStatus(easyrtcid);    
-    if( status === easyrtc.NOT_CONNECTED ) {
-        return;
-    }
-    if( status === easyrtc.IS_CONNECTED ) {
-       easyrtc.getPeerStatistics(easyrtcid, 
-           function(peerId, stats){
-             document.getElementById("statsArea").innerHTML = 
-                JSON.stringify(stats).replace(/,/g, "<br>").replace(/"/g, "");
-           }, 
-           easyrtc.standardStatsFilter); 
-    }
-    setTimeout( function() { DoStatsLoop(easyrtcid); } , 1000);
-}
 
 function clearConnectList() {
     var otherClientDiv = document.getElementById('otherClients');
