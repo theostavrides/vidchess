@@ -4,19 +4,19 @@ import axios from 'axios'
 const axiosOptions = {
   headers: {
     'Content-Type': 'application/json',
-    "Access-Control-Allow-Origin": "http://localhost:3000"
+    "Access-Control-Allow-Origin": "http://192.168.88.85:3000"
   },
   withCredentials: true
 }
 
 function sendLogin(username, password) {
   const data = JSON.stringify({ username, password })
-  return axios.post('http://localhost:3001/login', data, axiosOptions);
+  return axios.post('http://192.168.88.85:3001/login', data, axiosOptions);
 }
 
 function sendRegister(username, password, email) {
   const data = JSON.stringify({ username, password, email })
-  return axios.post('http://localhost:3001/register', data, axiosOptions);
+  return axios.post('http://192.168.88.85:3001/register', data, axiosOptions);
 }
 
 class Login extends Component {
