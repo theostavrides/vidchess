@@ -3,7 +3,7 @@ import Board from './Board.js';
 import Chat from './Chat/Chat.js';
 import Chessbar from './chessbar/Chessbar.js';
 import Video from './Video.js';
-import { Modal, Button } from 'react-bootstrap';
+import LinkModal from './LinkModal.js'
 import Rematch from './Rematch.js'
 import './Room.css';
 import io from 'socket.io-client';
@@ -23,7 +23,7 @@ class Room extends Component {
       messages: [],
       redirect: false,
       username: '',
-      show: false,
+      show: true,
       rematch: false,
       allData: {},
       myTime: 300,
@@ -129,16 +129,8 @@ class Room extends Component {
     return (
       <div className="wrapper">
         <div className="room-2col">
-          <Modal
-            show={this.state.show}
-            aria-labelledby="contained-modal-title-vcenter"
-            centered>
+         <LinkModal show={this.state.show}/>
 
-            <Modal.Header>
-              <Modal.Title>Send This Link</Modal.Title>
-            </Modal.Header>
-              <Modal.Body>{window.location.href}</Modal.Body>
-            </Modal>
             {this.state.rematch && <Rematch username={this.state.username}
                                             rematch={this.state.rematch}
                                             room={this.props.match.url.split('/')[2]}
