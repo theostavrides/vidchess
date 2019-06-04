@@ -106,6 +106,7 @@ class Room extends Component {
   }
 
   handleTimer = (msg, gameData, roomData, startTime) => {
+    //TODO - make dynamic
     if (msg === 'set'){
       this.setState({ myTime: startTime, theirTime: startTime})
     }
@@ -120,6 +121,9 @@ class Room extends Component {
     if (msg === 'stop'){
       clearInterval(window.timer1)
       clearInterval(window.timer2)
+    }
+    if (msg === 'reset') {
+      this.setState({ myTime: 300, theirTime: 300})
     }
   }
 
