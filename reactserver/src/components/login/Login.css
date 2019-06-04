@@ -1,6 +1,4 @@
 #login-grid {
-  /* grid-column: 1 / 13; */
-  /* grid-row: 2 / 13; */
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -13,11 +11,19 @@
   padding: 80px;
   justify-content: center;
   align-content: center;
-  background-image: url("https://images.unsplash.com/photo-1511583090122-0f8ef653906c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1959&q=80");
+  /* background-image: url("https://images.unsplash.com/photo-1511583090122-0f8ef653906c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1959&q=80"); */
   background-size: cover;
   background-position: center center;
   display: grid;
   color: white;
+}
+
+.fullscreen > video  {
+  display: grid;
+  z-index: -100;
+  position: fixed;
+  right: 250px;
+  height: 90vh;
 }
 
 #login-left-side > h2 {
@@ -39,6 +45,7 @@
   align-content: center;
   display: grid;
   grid-gap: 5px;
+  background-color: white;
 }
 
 #inner-inner-grid{
