@@ -1,38 +1,13 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&display=swap" rel="stylesheet">    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>vidchess</title>
-<!--     <link rel="stylesheet" type="text/css" href="/easyrtc/easyrtc.css" />
-    <script src="/socket.io/socket.io.js"></script>
-
-    <script type="text/javascript" src="js/mylogic.js"></script>
- -->
-
-
-        <link rel="stylesheet" type="text/css" href="//localhost:8080/easyrtc/easyrtc.css" />
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <!--skip-->
+        <title>EasyRTC Demo: Simple Video+Audio</title>
+        <link rel="stylesheet" type="text/css" href="../easyrtc/easyrtc.css" />
 
         <!--hide-->
         <link rel="stylesheet" type="text/css" href="css/landing.css" />
-        <link rel="stylesheet" type="text/css" href="css/demo_audio_video_simple.css" />
+        <link rel="stylesheet" type="text/css" href="css/demo_recording.css" />
         <!-- Prettify Code -->
         <script type="text/javascript" src="js/prettify/prettify.js"></script>
         <script type="text/javascript" src="js/prettify/loadAndFilter.js"></script>
@@ -42,72 +17,13 @@
         <!--show-->
         <!-- Assumes global locations for socket.io.js and easyrtc.js -->
         <script src="/socket.io/socket.io.js"></script>
-<!--         <script type="text/javascript" src="//localhost:8080/easyrtc/easyrtc.js"></script> -->
-            <script type="text/javascript" src="/easyrtc/easyrtc.js"></script>
-        <script type="text/javascrript" src="/js/demo_audio_video_simple.js"></script>
-<script>
-var selfEasyrtcid = "";
+        <script type="text/javascript" src="../easyrtc/easyrtc.js"></script>
+        <script type="text/javascript" src="../easyrtc/labs/easyrtc_recorder.js"></script>
+        <script type="text/javascript" src="js/demo_recording.js"></script>
 
-
-function connect() {
-    easyrtc.setSocketUrl(":8080");
-    easyrtc.setVideoDims(640,480);
-    easyrtc.setRoomOccupantListener(convertListToButtons);
-    easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
- }
-
-
-function clearConnectList() {
-    var otherClientDiv = document.getElementById('otherClients');
-    while (otherClientDiv.hasChildNodes()) {
-        otherClientDiv.removeChild(otherClientDiv.lastChild);
-    }
-}
-
-
-function convertListToButtons (roomName, data, isPrimary) {
-    clearConnectList();
-    var otherClientDiv = document.getElementById('otherClients');
-    for(var easyrtcid in data) {
-        var button = document.createElement('button');
-        button.onclick = function(easyrtcid) {
-            return function() {
-                performCall(easyrtcid);
-            };
-        }(easyrtcid);
-
-        var label = document.createTextNode(easyrtc.idToName(easyrtcid));
-        button.appendChild(label);
-        otherClientDiv.appendChild(button);
-    }
-}
-
-
-function performCall(otherEasyrtcid) {
-    easyrtc.hangupAll();
-
-    var successCB = function() {};
-    var failureCB = function() {};
-    easyrtc.call(otherEasyrtcid, successCB, failureCB);
-}
-
-
-function loginSuccess(easyrtcid) {
-    selfEasyrtcid = easyrtcid;
-    document.getElementById("iam").innerHTML = "I am " + easyrtc.cleanId(easyrtcid);
-}
-
-
-function loginFailure(errorCode, message) {
-    easyrtc.showError(errorCode, message);
-}
-</script>
-  </head>
-
-
-
-  <body onload="connect();">
-    <div id="root" style="display:none"></div>
+    </head>
+    <body onload="connect();">
+        <!--hide-->
         <div id="container">
             <div id="header">
                 <a href="index.html"><img id="logo_easyrtc" src="images/easyrtc_logo.png" alt="EasyRTC" style="" /></a>
@@ -145,6 +61,23 @@ function loginFailure(errorCode, message) {
                         </div>
                         <!-- each caller video needs to be in it's own div so it's close button can be positioned correctly -->
                     </div>
+                    <div id="recordButtons">
+                        <label for="useVP8">
+                            <input type="radio" onclick="easyrtc.setRecordingVideoCodec('vp8');" checked="checked" id="useVP8" name="codecUsed" disabled="disabled" > VP8 
+                        </label>
+                        <label for="codecUsed">
+                            <input type="radio" onclick="easyrtc.setRecordingVideoCodec('vp9');" id="useVP9" name="codecUsed" disabled="disabled" > VP9
+                        </label>
+                        <label for="useH264">
+                            <input type="radio" onclick="easyrtc.setRecordingVideoCodec('h264');" id="useH264" name="codecUsed" disabled="disabled"> H264
+                        </label>
+                        <br>
+                        <button id="startRecording" disabled="disabled" onclick="startRecording();" >Start recording</button> 
+                        <button id="stopRecording" disabled="disabled" onclick="endRecording();" >End/finish recording</button> 
+                       <br>
+                       download links for videos: self:<a id="selfDownloadLink"></a>
+                        &nbsp;&nbsp;caller:<a id="callerDownloadLink"></a>
+                    </div>
                 </div>
                 <!--hide-->
                 <br style="clear:both;" />
@@ -162,7 +95,7 @@ function loginFailure(errorCode, message) {
                 </pre>
 
                 <h3>JavaScript</h3>
-                <p>The contents of demo_audio_video_simple.js:</p>
+                <p>The contents of demo_recording.js:</p>
                 <pre  id="prettyJS" class="prettyprint linenums:1">
                 </pre>
 
@@ -178,12 +111,11 @@ function loginFailure(errorCode, message) {
             </div>
             <div id="footer">
                 <a href="http://www.skedans.com/?from=landing"><img id="logo_priologic" src="images/skedans_logo.png" height="40" width="150" alt="Created By Skedans Systems, Inc." /></a>
-                <a href="http://www.easyrtc.com/?from=landing"><img id="logo_pb_easyrtc" src="//localhost:8080/easyrtc/img/powered_by_easyrtc.png" height="60" width="200" alt="Powered By EasyRTC" /></a>
+                <a href="http://www.easyrtc.com/?from=landing"><img id="logo_pb_easyrtc" src="../easyrtc/img/powered_by_easyrtc.png" height="60" width="200" alt="Powered By EasyRTC" /></a>
                 <p><em>&copy; 2016 - Skedans Systems, Inc., All Rights Reserved.</em></p>
                 <p id="license">EasyRTC source code released under a BSD2 License. <a href="https://github.com/priologic/easyrtc/blob/master/LICENSE">See LICENSE file in project folder</a> for details.</p>
             </div>
         </div>
-
-
-  </body>
+        <!--show-->
+    </body>
 </html>
