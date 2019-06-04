@@ -11,18 +11,23 @@
   padding: 80px;
   justify-content: center;
   align-content: center;
-  /* background-image: url("https://images.unsplash.com/photo-1511583090122-0f8ef653906c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1959&q=80"); */
   background-size: cover;
   background-position: center center;
   display: grid;
   color: white;
 }
 
+div > .fullscreen {
+  display: grid;
+  overflow: hidden;
+  width: 50vw;
+}
+
 .fullscreen > video  {
   display: grid;
   z-index: -100;
   position: fixed;
-  right: 250px;
+  left: -200px;
   height: 90vh;
 }
 
