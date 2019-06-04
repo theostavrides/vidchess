@@ -12,9 +12,8 @@ div > h1 {
 }
 
 #wrapper {
-  grid-column: 1 / 13;
   display: grid;
   grid-template-rows: 10vh 90vh;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: 1fr;
 }
 

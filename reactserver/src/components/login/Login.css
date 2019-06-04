@@ -1,6 +1,6 @@
 #login-grid {
-  grid-column: 1 / 13;
-  grid-row: 2 / 13;
+  /* grid-column: 1 / 13; */
+  /* grid-row: 2 / 13; */
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -29,7 +29,7 @@
   padding-top: 10px;
   font-weight: 300;
   font-size: 2vh;
-  line-height: 19px;
+  line-height: 23px;
 }
 
 /* Login Right Side Styling */
