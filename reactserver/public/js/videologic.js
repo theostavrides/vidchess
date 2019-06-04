@@ -54,12 +54,3 @@ function loginFailure(errorCode, message) {
     easyrtc.showError(errorCode, message);
 }
 
-
-export {
-    connect,
-    clearConnectList,
-    convertListToButtons,
-    performCall,
-    loginSuccess,
-    loginFailure
-}
