@@ -20,21 +20,41 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>vidchess</title>
-    <link rel="stylesheet" type="text/css" href="/easyrtc/easyrtc.css" />
-    <script src="/socket.io/socket.io.js"></script>
+
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="/easyrtc/easyrtc.js"></script>
-    <script type="text/javascript" src="js/mylogic.js"></script>
+    <script type="text/javascript" src="/js/videologic.js"></script>
 
     <link
-  rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-  crossorigin="anonymous"
-/>
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"/>
   </head>
-  <body>
+
+  <!-- onload="connect();" -->
+  <body >
+
+    <div id="connectControls" style="z-index: 10001; position:absolute; right:0; top: 10%">
+        <div id="otherClients"></div>
+    </div>
+
+
+    <div id="demoContainer" style="z-index: 10000; position:absolute; top: 10%; right:0">
+
+      <div id="videos">
+        <!-- ignore this (video of self) -->
+        <video autoplay="autoplay" playsinline="playsinline" class="easyrtcMirror" id="selfVideo" muted="muted" volume="0" style="display:none"></video>
+
+        <!-- other person's video -->
+        <div style="">
+          <video autoplay="autoplay" playsinline="playsinline" id="callerVideo" style="height:40vh"></video>
+        </div>
+
+      </div>
+    </div>
     <div id="root"></div>
-    
+
 
 
   </body>

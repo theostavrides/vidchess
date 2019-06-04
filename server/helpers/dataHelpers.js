@@ -138,10 +138,10 @@ function makeHelpers(knex) {
     }
   }
 
-  const updateCurrentGameInRoom = (roomId, gameId) => {
+  const updateCurrentGameInRoom = (roomId, newGameId) => {
     return knex('rooms')
       .where({id: roomId})
-      .update({current_game: gameId})
+      .update({current_game: newGameId})
   }
 
   return  {

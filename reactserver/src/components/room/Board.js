@@ -77,6 +77,7 @@ class Board extends React.PureComponent {
         .then(this.setUsername)
         .then(this.setGameData)
         .then(this.setUpBoard)
+      this.props.handleTimer('reset')
     })
   }
 
