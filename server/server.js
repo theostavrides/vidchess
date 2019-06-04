@@ -129,6 +129,7 @@ app.get("/games/:id", cors(corsOptions), function(req, res) {
 io.on('connection', function (socket) {
 
   let room;
+
   socket.on('joinRoom', function(data) {
     const username = data.username;
     room = data.room;
@@ -157,12 +158,9 @@ io.on('connection', function (socket) {
     let move = data.lastMove.from + data.lastMove.to;
 
     dataHelpers.addMove(gameData.id, move).then(console.log,console.error)
-
-
-    //check for checkmate
   })
 
-  //event comes from loser
+  //Listen for checkmate event (event comes from loser)
   socket.on("checkmate", function(data) {
     let gameData = data.gameData;
     let username = data.username;
@@ -179,10 +177,6 @@ io.on('connection', function (socket) {
   })
 
   function gameOverUpdate(data) {
-    console.log('time to update plays when gameover')
-    console.log(data.roomData.url)
-
-
     let roomData = {}
     let gameData = {}
     dataHelpers.getRoomData(data.roomData.url)
@@ -203,6 +197,24 @@ io.on('connection', function (socket) {
     })
 
   }
+
+  //Hande rematchRequest event
+  socket.on("rematchRequest", function(data) {
+    console.log("rematchRequest received")
+    console.log(data)
+    let roomId = data.roomData.id;
+    let url = data.roomData.url
+    let oldWhitePlayer = data.white_username.username;
+    let oldWhiteId = data.gameData.white_id;
+    let oldBlackPlayer = data.black_username.username;
+    let oldBlackId = data.gameData.black_id;
+
+    dataHelpers.newGameReturningId({white_id: oldBlackId, black_id: oldWhiteId})
+      .then(res => { dataHelpers.updateCurrentGameInRoom(roomId, res[0])})
+      .then(() => { io.to(room).emit('startRematch', url) })
+
+
+  })
 
   socket.on('chat', function(data, callback) {
     const message = {

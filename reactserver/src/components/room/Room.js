@@ -32,26 +32,28 @@ class Room extends Component {
     this.socket =  io(`http://localhost:3001`)
   }
 
-
   componentDidMount(){
-    //TODO should get complex userID instead of username
     axios.get('http://localhost:3001/auth', axiosOptions)
       .then((res) => {
         this.setState({username: res.data})
         this.joinRoom(res.data)
       }, () => this.setState({ redirect: true }))
 
+
     this.socket.on('msg', (data) => { this.setState({ messages: this.state.messages.concat(data) }) })
-
     this.socket.on('roomFull', (bool) => { this.setState({show: !bool}) })
-
+    this.socket.on('startRematch', (data) => {
+      this.setState({rematch: false});
+      console.log(data)
+    })
   }
 
-  //Handler for the link url box
+  //When game is over, this fires to bring up rematch box
   setRematch = (data) => {
     this.setState({ allData: data})
     this.setState({ rematch: true })
   }
+
 
   //Messages
   addNewMessage = (content) => {
@@ -69,7 +71,7 @@ class Room extends Component {
     this.socket.on('message', console.log);
   }
 
-  //Handlers for showing link bar
+  //Handlers for showing link to room box
   handleClose = () => {
     this.setState({ show: false });
   }
@@ -78,6 +80,7 @@ class Room extends Component {
     this.setState({ show: true });
   }
 
+  //chess clock functions
   player1Interval = (bool) => {
     if (bool) {
       window.timer1 = setInterval(() => {
@@ -88,7 +91,6 @@ class Room extends Component {
     } else {
       clearInterval(window.timer1)
     }
-
   }
 
   player2Interval = (bool) => {
@@ -119,7 +121,6 @@ class Room extends Component {
       clearInterval(window.timer1)
       clearInterval(window.timer2)
     }
-
   }
 
 
@@ -133,7 +134,9 @@ class Room extends Component {
             {this.state.rematch && <Rematch username={this.state.username}
                                             rematch={this.state.rematch}
                                             room={this.props.match.url.split('/')[2]}
-                                            allData={this.state.allData}/>}
+                                            allData={this.state.allData}
+                                            socket={this.socket}
+                                   />}
           <div className="chessboard-container">
 
             <Board room={this.props.match.url.split('/')[2]}

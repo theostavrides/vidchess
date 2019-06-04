@@ -12,19 +12,17 @@ const axiosOptions = {
 class Rematch extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      me: '',
+      myVictories: '',
+      them: '',
+      theirVictories: '',
+      resultSentence: '',
+      result: ''
+    }
   }
 
   componentDidMount(){
-
-
-  }
-
-  handleRematch = () => {
-
-  }
-
-  render() {
-
     let { black_username, white_username, gameData, roomData } = this.props.allData;
 
     if (gameData) {
@@ -57,9 +55,18 @@ class Rematch extends Component {
       } else {
         resultSentence = 'The game resulted in a draw';
       }
+      this.setState({
+        me, myVictories, them, theirVictories, resultSentence, result
+      })
       // {resultSentence} {me}{myVictories} - {them}{theirVictories}
     }
+  }
 
+  handleRematchRequest = () => {
+    this.props.socket.emit('rematchRequest', this.props.allData)
+  }
+
+  render() {
 
     return (
       <Modal
@@ -69,18 +76,17 @@ class Rematch extends Component {
     >
       <Modal.Header>
         <Modal.Title>
-          Theo Won The Game
-          <p>By Checkmate</p>
+          {this.state.resultSentence}
         </Modal.Title>
       </Modal.Header>
         <Modal.Body>
-          <h4>Theo</h4>
-          <p>0 - 1</p>
-          <h4>Tom</h4>
+          <h4>{this.state.me}</h4>
+          <p>{this.state.myVictories} - {this.state.theirVictories}</p>
+          <h4>{this.state.them}</h4>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.handleRematch}>Rematch</Button>
-          <Button onClick={this.handleRematch}>Go Home</Button>
+          <Button onClick={this.handleRematchRequest}>Rematch</Button>
+          <Button>Go Home</Button>
         </Modal.Footer>
       </Modal>
     )

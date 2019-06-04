@@ -36,6 +36,8 @@ class Board extends React.PureComponent {
       .then(this.setUsername)
       .then(this.setGameData)
       .then(this.setUpBoard)
+
+    //handle incoming moves
     this.props.socket.on("move", (data) => {
       this.props.handleTimer('player2', this.state.roomData)
       let { fromSquare, toSquare } = data;
@@ -62,10 +64,19 @@ class Board extends React.PureComponent {
       this.handleDrawRequest();
     })
 
-    //GAME OVER SOCKET EVENT!!
+    //Game over socket event
     this.props.socket.on("gameOver", (data) => {
       this.props.setRematch(data)
       this.props.handleTimer('stop')
+    })
+
+    this.props.socket.on("startRematch", (room) => {
+      this.state.game = new ChessJS()
+      axios.get(`http://localhost:3001/rooms/${room}`, axiosOptions)
+        .then(res => this.setState({roomData: res.data}))
+        .then(this.setUsername)
+        .then(this.setGameData)
+        .then(this.setUpBoard)
     })
   }
 
