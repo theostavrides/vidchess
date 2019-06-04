@@ -34,6 +34,7 @@ div > .fullscreen {
 #login-left-side > h2 {
   font-size: 8vh;
   font-weight: 700;
+  text-shadow: 2px 2px 3px #0c0c0c;
 }
 
 #login-left-side > p {
