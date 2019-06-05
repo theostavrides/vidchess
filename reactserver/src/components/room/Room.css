@@ -62,6 +62,7 @@ div.sidebar {
   grid-column: 1;
   grid-row-start: 1; 
   grid-row-end: 2; 
+  background-color: #333;
 }
 
 

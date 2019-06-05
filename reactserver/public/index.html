@@ -30,6 +30,26 @@
     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous"/>
+    <style>
+      #video-btn {
+        font-weight: 700;
+        font-size: 3vh;
+        width: calc(100vw - 90vh);
+        background-image: url("https://images.unsplash.com/photo-1550239261-89b17e004488?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80");
+        background-size: cover;
+        height: 40vh;
+        background-color: transparent;
+        border: none;
+        color: white;
+        transition: all 0.3s;
+      }
+
+      #video-btn:hover {
+        font-size: 3.2vh;
+        text-decoration: underline;
+        transition: all 0.3s;
+      }
+    </style>
   </head>
 
   <!-- onload="connect();" -->
@@ -40,15 +60,15 @@
     </div>
 
 
-    <div id="demoContainer" style="text-align: center; z-index: 10000; position:absolute; top: 10%; right:0; height:40vh;width: calc(100vw - 90vh)">
+    <div id="demoContainer" style="text-align:center; z-index: 10000; position:absolute; top: 10%; right:0; height:40vh;width: calc(100vw - 90vh); overflow:hidden">
 
       <div id="videos">
         <!-- ignore this (video of self) -->
         <video autoplay="autoplay" playsinline="playsinline" class="easyrtcMirror" id="selfVideo" muted="muted" volume="0" style="display:none"></video>
 
         <!-- other person's video -->
-        <div style="">
-          <video autoplay="autoplay" playsinline="playsinline" id="callerVideo" style="height:40vh"></video>
+        <div>
+          <video autoplay="autoplay" playsinline="playsinline" id="callerVideo" style="width: calc(100vw - 90vh)"></video>
         </div>
 
       </div>

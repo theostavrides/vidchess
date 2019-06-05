@@ -22,6 +22,7 @@ function convertListToButtons (roomName, data, isPrimary) {
     var otherClientDiv = document.getElementById('otherClients');
     for(var easyrtcid in data) {
         var button = document.createElement('button');
+        button.setAttribute('id', 'video-btn')
         button.onclick = function(easyrtcid) {
             return function() {
                 performCall(easyrtcid);
@@ -29,7 +30,7 @@ function convertListToButtons (roomName, data, isPrimary) {
             };
         }(easyrtcid);
 
-        var label = document.createTextNode("start video");
+        var label = document.createTextNode("Click Here To Start Video");
         button.appendChild(label);
         otherClientDiv.appendChild(button);
     }
