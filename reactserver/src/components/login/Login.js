@@ -86,7 +86,7 @@ class Login extends Component {
 
     return (
       <div id="login-grid">
-      <div class="fullscreen">
+      <div className="fullscreen">
       <video autoPlay loop muted>
             <source src={require("./video/Chess_14_Videvo.mp4")} type="video/mp4"/>
           </video>
@@ -97,7 +97,7 @@ class Login extends Component {
       </div>
         <div id="login-right-side">
           <div>
-            <h1>Let's Play Some Chess</h1>
+            <h1>Play With Friends<br></br>Or Play With Enemies</h1>
           </div>
           <div id="inner-inner-grid">
 
