@@ -97,7 +97,7 @@ class Login extends Component {
       </div>
         <div id="login-right-side">
           <div>
-            <h1>Play With Friends<br></br>Or Play With Enemies</h1>
+            <h1>Play With Friends<br></br>Or With Your Enemies</h1>
           </div>
           <div id="inner-inner-grid">
 
