@@ -11,7 +11,7 @@ import axios from 'axios';
 const axiosOptions = {
   headers: {
     'Content-Type': 'application/json',
-    "Access-Control-Allow-Origin": "http://192.168.88.232:3000"
+    "Access-Control-Allow-Origin": "http://192.168.88.101:3000"
   },
   withCredentials: true
 }
@@ -29,12 +29,12 @@ class Room extends Component {
       myTime: 300,
       theirTime: 300
     };
-    this.socket =  io(`http://192.168.88.232:3001`)
+    this.socket =  io(`http://192.168.88.101:3001`)
   }
 
   componentDidMount(){
     window["connect"]()
-    axios.get('http://192.168.88.232:3001/auth', axiosOptions)
+    axios.get('http://192.168.88.101:3001/auth', axiosOptions)
       .then((res) => {
         this.setState({username: res.data})
         this.joinRoom(res.data)

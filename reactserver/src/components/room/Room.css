@@ -135,6 +135,10 @@ form.chatbar > input {
 
 /* Modal Styling */
 
+.modal {
+  z-index: 5000000000;
+}
+
 .modal-content {
   border: none;
 }
