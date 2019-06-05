@@ -7,7 +7,7 @@ class App extends Component {
     super();
     this.state = {
       response: false,
-      endpoint: "http://localhost:3001"
+      endpoint: "http://192.168.88.85:3001"
     };
   }
   componentDidMount() {

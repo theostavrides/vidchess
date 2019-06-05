@@ -2,7 +2,7 @@ var selfEasyrtcid = "";
 
 
 function connect() {
-    easyrtc.setSocketUrl(":8080")
+    easyrtc.setSocketUrl("192.168.88.85:8080")
     easyrtc.setVideoDims(400,300);
     easyrtc.setRoomOccupantListener(convertListToButtons);
     easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
