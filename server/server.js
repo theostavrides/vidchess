@@ -16,7 +16,7 @@ const uuid = require('uuid/v1');
 
 
 var corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'http://192.168.88.232:3000',
   credentials: true
 }
 app.use(cors(corsOptions));

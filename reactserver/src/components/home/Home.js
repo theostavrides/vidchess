@@ -9,14 +9,14 @@ import { Redirect } from 'react-router';
 const axiosOptions = {
   headers: {
     'Content-Type': 'application/json',
-    "Access-Control-Allow-Origin": "http://localhost:3000"
+    "Access-Control-Allow-Origin": "http://192.168.88.232:3000"
   },
   withCredentials: true
 }
 
 function newLink(time, color) {
   const data = JSON.stringify({ time, color })
-  return axios.post('http://localhost:3001/newLink', data, axiosOptions);
+  return axios.post('http://192.168.88.232:3001/newLink', data, axiosOptions);
 }
 
 
