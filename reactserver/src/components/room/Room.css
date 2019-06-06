@@ -62,6 +62,7 @@ div.sidebar {
   grid-column: 1;
   grid-row-start: 1; 
   grid-row-end: 2; 
+  background-color: #333;
 }
 
 
@@ -133,6 +134,10 @@ form.chatbar > input {
 
 
 /* Modal Styling */
+
+.modal {
+  z-index: 5000000000;
+}
 
 .modal-content {
   border: none;

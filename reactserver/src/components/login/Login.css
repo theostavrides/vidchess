@@ -64,6 +64,7 @@ div > .fullscreen {
 
 #inner-inner-grid > button {
   font-size: 17px;
+  z-index: 200000000000;
   font-weight: 700;
   height: 50px;
   margin: 3px;

@@ -7,7 +7,7 @@ const axios = require('axios')
 const axiosOptions = {
   headers: {
     'Content-Type': 'application/json',
-    "Access-Control-Allow-Origin": "http://192.168.88.232:3000"
+    "Access-Control-Allow-Origin": "http://192.168.88.101:3000"
   },
   withCredentials: true
 }
@@ -31,7 +31,7 @@ class Board extends React.PureComponent {
   }
 
   componentDidMount(){
-    axios.get(`http://192.168.88.232:3001/rooms/${this.props.room}`, axiosOptions)
+    axios.get(`http://192.168.88.101:3001/rooms/${this.props.room}`, axiosOptions)
       .then(res => this.setState({roomData: res.data}))
       .then(this.setUsername)
       .then(this.setGameData)
@@ -72,7 +72,7 @@ class Board extends React.PureComponent {
 
     this.props.socket.on("startRematch", (room) => {
       this.state.game = new ChessJS()
-      axios.get(`http://192.168.88.232:3001/rooms/${room}`, axiosOptions)
+      axios.get(`http://192.168.88.101:3001/rooms/${room}`, axiosOptions)
         .then(res => this.setState({roomData: res.data}))
         .then(this.setUsername)
         .then(this.setGameData)
@@ -98,7 +98,7 @@ class Board extends React.PureComponent {
   setGameData = () => {
     let gameid = this.state.roomData.current_game;
     if (gameid) {
-      axios.get(`http://192.168.88.232:3001/games/${gameid}`, axiosOptions)
+      axios.get(`http://192.168.88.101:3001/games/${gameid}`, axiosOptions)
         .then((res) => this.setState({gameData: res.data}))
     }
   }
@@ -133,7 +133,7 @@ class Board extends React.PureComponent {
   }
 
   setUsername = () => {
-    return axios.get('http://192.168.88.232:3001/auth', axiosOptions)
+    return axios.get('http://192.168.88.101:3001/auth', axiosOptions)
       .then((res) => {this.setState({username: res.data})})
   }
 

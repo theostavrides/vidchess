@@ -4,19 +4,19 @@ import axios from 'axios'
 const axiosOptions = {
   headers: {
     'Content-Type': 'application/json',
-    "Access-Control-Allow-Origin": "http://192.168.88.232:3000"
+    "Access-Control-Allow-Origin": "http://192.168.88.101:3000"
   },
   withCredentials: true
 }
 
 function sendLogin(username, password) {
   const data = JSON.stringify({ username, password })
-  return axios.post('http://192.168.88.232:3001/login', data, axiosOptions);
+  return axios.post('http://192.168.88.101:3001/login', data, axiosOptions);
 }
 
 function sendRegister(username, password, email) {
   const data = JSON.stringify({ username, password, email })
-  return axios.post('http://192.168.88.232:3001/register', data, axiosOptions);
+  return axios.post('http://192.168.88.101:3001/register', data, axiosOptions);
 }
 
 class Login extends Component {
@@ -86,18 +86,18 @@ class Login extends Component {
 
     return (
       <div id="login-grid">
-      <div class="fullscreen">
+      <div className="fullscreen">
       <video autoPlay loop muted>
             <source src={require("./video/Chess_14_Videvo.mp4")} type="video/mp4"/>
           </video>
         <div id="login-left-side">
           <h2>Playing Chess<br></br>With Video</h2>
-          <p>ceteros nam. Recusabo indoctum scriptorem ei ius, qui cu autem cotidieque. In per tale velit. Mei mandamus salutandi complectitur te. Nec ea possit mentitum verterem, at mea errem forensibus mnesarchum.</p>
+          <p>Vidchess is an online web application that allows you to play chess with your friends while also allowing you to stream audio and video.</p>
         </div>
       </div>
         <div id="login-right-side">
           <div>
-            <h1>Let's Play Some Chess</h1>
+            <h1>Play With Friends<br></br>Or With Your Enemies</h1>
           </div>
           <div id="inner-inner-grid">
 
@@ -124,7 +124,7 @@ class Login extends Component {
                 onClick={isLogin ? this.handleSubmitLogin : this.handleSubmitRegister}
                 id="submit-btn"
                 type="submit"
-                placeholder="Submit"
+                value="Submit"
               />
             </form>
           </div>
