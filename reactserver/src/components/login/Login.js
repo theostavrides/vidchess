@@ -92,7 +92,7 @@ class Login extends Component {
           </video>
         <div id="login-left-side">
           <h2>Playing Chess<br></br>With Video</h2>
-          <p>ceteros nam. Recusabo indoctum scriptorem ei ius, qui cu autem cotidieque. In per tale velit. Mei mandamus salutandi complectitur te. Nec ea possit mentitum verterem, at mea errem forensibus mnesarchum.</p>
+          <p>Vidchess is an online web application that allows you to play chess with your friends while also allowing you to stream audio and video.</p>
         </div>
       </div>
         <div id="login-right-side">
@@ -124,7 +124,7 @@ class Login extends Component {
                 onClick={isLogin ? this.handleSubmitLogin : this.handleSubmitRegister}
                 id="submit-btn"
                 type="submit"
-                placeholder="Submit"
+                value="Submit"
               />
             </form>
           </div>
