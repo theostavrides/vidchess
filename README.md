@@ -32,4 +32,4 @@ Basic functionality implemented - full version to be deployed in late 2019.
 - React
 - WebRTC
 - Socket.io
-- PostgreSQL
+- PostgreSQL + knex
