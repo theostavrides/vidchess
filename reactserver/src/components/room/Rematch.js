@@ -4,7 +4,7 @@ import { Modal, Button } from 'react-bootstrap';
 const axiosOptions = {
   headers: {
     'Content-Type': 'application/json',
-    "Access-Control-Allow-Origin": "http://192.168.88.101:3000"
+    "Access-Control-Allow-Origin": "http://localhost:3000"
   },
   withCredentials: true
 }

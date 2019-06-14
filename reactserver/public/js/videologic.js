@@ -2,7 +2,7 @@ var selfEasyrtcid = "";
 
 
 function connect() {
-    easyrtc.setSocketUrl("https://www.theostavrides.com")
+    easyrtc.setSocketUrl("localhost:8080")
     easyrtc.setVideoDims(400,300);
     easyrtc.setRoomOccupantListener(convertListToButtons);
     easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
