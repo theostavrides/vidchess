@@ -16,13 +16,14 @@ Basic functionality implemented - full version to be deployed in late 2019.
 7. Go to localhost:3000 to use the app.
 
 ## Screenshots
-<img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/home.png" 
-     height="300px"/>
-
 <img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/room.png" 
      height="300px"/>
 
-
 <img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/login.png" 
      height="300px"/>
+
+<img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/home.png" 
+     height="300px"/>
+
+
 
