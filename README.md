@@ -1,6 +1,5 @@
 # vidchess
 The first online chess app that allows players to stream video and audio with their opponents while playing.
-Project makes use of React, WebRTC for video and audio, and Socket.io for the chess and chat components.
 
 Contributors: [Theo Stavrides](https://github.com/theostavrides) and [Tom Wenner](https://github.com/thmswenner)
 
@@ -27,5 +26,10 @@ Basic functionality implemented - full version to be deployed in late 2019.
 <img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/home.png" 
      height="350px"/>
 
-
-
+## Built With
+- Node.js 
+- Express
+- React
+- WebRTC
+- Socket.io
+- PostgreSQL
