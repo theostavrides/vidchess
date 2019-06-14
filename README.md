@@ -17,7 +17,7 @@ Basic functionality implemented - full version to be deployed in late 2019.
 
 ## Screenshots
 <img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/login.png" 
-     style="height:100px"/>
+     height="100px"/>
 ![login image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/login.png)
 ![homepage image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/home.png)
 ![link image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/link.png)
