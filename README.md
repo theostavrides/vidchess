@@ -17,14 +17,12 @@ Basic functionality implemented - full version to be deployed in late 2019.
 
 ## Screenshots
 <img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/home.png" 
-     height="400px"/>
-The home page.
+     height="300px"/>
 
 <img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/room.png" 
-     height="400px"/>
-The room page once a player has connected with an opponent
+     height="300px"/>
+
 
 <img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/login.png" 
-     height="400px"/>
-The login page
+     height="300px"/>
 
