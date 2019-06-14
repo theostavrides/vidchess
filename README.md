@@ -17,10 +17,12 @@ Basic functionality implemented - full version to be deployed in late 2019.
 
 ## Screenshots
 <img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/login.png" 
-     height="100px"/>
-![login image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/login.png)
-![homepage image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/home.png)
-![link image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/link.png)
-![room image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/room.png)
-
+     height="400px"/>
+<img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/home.png" 
+     height="400px"/>
+     
+<img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/link.png" 
+     height="400px"/>
+<img src="https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/room.png" 
+     height="400px"/>
 
