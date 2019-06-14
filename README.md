@@ -1,5 +1,5 @@
 # vidchess
-The first online chess app to allows players to stream video and audio with their opponents while playing.
+The first online chess app that allows players to stream video and audio with their opponents while playing.
 Project makes use of React, WebRTC for video and audio, and Socket.io for the chess and chat components.
 
 ## Project Status
@@ -14,3 +14,6 @@ Basic functionality implemented - full version to be deployed in late 2019.
 5. Repeat step 4 in the RTCserver/ folder.
 6. Repeat step 4 in the reactserver/ folder.
 7. Go to localhost:3000 to use the app.
+
+## Screenshots
+![homepage image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/home.png)
