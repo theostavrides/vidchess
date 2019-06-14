@@ -16,7 +16,7 @@ Basic functionality implemented - full version to be deployed in late 2019.
 7. Go to localhost:3000 to use the app.
 
 ## Screenshots
-![login image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/login.png)
+![login image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/login.png){:width="50%"}
 ![homepage image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/home.png)
 ![link image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/link.png)
 ![room image](https://raw.githubusercontent.com/theostavrides/vidchess/master/screenshots/room.png)
