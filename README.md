@@ -3,9 +3,6 @@ The first online chess app that allows players to stream video and audio with th
 
 Contributors: [Theo Stavrides](https://github.com/theostavrides) and [Tom Wenner](https://github.com/thmswenner)
 
-## Project Status
-Basic functionality implemented - full version to be deployed in late 2019.
-
 ## Installation 
 1. Download this repository
 2. Download and install [PostgreSQL](https://www.postgresql.org/)
