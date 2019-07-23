@@ -1,5 +1,5 @@
 # vidchess
-The first online chess app that allows players to stream video and audio with their opponents while playing a game.
+An online chess app that allows players to stream video and audio with their opponents while playing a game.
 
 Contributors: [Theo Stavrides](https://github.com/theostavrides) and [Tom Wenner](https://github.com/thmswenner)
 
